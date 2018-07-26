@@ -1,0 +1,54 @@
+{
+  "name": "repair-zone",
+  "version": "1.0.0",
+  "description": "Repair Zone is an application that connect maintenance and repair services providers with their potential clients who are in need of repair or maintenance services.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tutugodfrey/repair-zone.git"
+  },
+  "keywords": [
+    "repair",
+    "react",
+    "redux",
+    "js",
+    "es6"
+  ],
+  "author": "Tutu Godfrey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tutugodfrey/repair-zone/issues"
+  },
+  "homepage": "https://github.com/tutugodfrey/repair-zone#readme",
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "webpack": "^4.16.2",
+    "webpack-dev-server": "^3.1.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.4.0",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-jest": "^23.2.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "css-loader": "^1.0.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest": "^23.4.1",
+    "node-sass": "^4.9.2",
+    "react-addons-test-utils": "^15.6.2",
+    "react-test-renderer": "^16.4.1",
+    "sass-loader": "^7.0.3",
+    "style-loader": "^0.21.0"
+  }
+}
