@@ -10,7 +10,7 @@ export default class App extends Component {
       <h1> Make Request </h1>
       </div>
       <div>
-      <h1> Track Progress</h1>
+      <h1> Track Progresss</h1>
       </div>
       <div>
       <h1> Connect Via Messages</h1>
