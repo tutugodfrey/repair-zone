@@ -3,13 +3,18 @@
   "version": "1.0.0",
   "description": "Repair Zone is an application that connect maintenance and repair services providers with their potential clients who are in need of repair or maintenance services.",
   "main": "index.js",
+  "engines": {
+    "node": "8.11.3",
+    "npm": "5.6.0"
+  },
   "scripts": {
     "test": "mocha test",
-    "webpack": "webpack",
-    "start": "webpack-dev-server --mode development",
+    "webpacgk": "webpack",
+    "webpack": "webpack -w -d",
+    "dev": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
-    "webpack:dev": "webpack-dev-server --hot --inline",
-    "dev": "webpack-dev-server --config ./webpack/webpack.dev.config.js"
+    "start": "nodemon --exec babel-node ./server/app",
+    "webpack:dev": "webpack-dev-server --hot --inline"
   },
   "repository": {
     "type": "git",
@@ -29,6 +34,8 @@
   },
   "homepage": "https://github.com/tutugodfrey/repair-zone#readme",
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "express": "^4.16.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "webpack": "^4.16.2",
@@ -36,7 +43,6 @@
     "webpack-dev-server": "^3.1.5"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-jest": "^23.4.0",
     "babel-loader": "^7.1.5",
