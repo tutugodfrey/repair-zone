@@ -1,37 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<App /> render() renders the component 1`] = `
-<div>
-  <Div
-    content={
-      <h1>
-         Welcome to repair zone pro
-      </h1>
+<App
+  dispatch={[Function]}
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
     }
-  />
-  <Div
-    content={
-      <h1>
-         Make Requests 
-      </h1>
-    }
-  />
-  <Div
-    content={
-      <h1>
-         Track Progress
-      </h1>
-    }
-  />
-  <Div
-    content={
-      <h1>
-         Connect Via Messages
-      </h1>
-    }
-  />
-  <Button
-    btnName="signup"
-  />
-</div>
+  }
+/>
 `;
