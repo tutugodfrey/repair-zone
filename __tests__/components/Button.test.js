@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 // Component to be tested
-import Button from '../../client/src/components/Button';
+import Button from '../../client/src/components/elementComponents/Button';
 describe('<Button />', () => {
   describe('render()', () => {
     test('renders the component', () => {
