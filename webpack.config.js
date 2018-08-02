@@ -14,7 +14,22 @@ module.exports = {
         use: {
           loader: "babel-loader"
         }
-      }
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          "style-loader",
+          "css-loader",
+          "sass-loader"
+        ]
+      },
+      { test: /\.(png|jp(e*)g|jpeg)$/,
+        use: [{
+           loader: 'url-loader',
+           loader: 'file-loader',
+           options: { limit: 30000 }
+        }]
+     }
     ]
   }
 };

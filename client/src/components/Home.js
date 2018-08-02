@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Div from './../components/elementComponents/Div';
 import Button from './../components/elementComponents/Button';
 
+
 export default class Home extends Component {
   homeDescription(){
     return <Div content = {<h1> Welcome to repair zone</h1>}/>
