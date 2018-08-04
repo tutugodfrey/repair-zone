@@ -1,6 +1,6 @@
 
 module.exports = {
-  entry : "./client/src/index.js",
+  entry : "./client/src/index.jsx",
   output : {
 		path: __dirname + "/public/dist",
 		publicPath : "public/dist/",
