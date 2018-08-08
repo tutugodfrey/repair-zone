@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import Home from '../src/components/Home.jsx';
 
 const initialState = {
@@ -11,8 +12,13 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         userData: action.value,
       });
+    case 'SET_DISPLAY_PAGE':
+      return Object.assign({}, state, {
+        home: action.value,
+      });
     default:
       return state;
   }
 };
+
 export default reducer;

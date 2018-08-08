@@ -19,15 +19,14 @@ module.exports = {
         test: /\.scss$/,
         use: [
           "style-loader",
-          "css-loader",
+          "css-loader?url=false",
           "sass-loader"
         ]
       },
-      { test: /\.(png|jp(e*)g|jpeg)$/,
+      { test: /\.(png|jpg|jpeg)$/,
         use: [{
            loader: 'url-loader',
-           loader: 'file-loader',
-           options: { limit: 30000 }
+           options: { limit: 3000000 }
         }]
      }
     ]

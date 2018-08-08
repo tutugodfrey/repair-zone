@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { createStore } from 'redux';
 import reducer from './reducers';
 

@@ -1,11 +1,88 @@
 body {
-  background:#adeaad;
+	background:#ffffff;
+
 }
 #index {
-  background-image:url('./../images/pexels-photo-175039.jpeg');
-  background-repeat:no-repeat; 
+  background:url('../images/pexels-photo-175039.jpg');
+  /*background-repeat:no-repeat; 
 	background-size:cover;
-	background-position: center;
+	background-position: center; */
 	line-height: 20px;
 	height:100vh; 
+}
+#home-page {
+	padding:0px;
+}
+#home-description {
+	height:90vh;
+	position:relative;
+	top:2px;
+}
+#home-nav {
+	height:45px;
+	width:100%;
+	background-color:#adadcf;
+	position:relative;
+	top:0px;
+}
+#logo-div {
+	width:100px;
+	position:relative;
+	top:13px;
+	left:2%;
+}
+#app-description {
+	width:40%;
+	position:relative;
+	top:100px;
+	left:30%;
+	text-align:center;
+}
+#home-signin-signup {
+	width:150px;
+	position:absolute;
+	top:13px;
+	left:80%;
+}
+#make-requests {
+	background:url('~../images/pexels-photo-175039.jpg');
+	/*background-color:#adeaad; */
+	position:relative;
+	top:1px;
+	height:70vh;
+}
+#track-progress {
+	background-color:#acdcae;
+	position:relative;
+	top:1px;
+	height:70vh;
+}
+#contacts {
+	background-color:#adadcf;
+	position:relative;
+	top:1px;
+	height:70vh;
+}
+
+#home-footer {
+	height:100px;
+	background-color:#000000
+}
+#home-signup-btn-2 {
+position:relative;
+width:20%;
+height:40px;
+top:45px;
+left:45%;
+}
+.section-title {
+	position:relative;
+	top:3px;
+	left:40%;
+	width:20%;
+}
+#home-page-login {
+	position:absolute;
+	left:35%;
+	bottom:80px;
 }
