@@ -1,33 +1,70 @@
 import React, { Component } from 'react';
-import Div from './../components/elementComponents/Div';
-import Button from './../components/elementComponents/Button';
-
+import Div from './../components/elementComponents/Div.jsx';
+import Link from './../components/elementComponents/Link.jsx';
+import Paragraph from './../components/elementComponents/Paragraph.jsx';
+import InlineLogin from './InlineLogin.jsx';
 
 export default class Home extends Component {
-  homeDescription(){
-    return <Div content = {<h1> Welcome to repair zone</h1>}/>
+  homeNav() {
+    return <div id='home-nav' className=''>
+        <div id='logo-div' className='d-inline'>
+          <a>
+            <Paragraph paragraphClass='' paragraphId='' content='Repair-Zone' />
+          </a>
+        </div>
+        <div id='home-signin-signup' className='d-inline'>
+          <Link linkClass='mr-1' linkId='' linkText='Signup' />
+          <Link linkClass='mr-1' linkId='' linkText='Signin' />
+        </div>
+      </div>
+  }
+  homeDescription() {
+    return <div className='d-flex flex-column'>
+      {this.homeNav()}
+      <div id='app-description'>
+      <h1> Welcome to repair zone</h1><br /><p>We connect Service providers to potential clients</p>
+      </div>
+      <InlineLogin formClass='form-inline' formId='home-login' />
+      </div>
   }
   makeRequest(){
-    return <Div content = {<h1> Make Request</h1>} />;
+    return <div className='section d-flex flex-column' >
+      <h1 className='section-title justify-self-center'>Make Request</h1>
+      <p>
+        Search for service providers specialize in areas specific to your repair need.
+        Make repair or maintenance request specifying your issues
+      </p>
+    </div>
   }
   trackProgress() {
-    return <Div content = {<h1> Track Progress</h1>} />
+    return <div className='section' >
+      <h1 className='section-title'>Track Progress</h1>
+    </div>
   }
   contacts() {
-    return <Div content = {<h1> Connect Via Messages</h1>} />
+    return <div className='section' >
+      <h1 className='section-title'>Messaging</h1>
+    </div>
   }
   footer() {
-
+    return <Link
+    linkClass='px-5 text-center text-white '
+    linkId='home-signup-btn-2'
+    linkText='signup' />
   }
 
   render() {
     return (
-      <div>
-        <Div content = {this.homeDescription()}/>
-        <Div content = {this.makeRequest()}/>
-        <Div content = {this.trackProgress()} />
-        <Div content = {this.contacts()} />
-        <Button btnName = 'signup' />
+      <div id='home-page' className='container-fluid'>
+        <div className='row'>
+          <div className=''>
+            <Div divId='home-description' divClass='bg-secondary col-12' content={this.homeDescription()}/>
+            <Div divId='make-requests' divClass='col-12' content={this.makeRequest()}/>
+            <Div divId='track-progress' divClass='col-12' content={this.trackProgress()} />
+            <Div divId='contacts' divClass='col-12' content={this.contacts()} />
+            <Div divId='home-footer' divClass='col-12' content={this.footer()} />
+          </div>
+        </div>
       </div>
     )
   }
