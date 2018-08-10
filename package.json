@@ -20,7 +20,10 @@
     "dev": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
     "start": "nodemon --exec babel-node ./server/app",
-    "webpack:dev": "webpack-dev-server --hot --inline"
+    "webpack:dev": "webpack-dev-server --hot --inline",
+    "elint": "eslint client/",
+    "elint:table": "eslint . — ext .js — ext .jsx — cache — format table || true",
+    "elint:summary": "eslint . — ext .js — ext .jsx — cache — format ‘node_modules/eslint-friendly-formatter’ || true"
   },
   "repository": {
     "type": "git",
@@ -58,6 +61,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
     "babel-jest": "^23.4.0",
     "babel-loader": "^7.1.5",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -71,6 +75,13 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.4",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^2.1.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.10.0",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^23.4.1",
     "node-sass": "^4.9.2",
