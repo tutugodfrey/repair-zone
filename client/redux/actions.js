@@ -7,6 +7,10 @@ const actions = {
     type: 'SET_DISPLAY_PAGE',
     value: data,
   }),
+  saveSignupDetails: data => ({
+    type: 'SAVE_SIGNUP_DETAIL',
+    value: data,
+  })
 };
 
 export default actions;

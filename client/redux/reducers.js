@@ -16,6 +16,10 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         home: action.value,
       });
+    case 'SAVE_SIGNUP_DETAIL':
+      return Object.assign({}, state, {
+        signupDetail: action.value,
+      });
     default:
       return state;
   }

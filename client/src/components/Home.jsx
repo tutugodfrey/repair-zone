@@ -3,8 +3,20 @@ import Div from './../components/elementComponents/Div.jsx';
 import Link from './../components/elementComponents/Link.jsx';
 import Paragraph from './../components/elementComponents/Paragraph.jsx';
 import InlineLogin from './InlineLogin.jsx';
+import SigninPage from './SigninPage.jsx';
+import SignupPage from './SignupPage.jsx';
+import store from '../../redux/store';
+import actions from '../../redux/actions';
 
 export default class Home extends Component {
+  handleSigninLink() {
+    store.dispatch(actions.displayPage(SigninPage))
+  }
+
+  handleSignupLink() {
+    store.dispatch(actions.displayPage(SignupPage))
+  }
+
   homeNav() {
     return <div id='home-nav' className=''>
         <div id='logo-div' className='d-inline'>
@@ -13,11 +25,12 @@ export default class Home extends Component {
           </a>
         </div>
         <div id='home-signin-signup' className='d-inline'>
-          <Link linkClass='mr-1' linkId='' linkText='Signup' />
-          <Link linkClass='mr-1' linkId='' linkText='Signin' />
+          <Link linkClass='mr-1' href='#' linkId='#' linkText='Signup' onClick={this.handleSignupLink.bind(this)} />
+          <Link linkClass='mr-1' href='#' linkId='#' linkText='Signin' onClick={this.handleSigninLink.bind(this)}/>
         </div>
       </div>
   }
+
   homeDescription() {
     return <div className='d-flex flex-column'>
       {this.homeNav()}
@@ -27,6 +40,7 @@ export default class Home extends Component {
       <InlineLogin formClass='form-inline' formId='home-login' />
       </div>
   }
+
   makeRequest(){
     return <div className='section d-flex flex-column' >
       <h1 className='section-title justify-self-center'>Make Request</h1>
@@ -36,21 +50,26 @@ export default class Home extends Component {
       </p>
     </div>
   }
+
   trackProgress() {
     return <div className='section' >
       <h1 className='section-title'>Track Progress</h1>
     </div>
   }
+
   contacts() {
     return <div className='section' >
       <h1 className='section-title'>Messaging</h1>
     </div>
   }
+
   footer() {
     return <Link
-    linkClass='px-5 text-center text-white '
+    linkClass='px-5 text-center text-white'
+    href = '#'
     linkId='home-signup-btn-2'
-    linkText='signup' />
+    linkText='signup'
+    onClick={this.handleSignupLink.bind(this)} />
   }
 
   render() {
