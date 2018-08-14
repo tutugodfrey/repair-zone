@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Form from './elementComponents/Form.jsx';
 import FormInput from './elementComponents/FormInput.jsx';
 import Button from './elementComponents/Button.jsx';
+import dataFiledCollecotor from '../services/dataFieldCollector';
 
 export default class InlineLogin extends Component {
   constructor() {
@@ -25,7 +26,6 @@ export default class InlineLogin extends Component {
     event.preventDefault();
     const password = this.state.password;
     const username = this.state.username;
-    console.log(username, password)
   }
   formContent() {
     return <div id='home-page-login' className='d-flex flex-row d-sm-none d-md-block'>
