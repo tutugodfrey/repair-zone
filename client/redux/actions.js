@@ -10,6 +10,14 @@ const actions = {
   saveSignupDetails: data => ({
     type: 'SAVE_SIGNUP_DETAIL',
     value: data,
+  }),
+  saveSigninDetails: data => ({
+    type: 'SAVE_SIGNIN_DETAIL',
+    value: data,
+  }),
+  setFormToFill: data => ({
+    type: 'SET_FORM_TO_FILL',
+    value: data,
   })
 };
 

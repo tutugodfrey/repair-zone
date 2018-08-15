@@ -7,8 +7,10 @@ import Button from './elementComponents/Button.jsx';
 import Link from './elementComponents/Link.jsx';
 import Div from './elementComponents/Div.jsx';
 import Label from './elementComponents/Label.jsx';
-import dataFieldCollecotor from '../services/dataFieldCollector';
-import formSubmitter from '../services/formSubmitter'
+import dataFieldCollector from '../services/dataFieldCollector';
+import formSubmitter from '../services/formSubmitter';
+import actions from '../../redux/actions';
+import store from '../../redux/store';
 
 export default class SigninPage extends Component {
 
@@ -24,6 +26,9 @@ export default class SigninPage extends Component {
     event.preventDefault();
   }
 
+  componentDidMount() {
+    store.dispatch(actions.setFormToFill('signup'))
+  }
   // render the signup page
   formContent() {
     return <div>
@@ -39,7 +44,7 @@ export default class SigninPage extends Component {
             inputId='fullname' 
             inputPlaceholder='fullname' 
             inputName='fullname'
-            onChange={this.state = dataFieldCollecotor.bind(this)}
+            onChange={dataFieldCollector.bind(this)}
           />
         </div>
         <div col className=' my-2 col-10 col-md-6 offset-col-1'>
@@ -51,7 +56,7 @@ export default class SigninPage extends Component {
             inputId='username' 
             inputPlaceholder='username' 
             inputName='username'
-            onChange={dataFieldCollecotor.bind(this)}
+            onChange={dataFieldCollector.bind(this)}
           />
         </div>
         <div className='my-2 col-10 col-md-6 offset-col-1'>
@@ -63,7 +68,7 @@ export default class SigninPage extends Component {
             inputId='email' 
             inputPlaceholder='email' 
             inputName='email'
-            onChange={dataFieldCollecotor.bind(this)}
+            onChange={dataFieldCollector.bind(this)}
           />
         </div>
         <div className='my-2 col-10 col-md-6 offset-col-1'>
@@ -75,7 +80,7 @@ export default class SigninPage extends Component {
             inputId='address' 
             inputPlaceholder='address' 
             inputName='address'
-            onChange={dataFieldCollecotor.bind(this)}
+            onChange={dataFieldCollector.bind(this)}
           />
         </div>
         <div className='my-2 col-10 col-md-6 offset-col-1'>
@@ -87,7 +92,7 @@ export default class SigninPage extends Component {
             inputId='phone' 
             inputPlaceholder='phone' 
             inputName='phone'
-            onChange={dataFieldCollecotor.bind(this)}
+            onChange={dataFieldCollector.bind(this)}
           />
         </div>
         <div className='my-2 col-10 col-md-6 offset-col-1'>
@@ -97,7 +102,7 @@ export default class SigninPage extends Component {
             inputClass='ml-1 pt-1 border-success form-control form-controls-md' 
             inputId='profile-photo'
             inputName='profile-photo'
-            onChange={dataFieldCollecotor.bind(this)}
+            onChange={dataFieldCollector.bind(this)}
           />
         </div>
         <div className='my-2 col-10 col-md-6 offset-col-1'>
@@ -109,7 +114,7 @@ export default class SigninPage extends Component {
             inputId='password'
             inputPlaceholder='password'
             inputName='password'
-            onChange={dataFieldCollecotor.bind(this)}
+            onChange={dataFieldCollector.bind(this)}
           />
         </div>
         <div className='my-2 col-10 col-md-6 offset-col-1'>
@@ -121,7 +126,7 @@ export default class SigninPage extends Component {
             inputId='confrm-password'
             inputPlaceholder='confirm-password'
             inputName='confirm-password'
-            onChange={dataFieldCollecotor.bind(this)}
+            onChange={dataFieldCollector.bind(this)}
           />
         </div>
         <fieldset className='my-2 col-10 col-md-10 offset-col-1'>
@@ -132,7 +137,7 @@ export default class SigninPage extends Component {
             inputId='is-admin'
             inputName='is-admin'
             value='true'
-            onChange={dataFieldCollecotor.bind(this)}
+            onChange={dataFieldCollector.bind(this)}
           />
           <Label id='' labelFor='is-admin' content='Check here' /> <br />
           <Label id='' labelFor='service-name' content='Service Name' />
@@ -142,7 +147,7 @@ export default class SigninPage extends Component {
             inputId='service-name'
             inputPlaceholder='Service Name'
             inputName='service-name'
-            onChange={dataFieldCollecotor.bind(this)}
+            onChange={dataFieldCollector.bind(this)}
           />
         </fieldset>
         <Button

@@ -20,6 +20,14 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         signupDetail: action.value,
       });
+    case 'SAVE_SIGNIN_DETAIL':
+      return Object.assign({}, state, {
+        signinDetail: action.value,
+      });
+    case 'SET_FORM_TO_FILL':
+      return Object.assign({}, state, {
+        formType: action.value,
+      });
     default:
       return state;
   }
