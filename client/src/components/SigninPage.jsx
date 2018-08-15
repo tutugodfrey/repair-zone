@@ -4,39 +4,65 @@ import FormInput from './elementComponents/FormInput.jsx';
 import Button from './elementComponents/Button.jsx';
 import Link from './elementComponents/Link.jsx';
 import Div from './elementComponents/Div.jsx';
+import Label from './elementComponents/Label.jsx';
+import dataFieldCollector from '../services/dataFieldCollector';
+import actions from '../../redux/actions';
+import store from '../../redux/store';
 
 export default class SigninPage extends Component {
-  getUsername() {
 
-  }
-  getPassword() {
 
-  }
   handleLogin() {
     
   }
+
+  loadSignupPage() {
+    
+  }
+  componentDidMount() {
+    store.dispatch(actions.setFormToFill('signin'))
+  }
+
   formContent() {
-    return <div>
-        <h3>Sign In</h3>
-        <FormInput
-        inputType='text' 
-        inputClass='ml-1 form-controls-md' 
-        inputId='signin-2-username' 
-        inputPlaceholder='username' 
-        inputName='username'
-        onChange={this.getUsername.bind(this)}/>
-        <FormInput
-        inputType='text'
-        inputClass='ml-1'
-        inputId='signin-2-password'
-        inputPlaceholder='password'
-        inputName='password'
-        onChange={this.getPassword.bind(this)} />
+    return <div className=''>
+      <div className='row'>
+        <div className='card-body'>
+        <h3 className='card-title'>Sign In</h3>
+        <div className=''>
+          <Label labelFor='signin-2-username' labelId='' content='Username' />
+          <span className="required text-danger">*</span>
+          <FormInput
+            inputType='text' 
+            inputClass='ml-1 border-success form-control' 
+            inputId='signin-2-username' 
+            inputPlaceholder='username' 
+            inputName='username'
+            onChange={dataFieldCollector.bind(this)}
+          />
+        </div>
+        <div className=''>
+          <Label labelFor='signin-2-password' labelId='' content='Password' />
+          <span className="required text-danger">*</span>
+          <FormInput
+            inputType='text'
+            inputClass='ml-1 border-success form-control'
+            inputId='signin-2-password'
+            inputPlaceholder='password'
+            inputName='password'
+            onChange={dataFieldCollector.bind(this)} />
+        </div>
         <Button
-        buttonClass='ml-1 bg-success text-white' 
+        buttonClass='ml-1 my-2 px-5 py-2 btn btn-sm bg-success text-white' 
         buttonId='' 
         buttonName='log-In'
         onClick={this.handleLogin.bind(this)} />
+        </div>
+      </div>
+      <p>
+        You don't have an account?<br />
+        <Link href='#' linkText='Sign Up' hrefClass='card-link' onClick={this.loadSignupPage.bind(this)} />
+        here
+      </p>
       </div>
   }
 
@@ -44,6 +70,6 @@ export default class SigninPage extends Component {
     return <Form content={this.formContent()}/>
   }
   render() {
-    return <Div divId='' divClass='' content={this.renderForm()}/>
+    return <Div divId='login-div' divClass='card py-5 border-success px-5 col-md-6 offset-md-3' content={this.renderForm()}/>
   }
 }
