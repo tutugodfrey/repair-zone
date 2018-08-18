@@ -2,14 +2,16 @@ body {
 	background:#ffffff;
 
 }
-#index {
-  background:url('../images/pexels-photo-175039.jpg');
-  /*background-repeat:no-repeat; 
+
+#home-description {
+  background-image:url('/images/pexels-photo-175039.jpg');
+  background-repeat:no-repeat; 
 	background-size:cover;
-	background-position: center; */
+	background-position: center;
 	line-height: 20px;
 	height:100vh; 
 }
+
 #home-page {
 	padding:0px;
 }
@@ -21,7 +23,7 @@ body {
 #home-nav {
 	height:45px;
 	width:100%;
-	background-color:#adadcf;
+/*	background-color:#adadcf; */
 	position:relative;
 	top:0px;
 }
@@ -45,12 +47,12 @@ body {
 	left:80%;
 }
 #make-requests {
-	background:url('~../images/pexels-photo-175039.jpg');
-	/*background-color:#adeaad; */
+	background-color:#adeaad;
 	position:relative;
 	top:1px;
 	height:70vh;
 }
+
 #track-progress {
 	background-color:#acdcae;
 	position:relative;
@@ -69,11 +71,11 @@ body {
 	background-color:#000000
 }
 #home-signup-btn-2 {
-position:relative;
-width:20%;
-height:40px;
-top:45px;
-left:45%;
+	position:relative;
+	width:20%;
+	height:40px;
+	top:45px;
+	left:45%;
 }
 .section-title {
 	position:relative;
@@ -91,7 +93,3 @@ left:45%;
 	position:relative;
 	top:140px;
 }
-
-//#signup-form {
-
-//}

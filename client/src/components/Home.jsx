@@ -10,11 +10,11 @@ import actions from '../../redux/actions';
 
 export default class Home extends Component {
   handleSigninLink() {
-    store.dispatch(actions.displayPage(SigninPage))
+    store.dispatch(actions.displayPage(SigninPage));
   }
 
   handleSignupLink() {
-    store.dispatch(actions.displayPage(SignupPage))
+    store.dispatch(actions.displayPage(SignupPage));
   }
 
   homeNav() {
@@ -75,13 +75,13 @@ export default class Home extends Component {
   render() {
     return (
       <div id='home-page' className='container-fluid'>
-        <div className='row'>
+        <div className=''>
           <div className=''>
-            <Div divId='home-description' divClass='bg-secondary col-12' content={this.homeDescription()}/>
-            <Div divId='make-requests' divClass='col-12' content={this.makeRequest()}/>
-            <Div divId='track-progress' divClass='col-12' content={this.trackProgress()} />
-            <Div divId='contacts' divClass='col-12' content={this.contacts()} />
-            <Div divId='home-footer' divClass='col-12' content={this.footer()} />
+            <Div divId='home-description' divClass='' content={this.homeDescription()}/>
+            <Div divId='make-requests' divClass='' content={this.makeRequest()}/>
+            <Div divId='track-progress' divClass='' content={this.trackProgress()} />
+            <Div divId='contacts' divClass='' content={this.contacts()} />
+            <Div divId='home-footer' divClass='' content={this.footer()} />
           </div>
         </div>
       </div>
