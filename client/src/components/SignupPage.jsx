@@ -1,5 +1,3 @@
-//SignupPage.jsx component
-
 import React, {Component} from 'react';
 import Form from './elementComponents/Form.jsx';
 import FormInput from './elementComponents/FormInput.jsx';
@@ -7,12 +5,15 @@ import Button from './elementComponents/Button.jsx';
 import Link from './elementComponents/Link.jsx';
 import Div from './elementComponents/Div.jsx';
 import Label from './elementComponents/Label.jsx';
+import SigninPage from './SigninPage.jsx';
+import Paragraph from './../components/elementComponents/Paragraph.jsx';
+import HomePage from './Home.jsx';
 import dataFieldCollector from '../services/dataFieldCollector';
 import formSubmitter from '../services/formSubmitter';
 import actions from '../../redux/actions';
 import store from '../../redux/store';
 
-export default class SigninPage extends Component {
+export default class SignupPage extends Component {
 
   // get signup data from redux store
   // make api request
@@ -22,8 +23,12 @@ export default class SigninPage extends Component {
 
   // render signin page when user
   // click the signin link
-  loadLoginPage() {
-    event.preventDefault();
+  loadSigninPage() {
+    store.dispatch(actions.displayPage(SigninPage))
+  }
+
+  loadHomePage() {
+    store.dispatch(actions.displayPage(HomePage))
   }
 
   componentDidMount() {
@@ -158,7 +163,7 @@ export default class SigninPage extends Component {
         />
       </div>
       </div>
-      <Link href='#' hrefClass='card-link' hrefId='signin-link' linkText='Signin' onClick={this.loadLoginPage.bind(this)}/>
+      <Link href='#' hrefClass='card-link' hrefId='signin-link' linkText='Signin' onClick={this.loadSigninPage.bind(this)}/>
     </div>
   }
 
@@ -166,6 +171,14 @@ export default class SigninPage extends Component {
     return <Form content={this.formContent()}/>
   }
   render() {
-    return <Div divId='signup-form' divClass='card py-4 my-5 col-sm-10 col-md-8 offset-md-2 border-success' content={this.renderForm()}/>
+    return <div>
+      <div id='logo-div' className='d-inline'>
+        <a href='#' onClick={this.loadHomePage.bind(this)}>
+          <Paragraph paragraphClass='' paragraphId='' content='Repair-Zone' />
+        </a>
+      </div>
+      <Div divId='signup-form' divClass='card py-4 my-5 col-sm-10 col-md-8 offset-md-2 border-success' content={this.renderForm()}/>
+    </div>
+
   }
 }

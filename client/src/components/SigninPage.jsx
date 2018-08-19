@@ -5,6 +5,9 @@ import Button from './elementComponents/Button.jsx';
 import Link from './elementComponents/Link.jsx';
 import Div from './elementComponents/Div.jsx';
 import Label from './elementComponents/Label.jsx';
+import SignupPage from './SignupPage.jsx';
+import HomePage from './Home.jsx';
+import Paragraph from './../components/elementComponents/Paragraph.jsx';
 import dataFieldCollector from '../services/dataFieldCollector';
 import actions from '../../redux/actions';
 import store from '../../redux/store';
@@ -16,8 +19,12 @@ export default class SigninPage extends Component {
     
   }
 
+  loadHomePage() {
+    store.dispatch(actions.displayPage(HomePage))
+  }
+
   loadSignupPage() {
-    
+    store.dispatch(actions.displayPage(SignupPage))
   }
   componentDidMount() {
     store.dispatch(actions.setFormToFill('signin'))
@@ -70,6 +77,13 @@ export default class SigninPage extends Component {
     return <Form content={this.formContent()}/>
   }
   render() {
-    return <Div divId='login-div' divClass='card py-5 border-success px-5 col-md-6 offset-md-3' content={this.renderForm()}/>
+    return <div>
+      <div id='logo-div' className='d-inline'>
+        <a href='#' onClick={this.loadHomePage.bind(this)}>
+          <Paragraph paragraphClass='' paragraphId='' content='Repair-Zone' />
+        </a>
+      </div>
+      <Div divId='login-div' divClass='card py-5 border-success px-5 col-md-6 offset-md-3' content={this.renderForm()}/>
+    </div>
   }
 }
