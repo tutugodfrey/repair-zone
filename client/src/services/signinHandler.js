@@ -20,7 +20,6 @@ const handleLogin = async (event) => {
       // change the object of the event
       event.target = failingElement,
       validateRequiredField(event);
-
     }
     return allFieldPass;
   });

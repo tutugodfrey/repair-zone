@@ -58,18 +58,18 @@ const handleSignup = async (event) => {
   };
 
   const responseData = await fetchRequest('/auth/signup', options);
-    // singup is successful if token is present
-    if (responseData.token) {
-      const userInfo = JSON.stringify(responseData);
-      localStorage.setItem('userData', userInfo);
+  // singup is successful if token is present
+  if (responseData.token) {
+    const userInfo = JSON.stringify(responseData);
+    localStorage.setItem('userData', userInfo);
 
-      // redirect user to their dashboard
-      store.dispatch(actions.setUserData(responseData));
-      store.dispatch(actions.displayPage(Dashboard));
-    }
-  
-    // show console modal of the error message
-    return store.dispatch(actions.setErrorValue(responseData.message));
-}
+    // redirect user to their dashboard
+    store.dispatch(actions.setUserData(responseData));
+    store.dispatch(actions.displayPage(Dashboard));
+  }
+
+  // show console modal of the error message
+  return store.dispatch(actions.setErrorValue(responseData.message));
+};
 
 export default handleSignup;

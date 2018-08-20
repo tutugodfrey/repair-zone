@@ -3,14 +3,16 @@ import actions from '../../redux/actions';
 import store from '../../redux/store';
 
 const dataFieldCollector = (event) => {
+  event.preventDefault();
+  console.log(process.env.NODE_ENV);
   const { name } = event.target;
   let { value } = event.target;
   if (event.target.type === 'file') {
     /* eslint-disable-next-line */
     value = event.target.files[0];
   }
-  
-  if(event.target.type === 'checkbox') {
+
+  if (event.target.type === 'checkbox') {
     value = `${event.target.checked}`;
   }
   const state = store.getState().formDetailReducer;
