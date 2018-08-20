@@ -1,36 +1,46 @@
 import actions from '../../redux/actions';
+/* eslint-disable-next-line */
 import store from '../../redux/store';
 
 const dataFieldCollector = (event) => {
   event.preventDefault();
-  const name = event.target.name;
-  const value = event.target.value;
+  console.log(process.env.NODE_ENV);
+  const { name } = event.target;
+  let { value } = event.target;
+  if (event.target.type === 'file') {
+    /* eslint-disable-next-line */
+    value = event.target.files[0];
+  }
   const state = store.getState();
-  const formType = state.formType;
-  switch(formType) {
+  const { formType } = state;
+  switch (formType) {
     case 'signup': {
-      const signupDetail = state.signupDetail;
+      let { signupDetail } = state;
       if (!signupDetail) {
-        let signupDetail = {}
+        signupDetail = {};
         signupDetail[name] = value;
-        store.dispatch(actions.saveSignupDetails(signupDetail))
+        store.dispatch(actions.saveSignupDetails(signupDetail));
       } else {
         signupDetail[name] = value;
-        store.dispatch(actions.saveSignupDetails(signupDetail))
+        store.dispatch(actions.saveSignupDetails(signupDetail));
       }
-    };
-    case 'signin': {
-      const signinDetail = state.signinDetail;
-      if (!signinDetail) {
-        let signinDetail = {}
-        signinDetail[name] = value;
-        store.dispatch(actions.saveSigninDetails(signinDetail))
-      } else {
-        signinDetail[name] = value;
-        store.dispatch(actions.saveSigninDetails(signinDetail))
-      }
+      break;
     }
- }
-}
+    case 'signin': {
+      let { signinDetail } = state;
+      if (!signinDetail) {
+        signinDetail = {};
+        signinDetail[name] = value;
+        store.dispatch(actions.saveSigninDetails(signinDetail));
+      } else {
+        signinDetail[name] = value;
+        store.dispatch(actions.saveSigninDetails(signinDetail));
+      }
+      break;
+    }
+    default:
+      return 'No form is set for submit';
+  }
+};
 
 export default dataFieldCollector;

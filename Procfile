@@ -1,1 +1,1 @@
-web: nodemon --exec babel-node ./server/app
+web: npm run build && nodemon --exec babel-node ./server/app

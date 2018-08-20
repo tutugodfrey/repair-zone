@@ -18,7 +18,11 @@ const actions = {
   setFormToFill: data => ({
     type: 'SET_FORM_TO_FILL',
     value: data,
-  })
+  }),
+  setUserData: data => ({
+    type: 'SET_USER_DATA',
+    value: data,
+  }),
 };
 
 export default actions;

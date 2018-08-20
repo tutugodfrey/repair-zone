@@ -9,31 +9,27 @@ import SigninPage from './SigninPage.jsx';
 import Paragraph from './../components/elementComponents/Paragraph.jsx';
 import HomePage from './Home.jsx';
 import dataFieldCollector from '../services/dataFieldCollector';
-import formSubmitter from '../services/formSubmitter';
 import actions from '../../redux/actions';
 import store from '../../redux/store';
+import signupHandler from '../services/signupHandler';
 
 export default class SignupPage extends Component {
-
-  // get signup data from redux store
-  // make api request
-  handleLogin(event) {
-    event.preventDefault();
-  }
-
   // render signin page when user
   // click the signin link
+
+
+  componentDidMount() {
+    store.dispatch(actions.setFormToFill('signup'));
+  }
+
   loadSigninPage() {
-    store.dispatch(actions.displayPage(SigninPage))
+    store.dispatch(actions.displayPage(SigninPage));
   }
 
   loadHomePage() {
-    store.dispatch(actions.displayPage(HomePage))
+    store.dispatch(actions.displayPage(HomePage));
   }
 
-  componentDidMount() {
-    store.dispatch(actions.setFormToFill('signup'))
-  }
   // render the signup page
   formContent() {
     return <div>
@@ -114,7 +110,7 @@ export default class SignupPage extends Component {
           <Label id='' labelFor='password' content='Password' />
           <span className="required text-danger ">*</span>
           <FormInput
-            inputType='text'
+            inputType='password'
             inputClass='ml-1 pt-3 border-success form-control'
             inputId='password'
             inputPlaceholder='password'
@@ -126,11 +122,11 @@ export default class SignupPage extends Component {
           <Label id='' labelFor='confirm-password' content='Confirm Password' />
           <span className="required text-danger">*</span>
           <FormInput
-            inputType='text'
+            inputType='password'
             inputClass='ml-1 pt-3 border-success form-control '
             inputId='confrm-password'
             inputPlaceholder='confirm-password'
-            inputName='confirm-password'
+            inputName='confirmPassword'
             onChange={dataFieldCollector.bind(this)}
           />
         </div>
@@ -140,7 +136,7 @@ export default class SignupPage extends Component {
             inputType='checkbox'
             inputClass='ml-1 pt-3 border-success form-control'
             inputId='is-admin'
-            inputName='is-admin'
+            inputName='isAdmin'
             value='true'
             onChange={dataFieldCollector.bind(this)}
           />
@@ -151,7 +147,7 @@ export default class SignupPage extends Component {
             inputClass='ml-1 pt-3 border-success form-control'
             inputId='service-name'
             inputPlaceholder='Service Name'
-            inputName='service-name'
+            inputName='serviceName'
             onChange={dataFieldCollector.bind(this)}
           />
         </fieldset>
@@ -159,7 +155,7 @@ export default class SignupPage extends Component {
           buttonClass='mx-5 my-3 px-5 py-2 bg-success offset-md-4 text-white' 
           buttonId='' 
           buttonName='Signup'
-          onClick={formSubmitter.bind(this)}
+          onClick={signupHandler.bind(this)}
         />
       </div>
       </div>
