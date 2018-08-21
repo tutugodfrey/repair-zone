@@ -9,15 +9,11 @@ import SignupPage from './SignupPage.jsx';
 import HomePage from './Home.jsx';
 import Paragraph from './../components/elementComponents/Paragraph.jsx';
 import dataFieldCollector from '../services/dataFieldCollector';
+import signinHandler from '../services/signinHandler';
 import actions from '../../redux/actions';
 import store from '../../redux/store';
 
 export default class SigninPage extends Component {
-
-
-  handleLogin() {
-    
-  }
 
   loadHomePage() {
     store.dispatch(actions.displayPage(HomePage))
@@ -26,10 +22,12 @@ export default class SigninPage extends Component {
   loadSignupPage() {
     store.dispatch(actions.displayPage(SignupPage))
   }
+
   componentDidMount() {
-    store.dispatch(actions.setFormToFill('signin'))
+    store.dispatch(actions.setFormToFill('signin'));
   }
 
+  
   formContent() {
     return <div className=''>
       <div className='row'>
@@ -62,7 +60,7 @@ export default class SigninPage extends Component {
         buttonClass='ml-1 my-2 px-5 py-2 btn btn-sm bg-success text-white' 
         buttonId='' 
         buttonName='log-In'
-        onClick={this.handleLogin.bind(this)} />
+        onClick={signinHandler.bind(this)} />
         </div>
       </div>
       <p>

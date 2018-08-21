@@ -5,22 +5,13 @@ import Button from './elementComponents/Button.jsx';
 import actions from '../../redux/actions';
 import store from '../../redux/store';
 import dataFiledCollector from '../services/dataFieldCollector';
+import signinHandler from '../services/signinHandler'
 
 export default class InlineLogin extends Component {
-  constructor() {
-    super();
-    this.state = {}
-  }
-
   componentDidMount() {
-    store.dispatch(actions.setFormToFill('signin'))
+    store.dispatch(actions.setFormToFill('signin'));
   }
 
-  handleLogin(event) {
-    event.preventDefault();
-    const password = this.state.password;
-    const username = this.state.username;
-  }
   formContent() {
     return <div id='home-page-login' className='d-flex flex-row d-sm-none d-md-block'>
       <FormInput
@@ -41,10 +32,11 @@ export default class InlineLogin extends Component {
       buttonClass='ml-1 bg-success text-white' 
       buttonId='' 
       buttonName='log-In'
-      onClick={this.handleLogin.bind(this)} />
+      onClick={signinHandler.bind(this)} />
       </div>
   }
+  
   render() {
-    return <Form formId='' formClass='' content={this.formContent()} />
+    return <Form formId="" formClass="" content={this.formContent()} />
   }
 }
