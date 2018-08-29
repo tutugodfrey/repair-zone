@@ -37,9 +37,9 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         TabContent: action.value,
       });
-    case 'SAVE_REQUEST':
+    case 'SAVE_REQUESTS':
       return Object.assign({}, state, {
-        request: action.value,
+        requests: action.value,
       });
     case 'SAVE_SERVICE_PROVIDERS':
       return Object.assign({}, state, {
