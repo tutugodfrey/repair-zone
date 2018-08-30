@@ -4,10 +4,9 @@ import Home from '../src/components/Home.jsx';
 const initialState = {
   home: Home,
 };
-// console.log(initialState.home)
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    // return default state if something isn't right
     case 'SET_USER_DATE':
       return Object.assign({}, state, {
         userData: action.value,
@@ -28,6 +27,12 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         formType: action.value,
       });
+    case 'SET_USER_DATA':
+      return Object.assign({}, state, {
+        userData: action.value,
+      });
+
+    // return default state if something isn't right
     default:
       return state;
   }
