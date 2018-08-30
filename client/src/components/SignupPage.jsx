@@ -30,6 +30,9 @@ export default class SignupPage extends Component {
     store.dispatch(actions.displayPage(HomePage));
   }
 
+  componentDidMount() {
+    store.dispatch(actions.setFormToFill('signup'));
+  }
   // render the signup page
   formContent() {
     return <div>
