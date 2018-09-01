@@ -1,16 +1,14 @@
 /* eslint-disable import/no-cycle */
 import Home from '../src/components/Home.jsx';
+import ViewRequest from '../src/components/ViewRequest.jsx';
 
 const initialState = {
   home: Home,
+  TabContent: ViewRequest,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'SET_USER_DATE':
-      return Object.assign({}, state, {
-        userData: action.value,
-      });
     case 'SET_DISPLAY_PAGE':
       return Object.assign({}, state, {
         home: action.value,
@@ -31,7 +29,10 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         userData: action.value,
       });
-
+    case 'SET_TAB_TO_VIEW':
+      return Object.assign({}, state, {
+        TabContent: action.value,
+      })
     // return default state if something isn't right
     default:
       return state;

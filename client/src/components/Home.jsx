@@ -20,9 +20,7 @@ export default class Home extends Component {
   homeNav() {
     return <div id='home-nav' className=''>
         <div id='logo-div' className='d-inline'>
-          <a>
-            <Paragraph paragraphClass='' paragraphId='' content='Repair-Zone' />
-          </a>
+            <Link href="#" linkClass='' linkId='' linkText='Repair-Zone' />
         </div>
         <div id='home-signin-signup' className='d-inline'>
           <Link linkClass='mr-1' href='#' linkId='#' linkText='Signup' onClick={this.handleSignupLink.bind(this)} />

@@ -22,7 +22,7 @@ export default class InlineLogin extends Component {
       inputName='username'
       onChange={dataFiledCollector.bind(this)}/>
       <FormInput
-      inputType='text'
+      inputType='password'
       inputClass='ml-1'
       inputId='signin-1-password'
       inputPlaceholder='password'
@@ -37,6 +37,6 @@ export default class InlineLogin extends Component {
   }
   
   render() {
-    return <Form formId="" formClass="" content={this.formContent()} />
+    return <Form formId="inline-signin-form" formClass="" content={this.formContent()} />
   }
 }

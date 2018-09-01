@@ -49,7 +49,7 @@ export default class SigninPage extends Component {
           <Label labelFor='signin-2-password' labelId='' content='Password' />
           <span className="required text-danger">*</span>
           <FormInput
-            inputType='text'
+            inputType='password'
             inputClass='ml-1 border-success form-control'
             inputId='signin-2-password'
             inputPlaceholder='password'
