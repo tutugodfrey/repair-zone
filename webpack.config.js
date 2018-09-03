@@ -9,8 +9,10 @@ module.exports = () => {
     prev[`process.env.${next}`] = JSON.stringify(env[next]);
     return prev;
   }, {});
+  console.log(envKeys)
   return {
     entry: './client/src/index.jsx',
+
     output: {
       path: __dirname + '/public/dist',
       publicPath: 'public/dist/',

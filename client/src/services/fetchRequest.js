@@ -1,6 +1,7 @@
 
 // make api request using fetch
 function fetchRequest(url, options, callback) {
+  console.log('api-url', process.env.API_URL)
   const { NODE_ENV } = process.env;
   let BASE_URL = 'https://mtrackers.herokuapp.com/api/v1';
   if (NODE_ENV === 'development') {
