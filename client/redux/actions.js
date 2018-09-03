@@ -19,10 +19,10 @@ const actions = {
     type: 'SET_FORM_TO_FILL',
     value: data,
   }),
-  setUserData: data => ({
-    type: 'SET_USER_DATA',
+  setTabToView: data => ({
+    type: 'SET_TAB_TO_VIEW',
     value: data,
-  }),
+  })
 };
 
 export default actions;

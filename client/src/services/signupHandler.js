@@ -2,11 +2,13 @@
 import store from '../../redux/store';
 import actions from '../../redux/actions';
 import fetchRequest from './fetchRequest';
+import Dashboard from '../components/Dashboard.jsx';
 /* eslint-disable no-console */
 function handleResponse(data) {
   // singup is successful if token is present
   if (data.token) {
     store.dispatch(actions.setUserData(data));
+    store.dispatch(actions.displayPage(Dashboard));
     // redirect user to their dashboard
   }
 

@@ -1,6 +1,7 @@
 import fetchRequest from '../services/fetchRequest';
 import actions from '../../redux/actions';
 import store from '../../redux/store';
+import Dashboard from '../components/Dashboard.jsx';
 
 function handleResponse(responseData) {
   if(responseData.token) {
@@ -8,7 +9,7 @@ function handleResponse(responseData) {
     store.dispatch(actions.setUserData(responseData));
 
     // redirect users to their dashboard
-    return console.log(responseData);
+    store.dispatch(actions.displayPage(Dashboard));
   }
   if (responseData.message === 'authentication fail! check your username or password') {
     // redirect user to the signin page
