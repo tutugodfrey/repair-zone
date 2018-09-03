@@ -5,6 +5,6 @@ import store from '../../redux/store';
 export default class Content extends Component {
   render() {
     const { TabContent } = store.getState();
-  return <Div divId="" divClass="" content={<TabContent />} />
+  return <Div divId="content-area" divClass="" content={<TabContent />} />
   }
 }

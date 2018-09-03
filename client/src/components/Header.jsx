@@ -3,7 +3,7 @@ import { NavButton } from './elementComponents/Button.jsx';
 import Link from './elementComponents/Link.jsx';
 import Home from './Home.jsx';
 import ViewRequest from './ViewRequest.jsx';
-import MakeRequest from './MakeRequest.jsx';
+import RequestForm from './RequestForm.jsx';
 import SendMessage from './SendMessage.jsx';
 import store from '../../redux/store';
 import actions from '../../redux/actions';
@@ -72,7 +72,7 @@ export default class Header extends Component {
             href="#"
             className="nav-link"
             linkText="Make Request"
-            onClick={(event) => this.changeTab(event, MakeRequest)}
+            onClick={(event) => this.changeTab(event, RequestForm)}
           />
         </li>
         <li className="nav-item m-1">
