@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import Form from './elementComponents/Form.jsx';
-import FormInput from './elementComponents/FormInput.jsx';
+import { FormInput, CheckBox }from './elementComponents/formControls.jsx';
 import Button from './elementComponents/Button.jsx';
 import Link from './elementComponents/Link.jsx';
 import Div from './elementComponents/Div.jsx';
-import Label from './elementComponents/Label.jsx';
 import SigninPage from './SigninPage.jsx';
 import Paragraph from './../components/elementComponents/Paragraph.jsx';
 import HomePage from './Home.jsx';
@@ -16,8 +15,6 @@ import signupHandler from '../services/signupHandler';
 export default class SignupPage extends Component {
   // render signin page when user
   // click the signin link
-
-
   componentDidMount() {
     store.dispatch(actions.setFormToFill('signup'));
   }
@@ -39,113 +36,129 @@ export default class SignupPage extends Component {
     <div className='card-body'>
       <h3 className='card-title text-center' >Sign Up to start</h3>
       <div className='row'>
-        <div className='my-2 col-10 col-md-6 offset-col-1' >
-          <Label id='' labelFor='fullname' content='Fullname' />
-          <span className="required text-danger">*</span>
-          <FormInput
-            inputType='text' 
-            inputClass='my-2 ml-1 pt-1 border-success  form-control form-controls-md' 
-            inputId='fullname' 
-            inputPlaceholder='fullname' 
-            inputName='fullname'
-            onChange={dataFieldCollector.bind(this)}
-          />
-        </div>
-        <div col className=' my-2 col-10 col-md-6 offset-col-1'>
-          <Label id='' labelFor='username' content='Username' />
-          <span className="required text-danger">*</span>
-          <FormInput
-            inputType='text' 
-            inputClass='ml-1 pt-1 border-success form-control form-controls-md' 
-            inputId='username' 
-            inputPlaceholder='username' 
-            inputName='username'
-            onChange={dataFieldCollector.bind(this)}
-          />
-        </div>
-        <div className='my-2 col-10 col-md-6 offset-col-1'>
-          <Label id='' labelFor='email' content='Email' />
-          <span className="required text-danger">*</span>
-          <FormInput
-            inputType='text' 
-            inputClass='ml-1 pt-1 border-success form-control form-controls-md' 
-            inputId='email' 
-            inputPlaceholder='email' 
-            inputName='email'
-            onChange={dataFieldCollector.bind(this)}
-          />
-        </div>
-        <div className='my-2 col-10 col-md-6 offset-col-1'>
-          <Label id='' labelFor='address' content='Address' />
-          <span className="required text-danger">*</span>
-          <FormInput
-            inputType='text' 
-            inputClass='ml-1 pt-1 border-success form-control form-controls-md' 
-            inputId='address' 
-            inputPlaceholder='address' 
-            inputName='address'
-            onChange={dataFieldCollector.bind(this)}
-          />
-        </div>
-        <div className='my-2 col-10 col-md-6 offset-col-1'>
-          <Label id='' labelFor='phone' content='Phone' />
-          <span className="required text-danger">*</span>
-          <FormInput
-            inputType='text' 
-            inputClass='ml-1 pt-1 border-success form-control form-controls-md' 
-            inputId='phone' 
-            inputPlaceholder='phone' 
-            inputName='phone'
-            onChange={dataFieldCollector.bind(this)}
-          />
-        </div>
-        <div className='my-2 col-10 col-md-6 offset-col-1'>
-          <Label id='' labelFor='profile-photo' content='Profile Photo' />
-          <FormInput
-            inputType='file' 
-            inputClass='ml-1 pt-1 border-success form-control form-controls-md' 
-            inputId='profile-photo'
-            inputName='profile-photo'
-            onChange={dataFieldCollector.bind(this)}
-          />
-        </div>
-        <div className='my-2 col-10 col-md-6 offset-col-1'>
-          <Label id='' labelFor='password' content='Password' />
-          <span className="required text-danger ">*</span>
-          <FormInput
-            inputType='password'
-            inputClass='ml-1 pt-3 border-success form-control'
-            inputId='password'
-            inputPlaceholder='password'
-            inputName='password'
-            onChange={dataFieldCollector.bind(this)}
-          />
-        </div>
-        <div className='my-2 col-10 col-md-6 offset-col-1'>
-          <Label id='' labelFor='confirm-password' content='Confirm Password' />
-          <span className="required text-danger">*</span>
-          <FormInput
-            inputType='password'
-            inputClass='ml-1 pt-3 border-success form-control '
-            inputId='confrm-password'
-            inputPlaceholder='confirm-password'
-            inputName='confirmPassword'
-            onChange={dataFieldCollector.bind(this)}
-          />
-        </div>
+        <FormInput
+          divClass="my-2 col-10 col-md-6 offset-col-1"
+          divId=""
+          labelValue="Fullname"
+          labelId=""
+          spanClass="required text-danger"
+          inputType='text' 
+          inputClass='my-2 ml-1 pt-1 border-success  form-control form-controls-md' 
+          inputId='fullname' 
+          inputPlaceholder='fullname' 
+          inputName='fullname'
+          onChange={dataFieldCollector.bind(this)}
+        />
+        <FormInput
+          divClass="my-2 col-10 col-md-6 offset-col-1"
+          divId=""
+          labelValue="Username"
+          labelId=""
+          spanClass="required text-danger"
+          inputType='text' 
+          inputClass='ml-1 pt-1 border-success form-control form-controls-md' 
+          inputId='username' 
+          inputPlaceholder='username' 
+          inputName='username'
+          onChange={dataFieldCollector.bind(this)}
+        />
+        <FormInput
+          divClass="my-2 col-10 col-md-6 offset-col-1"
+          divId=""
+          labelValue="Email"
+          labelId=""
+          spanClass="required text-danger"
+          inputType='text' 
+          inputClass='ml-1 pt-1 border-success form-control form-controls-md' 
+          inputId='email' 
+          inputPlaceholder='email' 
+          inputName='email'
+          onChange={dataFieldCollector.bind(this)}
+        />
+        <FormInput
+          divClass="my-2 col-10 col-md-6 offset-col-1"
+          divId=""
+          labelValue="Address"
+          labelId=""
+          spanClass="required text-danger"
+          inputType='text' 
+          inputClass='ml-1 pt-1 border-success form-control form-controls-md' 
+          inputId='address' 
+          inputPlaceholder='address' 
+          inputName='address'
+          onChange={dataFieldCollector.bind(this)}
+        />
+        <FormInput
+          divClass="my-2 col-10 col-md-6 offset-col-1"
+          divId=""
+          labelValue="Phone"
+          labelId=""
+          spanClass="required text-danger"
+          inputType='text' 
+          inputClass='ml-1 pt-1 border-success form-control form-controls-md' 
+          inputId='phone' 
+          inputPlaceholder='phone' 
+          inputName='phone'
+          onChange={dataFieldCollector.bind(this)}
+        />
+        <FormInput
+          divClass="my-2 col-10 col-md-6 offset-col-1"
+          divId=""
+          labelValue="Profile Photo"
+          labelId=""
+          inputType='file' 
+          inputClass='ml-1 pt-1 border-success form-control form-controls-md' 
+          inputId='profile-photo'
+          inputName='profile-photo'
+          onChange={dataFieldCollector.bind(this)}
+        />
+        <FormInput
+          divClass="my-2 col-10 col-md-6 offset-col-1"
+          divId=""
+          labelValue="Password"
+          labelId=""
+          spanClass="required text-danger"
+          inputType='password'
+          inputClass='ml-1 pt-3 border-success form-control'
+          inputId='password'
+          inputPlaceholder='password'
+          inputName='password'
+          onChange={dataFieldCollector.bind(this)}
+        />
+        <FormInput
+          divClass="my-2 col-10 col-md-6 offset-col-1"
+          divId=""
+          labelValue="Confirm Password"
+          labelId=""
+          spanClass="required text-danger"
+          inputType='password'
+          inputClass='ml-1 pt-3 border-success form-control '
+          inputId='confrm-password'
+          inputPlaceholder='confirm-password'
+          inputName='confirmPassword'
+          onChange={dataFieldCollector.bind(this)}
+        />
         <fieldset className='my-2 col-10 col-md-10 offset-col-1'>
           <legend>I am a service provider</legend>
-          <FormInput
+          <CheckBox
+            divClass=""
+            divId=""
+            labelId=""
+            labelValue="Click here"
+            spanClass="required text-danger"
             inputType='checkbox'
             inputClass='ml-1 pt-3 border-success form-control'
             inputId='is-admin'
             inputName='isAdmin'
             value='true'
             onChange={dataFieldCollector.bind(this)}
-          />
-          <Label id='' labelFor='is-admin' content='Check here' /> <br />
-          <Label id='' labelFor='service-name' content='Service Name' />
+          /> <br />
           <FormInput
+            divClass=""
+            divId=""
+            labelValue="Service Name"
+            labelId=""
+            spanClass="required text-danger"
             inputType='text'
             inputClass='ml-1 pt-3 border-success form-control'
             inputId='service-name'

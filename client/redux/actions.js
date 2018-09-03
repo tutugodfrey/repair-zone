@@ -15,12 +15,24 @@ const actions = {
     type: 'SAVE_SIGNIN_DETAIL',
     value: data,
   }),
+  saveRequestDetails: data => ({
+    type: 'SAVE_REQUEST_DETAIL',
+    value: data,
+  }),
   setFormToFill: data => ({
     type: 'SET_FORM_TO_FILL',
     value: data,
   }),
   setTabToView: data => ({
     type: 'SET_TAB_TO_VIEW',
+    value: data,
+  }),
+  saveRequest: data => ({
+    type: 'SAVE_REQUEST',
+    value: data,
+  }),
+  saveServiceProviders: data => ({
+    type: 'SAVE_SERVICE_PROVIDERS',
     value: data,
   })
 };
