@@ -21,7 +21,7 @@ class NavButton extends Button {
       className={this.props.buttonClass}
       data-toggle="collapse"
       data-target="#navbar-content"
-      aria-control="narbar-content"
+      aria-controls="narbar-content"
       aria-expanded="false"
       aria-label="Toggle-navigation">
       {this.props.buttonName}

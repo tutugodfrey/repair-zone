@@ -3,13 +3,15 @@ import actions from '../../redux/actions';
 import store from '../../redux/store';
 
 const dataFieldCollector = (event) => {
-  event.preventDefault();
-  console.log(process.env.NODE_ENV);
   const { name } = event.target;
   let { value } = event.target;
   if (event.target.type === 'file') {
     /* eslint-disable-next-line */
     value = event.target.files[0];
+  }
+  
+  if(event.target.type === 'checkbox') {
+    value = `${event.target.checked}`;
   }
   const state = store.getState();
   const { formType } = state;
@@ -35,6 +37,18 @@ const dataFieldCollector = (event) => {
       } else {
         signinDetail[name] = value;
         store.dispatch(actions.saveSigninDetails(signinDetail));
+      }
+      break;
+    }
+    case 'request-form': {
+      let { requestDetail } = state;
+      if (!requestDetail) {
+        requestDetail = {};
+        requestDetail[name] = value;
+        store.dispatch(actions.saveRequestDetails(requestDetail));
+      } else {
+        requestDetail[name] = value;
+        store.dispatch(actions.saveRequestDetails(requestDetail));
       }
       break;
     }

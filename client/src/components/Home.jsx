@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Div from './../components/elementComponents/Div.jsx';
 import Link from './../components/elementComponents/Link.jsx';
-import Paragraph from './../components/elementComponents/Paragraph.jsx';
 import InlineLogin from './InlineLogin.jsx';
 import SigninPage from './SigninPage.jsx';
 import SignupPage from './SignupPage.jsx';
@@ -16,17 +15,19 @@ export default class Home extends Component {
   handleSignupLink() {
     store.dispatch(actions.displayPage(SignupPage));
   }
-
+  handleRequestForm() {
+    store.dispatch(actions.displayPage(RequestForm));
+  }
   homeNav() {
     return <div id='home-nav' className=''>
-        <div id='logo-div' className='d-inline'>
-            <Link href="#" linkClass='' linkId='' linkText='Repair-Zone' />
-        </div>
-        <div id='home-signin-signup' className='d-inline'>
-          <Link linkClass='mr-1' href='#' linkId='#' linkText='Signup' onClick={this.handleSignupLink.bind(this)} />
-          <Link linkClass='mr-1' href='#' linkId='#' linkText='Signin' onClick={this.handleSigninLink.bind(this)}/>
-        </div>
+      <div id='logo-div' className='d-inline'>
+          <Link href="#" linkClass='' linkId='' linkText='Repair-Zone' />
       </div>
+      <div id='home-signin-signup' className='d-inline'>
+        <Link linkClass='mr-1' href='#' linkId='#' linkText='Signup' onClick={this.handleSignupLink.bind(this)} />
+        <Link linkClass='mr-1' href='#' linkId='#' linkText='Signin' onClick={this.handleSigninLink.bind(this)}/>
+      </div>
+    </div>
   }
 
   homeDescription() {
@@ -36,7 +37,7 @@ export default class Home extends Component {
       <h1> Welcome to repair zone</h1><br /><p>We connect Service providers to potential clients</p>
       </div>
       <InlineLogin formClass='form-inline' formId='home-login' />
-      </div>
+    </div>
   }
 
   makeRequest(){

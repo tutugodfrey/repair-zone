@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Form from './elementComponents/Form.jsx';
-import FormInput from './elementComponents/FormInput.jsx';
+import { FormInputWithoutDiv } from './elementComponents/formControls.jsx';
 import Button from './elementComponents/Button.jsx';
 import actions from '../../redux/actions';
 import store from '../../redux/store';
@@ -14,14 +14,14 @@ export default class InlineLogin extends Component {
 
   formContent() {
     return <div id='home-page-login' className='d-flex flex-row d-sm-none d-md-block'>
-      <FormInput
+      <FormInputWithoutDiv
       inputType='text' 
       inputClass='ml-1 form-controls-md' 
       inputId='signin-1-username' 
       inputPlaceholder='username' 
       inputName='username'
       onChange={dataFiledCollector.bind(this)}/>
-      <FormInput
+      <FormInputWithoutDiv
       inputType='password'
       inputClass='ml-1'
       inputId='signin-1-password'

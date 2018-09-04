@@ -21,6 +21,10 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         signinDetail: action.value,
       });
+    case 'SAVE_REQUEST_DETAIL':
+      return Object.assign({}, state, {
+        requestDetail: action.value,
+      });
     case 'SET_FORM_TO_FILL':
       return Object.assign({}, state, {
         formType: action.value,
@@ -32,6 +36,14 @@ const reducer = (state = initialState, action) => {
     case 'SET_TAB_TO_VIEW':
       return Object.assign({}, state, {
         TabContent: action.value,
+      });
+    case 'SAVE_REQUEST':
+      return Object.assign({}, state, {
+        request: action.value,
+      });
+    case 'SAVE_SERVICE_PROVIDERS':
+      return Object.assign({}, state, {
+        serviceProviders: action.value,
       })
     // return default state if something isn't right
     default:

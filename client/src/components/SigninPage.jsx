@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import Form from './elementComponents/Form.jsx';
-import FormInput from './elementComponents/FormInput.jsx';
+import { FormInput } from './elementComponents/formControls.jsx';
 import Button from './elementComponents/Button.jsx';
 import Link from './elementComponents/Link.jsx';
 import Div from './elementComponents/Div.jsx';
-import Label from './elementComponents/Label.jsx';
 import SignupPage from './SignupPage.jsx';
 import HomePage from './Home.jsx';
 import Paragraph from './../components/elementComponents/Paragraph.jsx';
@@ -33,34 +32,37 @@ export default class SigninPage extends Component {
       <div className='row'>
         <div className='card-body'>
         <h3 className='card-title'>Sign In</h3>
-        <div className=''>
-          <Label labelFor='signin-2-username' labelId='' content='Username' />
-          <span className="required text-danger">*</span>
           <FormInput
+            divClass=""
+            divId=""
+            labelValue="Username"
+            labelId=""
+            spanClass="required text-danger"
             inputType='text' 
             inputClass='ml-1 border-success form-control' 
             inputId='signin-2-username' 
-            inputPlaceholder='username' 
+            placeholder='username' 
             inputName='username'
             onChange={dataFieldCollector.bind(this)}
           />
-        </div>
-        <div className=''>
-          <Label labelFor='signin-2-password' labelId='' content='Password' />
-          <span className="required text-danger">*</span>
           <FormInput
+            divClass=""
+            divId=""
+            labelValue="password"
+            labelId=""
+            spanClass="required text-danger"
             inputType='password'
             inputClass='ml-1 border-success form-control'
             inputId='signin-2-password'
-            inputPlaceholder='password'
+            placeholder='password'
             inputName='password'
             onChange={dataFieldCollector.bind(this)} />
-        </div>
         <Button
-        buttonClass='ml-1 my-2 px-5 py-2 btn btn-sm bg-success text-white' 
-        buttonId='' 
-        buttonName='log-In'
-        onClick={signinHandler.bind(this)} />
+          buttonClass='ml-1 my-2 px-5 py-2 btn btn-sm bg-success text-white' 
+          buttonId='' 
+          buttonName='log-In'
+          onClick={signinHandler.bind(this)}
+        />
         </div>
       </div>
       <p>
