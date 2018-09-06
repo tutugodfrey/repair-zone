@@ -3,21 +3,7 @@ import actions from '../../redux/actions';
 import store from '../../redux/store';
 import Dashboard from '../components/Dashboard.jsx';
 
-function handleResponse(responseData) {
-  if(responseData.token) {
-    // sign is successful
-    store.dispatch(actions.setUserData(responseData));
-
-    // redirect users to their dashboard
-    store.dispatch(actions.displayPage(Dashboard));
-  }
-  if (responseData.message === 'authentication fail! check your username or password') {
-    // redirect user to the signin page
-    return console.log(responseData.message);
-  }
-}
-
-function handleLogin(event) {
+  const handleLogin = async (event) => {
   event.preventDefault();
   const requiredField = ['username', 'password'];
   let allFieldPass = true;
@@ -44,7 +30,18 @@ function handleLogin(event) {
       body: JSON.stringify(signinDetail),
       headers,
     };
-    fetchRequest('/auth/signin', options, handleResponse);
+    const userData = await fetchRequest('/auth/signin', options);
+    if(userData.token) {
+      // sign is successful
+      store.dispatch(actions.setUserData(userData));
+  
+      // redirect users to their dashboard
+      store.dispatch(actions.displayPage(Dashboard));
+    }
+    if (userData.message === 'authentication fail! check your username or password') {
+      // redirect user to the signin page
+      return console.log(userData.message);
+    }
   }
 }
 

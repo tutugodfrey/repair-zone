@@ -9,7 +9,7 @@ import Div from './elementComponents/Div.jsx';
 import Form from './elementComponents/Form.jsx';
 import dataFieldCollector from '../services/dataFieldCollector';
 import makeRequestHandler from '../services/makeRequestHandler';
-import { getServiceProviders } from '../services/getServiceProviders';
+import { updateServiceProviders } from '../services/getServiceProviders';
 import fetchRequest from '../services/fetchRequest';
 
 export default class RequestForm extends Component {
@@ -21,15 +21,13 @@ export default class RequestForm extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount = async () => {
     store.dispatch(actions.setFormToFill('request-form'));
     const options = {
       method: 'get',
-    }
-    fetchRequest('/auth/services', options, getServiceProviders);
-  }
-  getServiceProviders(data){
-    store.dispatch(actions.saveServiceProviders(data));
+    };
+    const services = await fetchRequest('/auth/services', options);
+    await updateServiceProviders(services);
   }
 
   componentWillUpdate() {
@@ -40,7 +38,6 @@ export default class RequestForm extends Component {
 
   formContent() {
     let services;
-
     if(!this.state.serviceProviders) {
       services = '';
     } else

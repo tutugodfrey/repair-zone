@@ -1,6 +1,6 @@
 import store from '../../redux/store';
 import actions from '../../redux/actions';
-export const getServiceProviders = (serviceProviders) => {
+export const updateServiceProviders = (serviceProviders) => {
   if(Array.isArray(serviceProviders)) {
     const defaultOption = {
       id:0,
