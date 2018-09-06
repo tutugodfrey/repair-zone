@@ -3,23 +3,7 @@ import actions from '../../redux/actions';
 import store from '../../redux/store';
 import ViewRequest from '../components/ViewRequest.jsx'
 
-function handleResponse(responseData) {
-  if(responseData.id) {
-    // sign is successful
-    store.dispatch(actions.saveRequest(responseData));
-
-    // redirect users to their dashboard
-    store.dispatch(actions.setTabToView(ViewRequest));
-    store.dispatch(actions.saveRequestDetails({}))
-    return console.log(responseData);
-  }
-  if (responseData.message) {
-    // redirect user to the signin page
-    return console.log(responseData.message);
-  }
-}
-
-function makeRequestHandler(event) {
+const makeRequestHandler = async (event) => {
   event.preventDefault();
   const requiredField = ['category', 'description', 'address', 'urgent', 'adminId'];
   let allFieldPass = true;
@@ -50,7 +34,19 @@ function makeRequestHandler(event) {
       body: JSON.stringify(requestDetail),
       headers,
     };
-    fetchRequest('/users/requests', options, handleResponse);
+    const responseData = await fetchRequest('/users/requests', options);
+    if(responseData.id) {
+      // sign is successful
+      store.dispatch(actions.saveRequest(responseData));
+  
+      // redirect users to their dashboard
+      store.dispatch(actions.setTabToView(ViewRequest));
+      store.dispatch(actions.saveRequestDetails({}));
+    }
+    if (responseData.message) {
+      // redirect user to the signin page
+      return console.log(responseData.message);
+    }
   }
 }
 

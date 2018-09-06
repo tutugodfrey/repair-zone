@@ -18,7 +18,7 @@ function handleResponse(data) {
 
 // get signup data from redux store
 // make api request
-function handleSignup(event) {
+const handleSignup = async (event) => {
   event.preventDefault();
   const { signupDetail } = store.getState();
   if (!signupDetail) {
@@ -65,9 +65,16 @@ function handleSignup(event) {
     body: formData,
     method: 'post',
   };
-  return fetchRequest('/auth/signup',
-    options,
-    handleResponse);
+  const responseData = await fetchRequest('/auth/signup', options);
+    // singup is successful if token is present
+    if (responseData.token) {
+      store.dispatch(actions.setUserData(responseData));
+      store.dispatch(actions.displayPage(Dashboard));
+      // redirect user to their dashboard
+    }
+  
+    // show console modal of the error message
+    return console.log(responseData.message);
 }
 
 export default handleSignup;

@@ -8,14 +8,14 @@ import store from '../../redux/store';
 import actions from '../../redux/actions';
 
 export default class Home extends Component {
-  handleSigninLink() {
+  handleSigninLink = () => {
     store.dispatch(actions.displayPage(SigninPage));
   }
 
-  handleSignupLink() {
+  handleSignupLink = () => {
     store.dispatch(actions.displayPage(SignupPage));
   }
-  handleRequestForm() {
+  handleRequestForm = () => {
     store.dispatch(actions.displayPage(RequestForm));
   }
   homeNav() {
@@ -30,7 +30,7 @@ export default class Home extends Component {
     </div>
   }
 
-  homeDescription() {
+  homeDescription = () => {
     return <div className='d-flex flex-column'>
       {this.homeNav()}
       <div id='app-description'>
@@ -40,7 +40,7 @@ export default class Home extends Component {
     </div>
   }
 
-  makeRequest(){
+  makeRequest = () => {
     return <div className='section d-flex flex-column' >
       <h1 className='section-title justify-self-center'>Make Request</h1>
       <p>
@@ -50,19 +50,19 @@ export default class Home extends Component {
     </div>
   }
 
-  trackProgress() {
+  trackProgress = () => {
     return <div className='section' >
       <h1 className='section-title'>Track Progress</h1>
     </div>
   }
 
-  contacts() {
+  contacts = () => {
     return <div className='section' >
       <h1 className='section-title'>Messaging</h1>
     </div>
   }
 
-  footer() {
+  footer = () => {
     return <Link
     linkClass='px-5 text-center text-white'
     href = '#'
@@ -71,7 +71,7 @@ export default class Home extends Component {
     onClick={this.handleSignupLink.bind(this)} />
   }
 
-  render() {
+  render = () => {
     return (
       <div id='home-page' className='container-fluid'>
         <div className=''>
