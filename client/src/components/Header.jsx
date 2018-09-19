@@ -29,7 +29,6 @@ export default class Header extends Component {
       method = 'get';
     } else if (href === 'make-request') {
      // relativeUrl = '/auth/services';
-     // method = 'get';
     } else if (href === 'approved-request') {
       relativeUrl = '/requests/approved';
       method = 'get';
