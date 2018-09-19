@@ -15,9 +15,7 @@ export default class Home extends Component {
   handleSignupLink = () => {
     store.dispatch(actions.displayPage(SignupPage));
   }
-  handleRequestForm = () => {
-    store.dispatch(actions.displayPage(RequestForm));
-  }
+  
   homeNav() {
     return <div id='home-nav' className=''>
       <div id='logo-div' className='d-inline'>
