@@ -7,10 +7,44 @@ import RequestForm from './RequestForm.jsx';
 import SendMessage from './SendMessage.jsx';
 import store from '../../redux/store';
 import actions from '../../redux/actions';
+import fetchRequest from '../services/fetchRequest';
 
 export default class Header extends Component {
+  handleResponse(responseData) {
+    store.dispatch(actions.saveRequests(responseData));
+    console.log(store.getState().requests, 'aaaaaaaaaaaaaaaaaaa1');
+  }
   changeTab(event, tabContent) {
     event.preventDefault()
+    let { href } = event.target;
+    const hrefValueArray = href.split('#');
+    href = hrefValueArray[1];
+    let relativeUrl;
+    let method;
+    if(href === 'view-request') {
+      relativeUrl = '/requests';
+      method = 'get';
+    } else if (href === 'view-user-request') {
+      relativeUrl = '/users/requests';
+      method = 'get';
+    } else if (href === 'make-request') {
+     // relativeUrl = '/auth/services';
+     // method = 'get';
+    } else if (href === 'approved-request') {
+      relativeUrl = '/requests/approved';
+      method = 'get';
+    } else if (href === 'resolved-request') {
+      relativeUrl = '/requests/resolved';
+      method = 'get';
+    }
+    const { userData } = store.getState();
+    const headers = new Headers();
+    headers.append('token', userData.token)
+    const options = {
+      method,
+      headers,
+    }
+    fetchRequest(relativeUrl, options, this.handleResponse);
     store.dispatch(actions.setTabToView(tabContent));
   }
 
@@ -26,7 +60,7 @@ export default class Header extends Component {
       nanbarContent = <ul className="navbar-nav">
         <li className="nav-item m-1">
           <Link
-            href="#"
+            href="#view-request"
             className="nav-link"
             linkText="View Request"
             onClick={(event) =>this.changeTab(event, ViewRequest)}
@@ -34,7 +68,7 @@ export default class Header extends Component {
         </li>
         <li className="nav-item m-1">
           <Link
-            href="#"
+            href="#approved-request"
             className="nav-link"
             linkText="Approved Request"
             onClick={(event) => this.changeTab(event, ViewRequest)}
@@ -42,7 +76,7 @@ export default class Header extends Component {
         </li>
         <li className="nav-item m-1">
           <Link
-            href="#"
+            href="#resolved-request"
             className="nav-link"
             linkText="Resolved Request"
             onClick={(event) => this.changeTab(event, ViewRequest)}
@@ -50,7 +84,7 @@ export default class Header extends Component {
         </li>
         <li className="nav-item m-1">
           <Link
-            href="#"
+            href="#contact-messages"
             className="nav-link"
             linkText="Contact Messages"
             onClick={(event) => this.changeTab(event, SendMessage)}
@@ -61,7 +95,7 @@ export default class Header extends Component {
       nanbarContent = <ul className="navbar-nav">
         <li className="nav-item m-1">
           <Link
-            href="#"
+            href="#view-user-request"
             className="nav-link"
             linkText="View Request"
             onClick={(event) =>this.changeTab(event, ViewRequest)}
@@ -69,7 +103,7 @@ export default class Header extends Component {
         </li>
         <li className="nav-item m-1">
           <Link
-            href="#"
+            href="#make-request"
             className="nav-link"
             linkText="Make Request"
             onClick={(event) => this.changeTab(event, RequestForm)}
@@ -77,7 +111,7 @@ export default class Header extends Component {
         </li>
         <li className="nav-item m-1">
           <Link
-            href="#"
+            href="#contact-messages"
             className="nav-link"
             linkText="Contact Messages"
             onClick={(event) => this.changeTab(event, SendMessage)}

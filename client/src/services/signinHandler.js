@@ -34,7 +34,19 @@ import Dashboard from '../components/Dashboard.jsx';
     if(userData.token) {
       // sign is successful
       store.dispatch(actions.setUserData(userData));
-  
+      const headers = new Headers();
+      headers.append('token', userData.token);
+      const options = {
+        method: 'get',
+        headers,
+      }
+      if (userData.isAdmin) {
+        const requests = await fetchRequest('/requests', options);
+        store.dispatch(actions.saveRequests(requests));
+      } else {
+        const requests = await fetchRequest('/users/requests', options);
+        store.dispatch(actions.saveRequests(requests));
+      }
       // redirect users to their dashboard
       store.dispatch(actions.displayPage(Dashboard));
     }

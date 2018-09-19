@@ -27,8 +27,8 @@ const actions = {
     type: 'SET_TAB_TO_VIEW',
     value: data,
   }),
-  saveRequest: data => ({
-    type: 'SAVE_REQUEST',
+  saveRequests: data => ({
+    type: 'SAVE_REQUESTS',
     value: data,
   }),
   saveServiceProviders: data => ({
