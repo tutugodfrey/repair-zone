@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Div from './elementComponents/Div.jsx';
 import Button from './elementComponents/Button.jsx';
 import store from './../../redux/store.js';
-import fetchRequest from '../services/fetchRequest';
+import updateRequest from '../services/updateRequestHandler';
 
 export default class ViewRequest extends Component {
   constructor() {
@@ -19,47 +19,87 @@ export default class ViewRequest extends Component {
   }
   handleView(event) {
     event.preventDefault();
-    let parentNodeGotten = false;
-    let element = event.target
-    while(!parentNodeGotten) {
-      element = element.parentNode;
-      console.log(element)
-      if(element.className.indexOf("view-request-div")) {
-        parentNodeGotten = true;
-      }
+    let element = event.target;
+    const btnName = event.target.innerHTML;
+    if(btnName === 'view') {
+      event.target.innerHTML = 'close';
+    } else {
+      event.target.innerHTML = 'view';
     }
-
-    this.setState({
-      btnName: 'close'
-    });
+    element = element.parentNode;
+    element = element.nextSibling
+    const eleClass = element.getAttribute('class');
+    let newClass;
+    if(eleClass.indexOf('d-none') >= 0) {
+      newClass = eleClass.replace('d-none', 'd-block')
+      element.setAttribute('class', newClass);
+    } else if (eleClass.indexOf('d-block') >= 0) {
+      newClass = eleClass.replace('d-block', 'd-none')
+      element.setAttribute('class', newClass);
+    }
   }
   requestContainer(requestInfo) {
     let requestDetail;
     let displayedName = requestInfo.user.serviceName;
-    let updateRequestBtn = <Button buttonName="update request" />
-    let deleteRequestBtn = <Button buttonName="delete request" />
-    let rejectRequestBtn = <Button buttonName="Reject request" />
-    let resolveRequestBtn = <Button buttonName="Mark as resolved" />
-    let approveRequestBtn = <Button buttonName="Approve request" />
+    let buttonId = `request-${requestInfo.request.id}`;
+    let updateRequestBtn = 
+      <Button
+        buttonId={buttonId}
+        buttonClass="update-request-button"
+        buttonName="Update"
+        onClick={updateRequest.bind(this)}
+      />
+    let deleteRequestBtn = 
+      <Button
+        buttonId={buttonId}
+        buttonClass="delete-request-button"
+        buttonName="Delete"
+        onClick={updateRequest.bind(this)}
+      />
+    let rejectRequestBtn = 
+      <Button
+        buttonId={buttonId}
+        buttonClass="reject-request-button"
+        buttonName="Reject"
+        onClick={updateRequest.bind(this)}
+      />
+    let resolveRequestBtn = 
+      <Button
+        buttonId={buttonId}
+        buttonClass="resolve-request-button"
+        buttonName="Resolved"
+        onClick={updateRequest.bind(this)}
+      />
+    let approveRequestBtn = 
+      <Button
+        buttonId={buttonId}
+        buttonClass="approve-request-button"
+        buttonName="Approve"
+        onClick={updateRequest.bind(this)}
+      />
     const { userData } = store.getState();
     if(userData.isAdmin) {
       displayedName = requestInfo.user.fullname;
     }
 
     // offset button depending on the state of a request
+    if (requestInfo.request.status === 'awaiting confirmation' && userData.isAdmin) {
+      resolveRequestBtn = '';
+    }
     if (requestInfo.request.status === 'resolved') {
       updateRequestBtn = '';
       rejectRequestBtn = '';
       approveRequestBtn = '';
       resolveRequestBtn = '';
     }
-    if (requestInfo.request.status === 'approved') {
+    if (requestInfo.request.status === 'pending') {
       updateRequestBtn = '';
       approveRequestBtn = '';
     }
 
-    if (requestInfo.request.status === 'disapprove') {
+    if (requestInfo.request.status === 'rejected') {
       resolveRequestBtn = '';
+      rejectRequestBtn = '';
     }
 
     if (userData.isAdmin) {
@@ -73,16 +113,30 @@ export default class ViewRequest extends Component {
     }
     const properties = Object.keys(requestInfo.request);
     requestDetail = properties.map((property) => {
-      if(property === 'id' || property === 'adminId') {
+      if(property === 'id' ||
+        property === 'adminId' ||
+        property === 'userId' ||
+        property === 'updatedAt'
+      ) {
+        return null;
+      }
+      let issueDate;
+      let term = property.toUpperCase();
+      const definition = requestInfo.request[property];
+      if(property === 'issueDate') {
+        const issueDataArr = definition.split('T');
+        issueDate = issueDataArr[0];
+      }
+      if(property === 'urgent' && definition === false) {
         return null;
       }
       return (
         <div className="request-detail-div" key={property}>
             <dt className={`${property}-term`}>
-              {property.toUpperCase()}
+              {term}
             </dt>
             <dd className={`${property}-def`}>
-              {requestInfo.request[property]}
+              {issueDate || definition}
             </dd>
         </div>
       )
@@ -97,16 +151,16 @@ export default class ViewRequest extends Component {
             onClick={this.handleView.bind(this)}
           />
         </div>
-        <div className="request-content">
+        <div className="request-content d-none">
           <dl className="request-detail-dl">
             {requestDetail}
           </dl>
+          {updateRequestBtn}
+          {deleteRequestBtn}
+          {approveRequestBtn}
+          {rejectRequestBtn}
+          {resolveRequestBtn}
         </div>
-        {updateRequestBtn}
-        {deleteRequestBtn}
-        {approveRequestBtn}
-        {rejectRequestBtn}
-        {resolveRequestBtn}
       </div>
     )
   }
@@ -118,11 +172,10 @@ export default class ViewRequest extends Component {
       })
       return viewAllRequest;
     }
-    return console.log('no request yet')
   }
   render() {
     return (
-      <Div divClass="row" content={this.renderAllRequest(this.state.allRequests)} />
+      <Div divClass="row py-5" content={this.renderAllRequest(this.state.allRequests)} />
     )
   }
 }
