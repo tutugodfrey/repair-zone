@@ -44,7 +44,6 @@ export default class Header extends Component {
       headers,
     }
     fetchRequest(relativeUrl, options, this.handleResponse);
-    console.log(relativeUrl);
     store.dispatch(actions.setTabToView(tabContent));
   }
 
