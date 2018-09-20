@@ -4,10 +4,17 @@ import Link from './../components/elementComponents/Link.jsx';
 import InlineLogin from './InlineLogin.jsx';
 import SigninPage from './SigninPage.jsx';
 import SignupPage from './SignupPage.jsx';
+import displayUserDashboard from '../services/displayUserDashboard';
 import store from '../../redux/store';
 import actions from '../../redux/actions';
 
 export default class Home extends Component {
+  componentWillMount() {
+    console.log('component mounted')
+    if(localStorage.getItem('userData')) {
+      displayUserDashboard();
+    }
+  }
   handleSigninLink = () => {
     store.dispatch(actions.displayPage(SigninPage));
   }
