@@ -8,11 +8,11 @@ import SendMessage from './SendMessage.jsx';
 import store from '../../redux/store';
 import actions from '../../redux/actions';
 import fetchRequest from '../services/fetchRequest';
+import logoutHandler from '../services/logoutHandler';
 
 export default class Header extends Component {
   handleResponse(responseData) {
     store.dispatch(actions.saveRequests(responseData));
-    console.log(store.getState().requests, 'aaaaaaaaaaaaaaaaaaa1');
   }
   changeTab(event, tabContent) {
     event.preventDefault()
@@ -119,21 +119,28 @@ export default class Header extends Component {
       </ul>
     }
     return (
-      <div className="row navbar navbar-expand-md navbar-light bg-success">
-        <div className="col-3 col-md-2">
-          <Link href="#" linkClass="logo" linkId="home-logo" onClick={this.handleHomeLink} linkText="Repair-Zone"/>
+      <div>
+        <div id="top-level-header" className="bg-success row">
+        <div className="col-5 offset-6 col-sm-4 offset-sm-8 col-md-3 offset-md-9">
+          <a id="logout-link" href="#" className="ml-auto bg-white py-1 px-2" onClick={logoutHandler}>logout</a>
         </div>
-        <NavButton
-          buttonClass="navbar-toggler ml-auto"
-          data-toggle="collapse"
-          data-target="#navbar-content"
-          aria-controls="narbar-content"
-          aria-label="Toggle-navigation"
-          buttonId=""
-          buttonName={<span className="navbar-toggler-icon"></span>}
-        />
-        <div className="col-9 collapse navbar-collapse" id="navbar-content">
-          {nanbarContent}
+        </div>
+        <div className="row navbar navbar-expand-md navbar-light bg-success">
+          <div className="col-3 col-md-2">
+            <Link href="#" linkClass="logo" linkId="home-logo" onClick={this.handleHomeLink} linkText="Repair-Zone"/>
+          </div>
+          <NavButton
+            buttonClass="navbar-toggler ml-auto"
+            data-toggle="collapse"
+            data-target="#navbar-content"
+            aria-controls="narbar-content"
+            aria-label="Toggle-navigation"
+            buttonId=""
+            buttonName={<span className="navbar-toggler-icon"></span>}
+          />
+          <div className="col-9 collapse navbar-collapse" id="navbar-content">
+            {nanbarContent}
+          </div>
         </div>
       </div>
     )
