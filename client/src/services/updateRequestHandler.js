@@ -25,7 +25,7 @@ const updateRequest = (event) => {
       if (request.request.id === parseInt(requestId)) {
         return requestToUpdate = request;
       }
-    })
+    });
     const indexOfRequest = requests.indexOf(requestToUpdate[0]);
     requests[indexOfRequest] = updatedRequest;
   }
@@ -33,7 +33,7 @@ const updateRequest = (event) => {
   switch(updateType) {
     case 'Approve': {
       const updatedRequest = fetchRequest(`/requests/${requestId}/approve`, options);
-      updatedRequest.then(updatedReq => {
+      updatedRequest.then((updatedReq) => {
         updateRequestStore(updatedReq, requests);
       })
       store.dispatch(actions.setTabToView(ViewRequest));
@@ -41,7 +41,7 @@ const updateRequest = (event) => {
     }
     case 'Reject': {
       const updatedRequest = fetchRequest(`/requests/${requestId}/disapprove`, options);
-      updatedRequest.then(updatedReq => {
+      updatedRequest.then((updatedReq) => {
         updateRequestStore(updatedReq, requests);
       })
       store.dispatch(actions.setTabToView(ViewRequest));
@@ -49,7 +49,7 @@ const updateRequest = (event) => {
     }
     case 'Resolved': {
       const updatedRequest = fetchRequest(`/requests/${requestId}/resolve`, options);
-      updatedRequest.then(updatedReq => {
+      updatedRequest.then((updatedReq) => {
         updateRequestStore(updatedReq, requests);
       })
       store.dispatch(actions.setTabToView(ViewRequest));
@@ -62,6 +62,17 @@ const updateRequest = (event) => {
         updateRequestStore(updatedReq, requests);
       })
       store.dispatch(actions.setTabToView(ViewRequest));
+      break;
+    }
+    case 'Delete': {
+      options.method = 'delete'
+      const updatedRequest = fetchRequest(`/users/requests/${requestId}`, options);
+      updatedRequest.then((deleteMessage) => {
+        const deletedRequest =  requests.filter(request => (request.request.id === parseInt(requestId)));
+        const indexOfRequest = requests.indexOf(deletedRequest[0]);
+        requests.splice(indexOfRequest, 1);
+        store.dispatch(actions.setTabToView(ViewRequest));
+      })
       break;
     }
     default: 
