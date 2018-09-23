@@ -31,6 +31,10 @@ const actions = {
     type: 'SAVE_REQUESTS',
     value: data,
   }),
+  setRequestToUpdate: data => ({
+    type: 'SET_REQUEST_TO_UPDATE',
+    value: data,
+  }),
   saveServiceProviders: data => ({
     type: 'SAVE_SERVICE_PROVIDERS',
     value: data,

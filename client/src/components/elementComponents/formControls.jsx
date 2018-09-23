@@ -30,7 +30,7 @@ class FormInputWithoutDiv extends Component {
           onClick={this.props.click}
           name={this.props.inputName}
           placeholder={this.props.placeholder}
-          value={this.props.value}
+          defaultValue={this.props.value}
         />
       </div>
     )
@@ -98,6 +98,7 @@ class CheckBox extends Component {
           className={this.props.inputClass}
           ref={this.props.referred}
           onClick={this.props.onClick}
+          onChange={this.props.onChange}
           name={this.props.inputName}
           defaultValue={this.props.value}
         />
