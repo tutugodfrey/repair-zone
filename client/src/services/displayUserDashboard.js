@@ -1,5 +1,6 @@
 import Dashboard from '../components/Dashboard.jsx';
 import logoutHandler from './logoutHandler';
+import UpdateRequest from '../components/UpdateRequest.jsx';
 import store from '../../redux/store';
 import actions from '../../redux/actions';
 import fetchRequest from './fetchRequest';
@@ -34,4 +35,17 @@ const displayUserDashboard = async () => {
   }
 }
 
-export default displayUserDashboard
+const displayUpdateForm = (event) => {
+  let requestId = event.target.id;
+  const requestIdArray = requestId.split('-');
+  requestId = parseInt(requestIdArray[1], 10);
+  const { requests } = store.getState();
+  const requestToUpdate = requests.filter(request => request.request.id === requestId);
+  store.dispatch(actions.setRequestToUpdate(requestToUpdate[0]));
+  store.dispatch(actions.setTabToView(UpdateRequest));
+}
+
+export default displayUserDashboard;
+export {
+  displayUpdateForm,
+};
