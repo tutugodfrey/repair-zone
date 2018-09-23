@@ -10,6 +10,7 @@ import actions from '../../redux/actions';
 
 export default class Home extends Component {
   componentWillMount() {
+    console.log('component mounted')
     if(localStorage.getItem('userData')) {
       displayUserDashboard();
     }

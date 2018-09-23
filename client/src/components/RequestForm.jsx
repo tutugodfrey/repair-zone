@@ -83,7 +83,7 @@ export default class RequestForm extends Component {
             onChange={dataFieldCollector.bind(this)}
           />
           <br />
-{          <FormInput
+          <FormInput
             type="text"
             id="address"
             labelValue="Address"
@@ -93,7 +93,7 @@ export default class RequestForm extends Component {
             inputName="address"
             placeholder="address"
             onChange={dataFieldCollector.bind(this)}
-          />}
+          />
           <br />
           <CheckBox
             divId="urgency-div"
@@ -117,18 +117,20 @@ export default class RequestForm extends Component {
         </div>
       </div>
     );
+
+    
   }
   render() {
     return (
       <Div
-        divClass="row"
+      divClass="row"
+      divId=""
+      content={
+      <Div
+        divClass="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3 py-5 my-3"
         divId=""
-        content={
-        <Div
-          divClass="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3 py-5 my-3"
-          divId=""
-          content={<Form formId="" formClass="" content={this.formContent()}/>}
-        />}
+        content={<Form formId="" formClass="" content={this.formContent()}/>}
+      />}
       />
     );
   }

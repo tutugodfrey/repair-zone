@@ -3,7 +3,6 @@ import Div from './elementComponents/Div.jsx';
 import Button from './elementComponents/Button.jsx';
 import store from './../../redux/store.js';
 import updateRequest from '../services/updateRequestHandler';
-import { displayUpdateForm } from '../services/displayUserDashboard';
 
 export default class ViewRequest extends Component {
   constructor() {
@@ -48,7 +47,7 @@ export default class ViewRequest extends Component {
         buttonId={buttonId}
         buttonClass="update-request-button"
         buttonName="Update"
-        onClick={displayUpdateForm.bind(this)}
+        onClick={updateRequest.bind(this)}
       />
     let deleteRequestBtn = 
       <Button
