@@ -52,6 +52,18 @@ const dataFieldCollector = (event) => {
       }
       break;
     }
+    case 'update-request-form': {
+      let { requestDetail } = state;
+      if (!requestDetail) {
+        requestDetail = {};
+        requestDetail[name] = value;
+        store.dispatch(actions.saveRequestDetails(requestDetail));
+      } else {
+        requestDetail[name] = value;
+        store.dispatch(actions.saveRequestDetails(requestDetail));
+      }
+      break;
+    }
     default:
       return 'No form is set for submit';
   }
