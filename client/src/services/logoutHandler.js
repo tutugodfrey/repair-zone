@@ -1,6 +1,6 @@
 import actions from '../../redux/actions';
 import store from '../../redux/store';
-import SignPage from '../components/SigninPage.jsx';
+import SigninPage from '../components/SigninPage.jsx';
 
 /**
  * clear user data from localStorage
@@ -10,7 +10,7 @@ import SignPage from '../components/SigninPage.jsx';
 const logoutHandler = () => {
   if(localStorage.getItem('userData')) {
     localStorage.removeItem('userData');
-    store.dispatch(actions.displayPage(SignPage));
+    store.dispatch(actions.displayPage(SigninPage));
   }
 }
 
