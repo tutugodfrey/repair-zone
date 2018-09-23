@@ -8,40 +8,66 @@ import {
 import Div from './elementComponents/Div.jsx';
 import Form from './elementComponents/Form.jsx';
 import dataFieldCollector from '../services/dataFieldCollector';
-import makeRequestHandler from '../services/makeRequestHandler';
+import updateRequestHandler from '../services/updateRequestHandler';
 import { updateServiceProviders } from '../services/getServiceProviders';
 import fetchRequest from '../services/fetchRequest';
 
-export default class RequestForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      categories: ['Select', 'Electrical', 'authomobile', 'painting', 'capentary', 'electronics'],
-      serviceProviders: [],
-    }
+/**
+ * render update request page
+ */
+export default class UpdateRequest extends Component {
+  state = {
+    categories: ['Select', 'Electrical', 'authomobile', 'painting', 'capentary', 'electronics'],
+    serviceProviders: [],
+    request: {},
   }
-
   componentDidMount = async () => {
-    store.dispatch(actions.setFormToFill('request-form'));
+    store.dispatch(actions.setFormToFill('update-request-form'));
     const options = {
       method: 'get',
     };
     const services = await fetchRequest('/auth/services', options);
     await updateServiceProviders(services);
+
+    const { requestToUpdate } = store.getState();
+    const { request, user } = requestToUpdate;
+    let checked = false;
+    if(request.urgent) {
+      checked = true;
+    };
+    const urgentStatus = document.getElementById('urgent');
+    urgentStatus.checked = checked;
+    this.setState({
+      request,
+      selectedCategory: request.category,
+      selectedService: user.serviceName,
+    });
   }
 
   componentWillUpdate() {
-    const { serviceProviders } = store.getState();
-    // return serviceProviders;
+    const { serviceProviders} = store.getState();
     this.state.serviceProviders = serviceProviders;
+  }
+  
+  // update the ste component from state value
+  handleChange(event) {
+    const { name, value } = event.target;
+    this.state.request[name] =  value;
+    this.setState({
+      state: {
+        request: {
+          name: value,
+        }
+      }
+    })
+    dataFieldCollector(event)
   }
 
   formContent() {
     let services;
     if(!this.state.serviceProviders) {
       services = '';
-    } else
-    if(this.state.serviceProviders.length > 0) {
+    } else if(this.state.serviceProviders.length > 0) {
       services =
       <FormSelect
         divClass=""
@@ -54,11 +80,16 @@ export default class RequestForm extends Component {
         onChange={dataFieldCollector.bind(this)}
       />
     }
+
     return (
       <div className="card">
         <div className="card-body">
         <h3 className="card-title text-center">Make Repair Request</h3>
           {services}
+          <p>Your previous selection is <strong>
+            {this.state.selectedService}
+            </strong>
+          </p>
           <FormSelect
             divClass=""
             divId="category-div"
@@ -69,6 +100,10 @@ export default class RequestForm extends Component {
             options={this.state.categories}
             onChange={dataFieldCollector.bind(this)}
           />
+          <p>Your previous selection is <strong>
+            {this.state.selectedCategory}
+            </strong>
+          </p>
           <TextArea
             type="text"
             id="description"
@@ -80,10 +115,11 @@ export default class RequestForm extends Component {
             ref="description"
             name="description"
             placeholder="Describe you requirement here"
-            onChange={dataFieldCollector.bind(this)}
+            onChange={this.handleChange.bind(this)}
+            value={this.state.request.description}
           />
           <br />
-{          <FormInput
+          <FormInput
             type="text"
             id="address"
             labelValue="Address"
@@ -92,8 +128,9 @@ export default class RequestForm extends Component {
             ref="address"
             inputName="address"
             placeholder="address"
-            onChange={dataFieldCollector.bind(this)}
-          />}
+            value={this.state.request.address}
+            onChange={this.handleChange.bind(this)}
+          /> 
           <br />
           <CheckBox
             divId="urgency-div"
@@ -110,9 +147,9 @@ export default class RequestForm extends Component {
           />
           <Button
             buttonClass='ml-1 my-2 px-5 py-2 btn btn-sm bg-success text-center text-white' 
-            buttonId='' 
-            buttonName='Submit your Request'
-            onClick={makeRequestHandler.bind(this)}
+            buttonId={`user-${this.state.request.id}-update`} 
+            buttonName='Save Update'
+            onClick={updateRequestHandler.bind(this)}
           />
         </div>
       </div>
