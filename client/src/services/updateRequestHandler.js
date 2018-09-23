@@ -1,7 +1,5 @@
 import fetchRequest from './fetchRequest';
 import store from '../../redux/store';
-import actions from '../../redux/actions';
-import ViewRequest from '../components/ViewRequest.jsx';
 
 const updateRequest = (event) => {
   event.preventDefault();
@@ -9,9 +7,8 @@ const updateRequest = (event) => {
   const buttonId = event.target.id;
   const buttonSubstring = buttonId.split('-');
   const requestId = buttonSubstring[1];
-  const { userData, requests, requestDetail } = store.getState();
+  const { userData, requests } = store.getState();
   const headers = new Headers();
-  headers.append('content-type', 'application/json');
   headers.append('token', userData.token);
   const options = {
     headers,
@@ -36,7 +33,6 @@ const updateRequest = (event) => {
       updatedRequest.then(updatedReq => {
         updateRequestStore(updatedReq, requests);
       })
-      store.dispatch(actions.setTabToView(ViewRequest));
       break;
     }
     case 'Reject': {
@@ -44,7 +40,6 @@ const updateRequest = (event) => {
       updatedRequest.then(updatedReq => {
         updateRequestStore(updatedReq, requests);
       })
-      store.dispatch(actions.setTabToView(ViewRequest));
       break;
     }
     case 'Resolved': {
@@ -52,16 +47,6 @@ const updateRequest = (event) => {
       updatedRequest.then(updatedReq => {
         updateRequestStore(updatedReq, requests);
       })
-      store.dispatch(actions.setTabToView(ViewRequest));
-      break;
-    }
-    case 'Save Update': {
-      options.body = JSON.stringify(requestDetail);
-      const updatedRequest = fetchRequest(`/users/requests/${requestId}`, options);
-      updatedRequest.then(updatedReq => {
-        updateRequestStore(updatedReq, requests);
-      })
-      store.dispatch(actions.setTabToView(ViewRequest));
       break;
     }
     default: 

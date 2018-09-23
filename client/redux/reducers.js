@@ -41,10 +41,6 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         requests: action.value,
       });
-    case 'SET_REQUEST_TO_UPDATE':
-      return Object.assign({}, state, {
-        requestToUpdate: action.value,
-      });
     case 'SAVE_SERVICE_PROVIDERS':
       return Object.assign({}, state, {
         serviceProviders: action.value,
