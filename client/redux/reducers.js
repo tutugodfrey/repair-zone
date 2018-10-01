@@ -5,6 +5,10 @@ import ViewRequest from '../src/components/ViewRequest.jsx';
 const initialState = {
   home: Home,
   TabContent: ViewRequest,
+  requests: [],
+  errorMessage: '',
+  error: false,
+  formValidated: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -41,6 +45,17 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         requests: action.value,
       });
+    
+    // operation after a delete action
+    case 'DELETE_REQUESTS':
+      return Object.assign({}, state, {
+        reducedRequests: action.value,
+        requests: action.value,
+      });
+    case 'EMPTY_REDUCED_REQUEST_ARRAY':
+      return Object.assign({}, state, {
+        reducedRequests: [],
+      });
     case 'SET_REQUEST_TO_UPDATE':
       return Object.assign({}, state, {
         requestToUpdate: action.value,
@@ -48,7 +63,21 @@ const reducer = (state = initialState, action) => {
     case 'SAVE_SERVICE_PROVIDERS':
       return Object.assign({}, state, {
         serviceProviders: action.value,
-      })
+      });
+    case 'SET_ERROR_VALUE': 
+      return Object.assign({}, state, {
+        errorMessage: action.value,
+        errorStatus: true,
+      });
+    case 'CLEAR_ERROR_VALUE': 
+      return Object.assign({}, state, {
+        errorMessage: '',
+        errorStatus: false,
+      });
+    case 'CONFIRM_FORM_VALIDATION': 
+    return Object.assign({}, state, {
+      formValidated: action.value,
+    })
     // return default state if something isn't right
     default:
       return state;

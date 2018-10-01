@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../../redux/actions';
 import Button from './elementComponents/Button.jsx';
+import Modal from './Modal.jsx';
 import {
   FormSelect, FormInput, TextArea, CheckBox,
 } from './elementComponents/formControls.jsx';
@@ -11,6 +12,10 @@ import dataFieldCollector from '../services/dataFieldCollector';
 import makeRequestHandler from '../services/makeRequestHandler';
 import { updateServiceProviders } from '../services/getServiceProviders';
 import fetchRequest from '../services/fetchRequest';
+import {
+  validateRequestForm,
+  onFocusHandler,
+} from '../services/formValidation';
 
 class RequestForm extends Component {
   constructor() {
@@ -19,7 +24,7 @@ class RequestForm extends Component {
       categories: [
         'Select',
         'Electrical',
-        'authomobile',
+        'automobile',
         'painting',
         'capentary',
         'electronics'
@@ -37,12 +42,6 @@ class RequestForm extends Component {
     await updateServiceProviders(services);
   }
 
-  // componentWillUpdate() {
-  //   const { serviceProviders } = this.props;
-  //   // return serviceProviders;
-  //   this.state.serviceProviders = serviceProviders;
-  // }
-
   formContent() {
     let services;
     const { serviceProviders } = this.props
@@ -53,10 +52,14 @@ class RequestForm extends Component {
         divId="service-div"
         labelValue="Service Providers"
         inputId='admin'
-        inputClass="form-control border-success"
+        inputClass="form-control border-success field-valid required"
         inputName="adminId"
         options={serviceProviders}
         onChange={dataFieldCollector.bind(this)}
+        spanClass="required text-danger"
+        requiredField={true}
+        validationClass="text-danger"
+        onFocus={onFocusHandler.bind(this)}
       />
     }
     return (
@@ -69,23 +72,33 @@ class RequestForm extends Component {
             divId="category-div"
             labelValue="Category"
             inputId='category'
-            inputClass="form-control border-success"
+            inputClass="form-control border-success field-valid required"
             inputName="category"
             options={this.state.categories}
             onChange={dataFieldCollector.bind(this)}
+            spanClass="required text-danger"
+            requiredField={true}
+            validationClass="text-danger"
+            onFocus={onFocusHandler.bind(this)}
           />
           <TextArea
             type="text"
             id="description"
             labelValue="Description"
             divClass="form-group border-success"
-            inputClass="form-control border-success"
+            inputClass="form-control border-success field-valid required"
             cols="60"
             rows="10"
             ref="description"
             name="description"
             placeholder="Describe you requirement here"
             onChange={dataFieldCollector.bind(this)}
+            requiredField={true}
+            spanClass="required text-danger"
+            validationClass="text-danger"
+            onMouseOut={validateRequestForm.bind(this)}
+            onBlur={validateRequestForm.bind(this)}
+            onFocus={onFocusHandler.bind(this)}
           />
           <br />
           {<FormInput
@@ -93,11 +106,17 @@ class RequestForm extends Component {
             id="address"
             labelValue="Address"
             divClass="form-group"
-            inputClass="form-control border-success"
+            inputClass="form-control border-success field-valid required"
             ref="address"
             inputName="address"
             placeholder="address"
             onChange={dataFieldCollector.bind(this)}
+            spanClass="required text-danger"
+            requiredField={true}
+            validationClass="text-danger"
+            onMouseOut={validateRequestForm.bind(this)}
+            onBlur={validateRequestForm.bind(this)}
+            onFocus={onFocusHandler.bind(this)}
           />}
           <br />
           <CheckBox
@@ -125,6 +144,8 @@ class RequestForm extends Component {
   }
   render() {
     return (
+      <div>
+        <Modal />
       <Div
         divClass="row"
         divId=""
@@ -135,6 +156,7 @@ class RequestForm extends Component {
           content={<Form formId="" formClass="" content={this.formContent()}/>}
         />}
       />
+      </div>
     );
   }
 }

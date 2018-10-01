@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Modal from './Modal.jsx';
 import Div from './../components/elementComponents/Div.jsx';
 import Link from './../components/elementComponents/Link.jsx';
 import InlineLogin from './InlineLogin.jsx';
@@ -40,6 +41,7 @@ class Home extends Component {
       <div id='app-description'>
       <h1> Welcome to repair zone</h1><br /><p>We connect Service providers to potential clients</p>
       </div>
+      <Modal />
       <InlineLogin formClass='form-inline' formId='home-login' />
     </div>
   }
@@ -94,4 +96,5 @@ class Home extends Component {
 export const mapStateToProps = (state) => {
   return state;
 }
+
 export default connect(mapStateToProps)(Home);

@@ -2,25 +2,32 @@ import fetchRequest from '../services/fetchRequest';
 import actions from '../../redux/actions';
 import store from '../../redux/store';
 import Dashboard from '../components/Dashboard.jsx';
+import { validateRequiredField } from './formValidation';
 
-  const handleLogin = async (event) => {
+const handleLogin = async (event) => {
   event.preventDefault();
   const requiredField = ['username', 'password'];
   let allFieldPass = true;
   const { signinDetail } = store.getState();
   if (!signinDetail) {
-    return console.log('please enter your username and password');
+    return store.dispatch(actions
+      .setErrorValue('please enter your username and password'))
   }
   requiredField.forEach((key) => {
     if (!signinDetail[key] || signinDetail[key].trim().length < 3) {
+      const failingElement = document.getElementsByName(key)[0];
+
+      // change the object of the event
+      event.target = failingElement,
+      validateRequiredField(event);
       allFieldPass = false;
-      console.log(`please fill the ${key} field`);
     }
     return allFieldPass;
   });
 
   if (!allFieldPass) {
-    return console.log('please fill all required field');
+    return store.dispatch(actions
+      .setErrorValue('please fill all required field'));
   }
   if (allFieldPass) {
     const headers = new Headers();
@@ -58,7 +65,8 @@ import Dashboard from '../components/Dashboard.jsx';
     }
     if (userData.message === 'authentication fail! check your username or password') {
       // redirect user to the signin page
-      return console.log(userData.message);
+      store.dispatch(actions
+        .setErrorValue('authentication fail! check your username or password'));
     }
   }
 }

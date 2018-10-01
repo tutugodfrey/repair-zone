@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Form from './elementComponents/Form.jsx';
+import Modal from './Modal.jsx';
 import { FormInput, CheckBox }from './elementComponents/formControls.jsx';
 import Button from './elementComponents/Button.jsx';
 import Link from './elementComponents/Link.jsx';
@@ -11,6 +12,10 @@ import HomePage from './Home.jsx';
 import dataFieldCollector from '../services/dataFieldCollector';
 import actions from '../../redux/actions';
 import signupHandler from '../services/signupHandler';
+import {
+  validateSigninForm,
+  onFocusHandler,
+} from '../services/formValidation.js';
 
 class SignupPage extends Component {
   // render signin page when user
@@ -43,11 +48,16 @@ class SignupPage extends Component {
           labelId=""
           spanClass="required text-danger"
           inputType='text' 
-          inputClass='my-2 ml-1 pt-1 border-success  form-control form-controls-md' 
-          inputId='fullname' 
+          inputClass='my-2 ml-1 pt-1 border-success  form-control form-controls-md field-valid required' 
+          inputId='fullname'
+          validationClass="text-danger"
           inputPlaceholder='fullname' 
           inputName='fullname'
+          onFocus={onFocusHandler.bind(this)}
           onChange={dataFieldCollector.bind(this)}
+          onMouseOut={validateSigninForm.bind(this)}
+          onBlur={validateSigninForm.bind(this)}
+          requiredField={true}
         />
         <FormInput
           divClass="my-2 col-10 col-md-6 offset-col-1"
@@ -56,11 +66,16 @@ class SignupPage extends Component {
           labelId=""
           spanClass="required text-danger"
           inputType='text' 
-          inputClass='ml-1 pt-1 border-success form-control form-controls-md' 
-          inputId='username' 
+          inputClass='ml-1 pt-1 border-success form-control form-controls-md field-valid required' 
+          inputId='username'
+          validationClass="text-danger"
           inputPlaceholder='username' 
           inputName='username'
+          onFocus={onFocusHandler.bind(this)}
           onChange={dataFieldCollector.bind(this)}
+          onMouseOut={validateSigninForm.bind(this)}
+          onBlur={validateSigninForm.bind(this)}
+          requiredField={true}
         />
         <FormInput
           divClass="my-2 col-10 col-md-6 offset-col-1"
@@ -69,11 +84,16 @@ class SignupPage extends Component {
           labelId=""
           spanClass="required text-danger"
           inputType='text' 
-          inputClass='ml-1 pt-1 border-success form-control form-controls-md' 
-          inputId='email' 
+          inputClass='ml-1 pt-1 border-success form-control form-controls-md field-valid required' 
+          inputId='email'
+          validationClass="text-danger"
           inputPlaceholder='email' 
           inputName='email'
+           onFocus={onFocusHandler.bind(this)}
           onChange={dataFieldCollector.bind(this)}
+          onMouseOut={validateSigninForm.bind(this)}
+          onBlur={validateSigninForm.bind(this)}
+          requiredField={true}
         />
         <FormInput
           divClass="my-2 col-10 col-md-6 offset-col-1"
@@ -82,11 +102,16 @@ class SignupPage extends Component {
           labelId=""
           spanClass="required text-danger"
           inputType='text' 
-          inputClass='ml-1 pt-1 border-success form-control form-controls-md' 
-          inputId='address' 
+          inputClass='ml-1 pt-1 border-success form-control form-controls-md field-valid required' 
+          inputId='address'
+          validationClass="text-danger"
           inputPlaceholder='address' 
           inputName='address'
+          onFocus={onFocusHandler.bind(this)}
           onChange={dataFieldCollector.bind(this)}
+          onMouseOut={validateSigninForm.bind(this)}
+          onBlur={validateSigninForm.bind(this)}
+          requiredField={true}
         />
         <FormInput
           divClass="my-2 col-10 col-md-6 offset-col-1"
@@ -95,11 +120,16 @@ class SignupPage extends Component {
           labelId=""
           spanClass="required text-danger"
           inputType='text' 
-          inputClass='ml-1 pt-1 border-success form-control form-controls-md' 
-          inputId='phone' 
+          inputClass='ml-1 pt-1 border-success form-control form-controls-md field-valid required' 
+          inputId='phone'
+          validationClass="text-danger"
           inputPlaceholder='phone' 
           inputName='phone'
+           onFocus={onFocusHandler.bind(this)}
           onChange={dataFieldCollector.bind(this)}
+          onMouseOut={validateSigninForm.bind(this)}
+          onBlur={validateSigninForm.bind(this)}
+          requiredField={true}
         />
         <FormInput
           divClass="my-2 col-10 col-md-6 offset-col-1"
@@ -119,11 +149,16 @@ class SignupPage extends Component {
           labelId=""
           spanClass="required text-danger"
           inputType='password'
-          inputClass='ml-1 pt-3 border-success form-control'
+          inputClass='ml-1 pt-3 border-success form-control field-valid required'
           inputId='password'
+          validationClass="text-danger"
           inputPlaceholder='password'
           inputName='password'
+          onFocus={onFocusHandler.bind(this)}
           onChange={dataFieldCollector.bind(this)}
+          onMouseOut={validateSigninForm.bind(this)}
+          onBlur={validateSigninForm.bind(this)}
+          requiredField={true}
         />
         <FormInput
           divClass="my-2 col-10 col-md-6 offset-col-1"
@@ -132,11 +167,16 @@ class SignupPage extends Component {
           labelId=""
           spanClass="required text-danger"
           inputType='password'
-          inputClass='ml-1 pt-3 border-success form-control '
+          inputClass='ml-1 pt-3 border-success form-control field-valid required'
           inputId='confrm-password'
+          validationClass="text-danger"
           inputPlaceholder='confirm-password'
           inputName='confirmPassword'
+          onFocu={onFocusHandler.bind(this)}
           onChange={dataFieldCollector.bind(this)}
+          onMouseOut={validateSigninForm.bind(this)}
+          onBlur={validateSigninForm.bind(this)}
+          requiredField={true}
         />
         <fieldset className='my-2 col-10 col-md-10 offset-col-1'>
           <legend>I am a service provider</legend>
@@ -160,11 +200,15 @@ class SignupPage extends Component {
             labelId=""
             spanClass="required text-danger"
             inputType='text'
-            inputClass='ml-1 pt-3 border-success form-control'
+            inputClass='ml-1 pt-3 border-success form-control required field-valid'
             inputId='service-name'
+            validationClass="text-danger"
             inputPlaceholder='Service Name'
             inputName='serviceName'
+            onFous={onFocusHandler.bind(this)}
             onChange={dataFieldCollector.bind(this)}
+            onMouseOut={validateSigninForm.bind(this)}
+            onBlur={validateSigninForm.bind(this)}
           />
         </fieldset>
         <Button
@@ -183,14 +227,17 @@ class SignupPage extends Component {
     return <Form content={this.formContent()}/>
   }
   render() {
-    return <div>
-      <div id='logo-div' className='d-inline'>
-        <a href='#' onClick={this.loadHomePage.bind(this)}>
-          <Paragraph paragraphClass='' paragraphId='' content='Repair-Zone' />
-        </a>
+    return (
+      <div>
+        <div id='logo-div' className='d-inline'>
+          <a href='#' onClick={this.loadHomePage.bind(this)}>
+            <Paragraph paragraphClass='' paragraphId='' content='Repair-Zone' />
+          </a>
+        </div>
+        <Modal />
+        <Div divId='signup-form' divClass='card py-4 my-5 col-sm-10 col-md-8 offset-md-2 border-success' content={this.renderForm()}/>
       </div>
-      <Div divId='signup-form' divClass='card py-4 my-5 col-sm-10 col-md-8 offset-md-2 border-success' content={this.renderForm()}/>
-    </div>
+    );
   }
 }
 

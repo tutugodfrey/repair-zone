@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../../redux/actions';
 import Button from './elementComponents/Button.jsx';
+import Modal from './Modal.jsx'
 import {
   FormSelect, FormInput, TextArea, CheckBox,
 } from './elementComponents/formControls.jsx';
@@ -157,16 +158,20 @@ class UpdateRequest extends Component {
   }
   render() {
     return (
-      <Div
-        divClass="row"
-        divId=""
-        content={
+      <div>
+        <Modal />
         <Div
-          divClass="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3 py-5 my-3"
+          divClass="row"
           divId=""
-          content={<Form formId="" formClass="" content={this.formContent()}/>}
-        />}
-      />
+          content={
+          <Div
+            divClass="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3 py-5 my-3"
+            divId=""
+            content={<Form formId="" formClass="" content={this.formContent()}/>}
+          />
+        }
+        />
+      </div>
     );
   }
 }
@@ -182,4 +187,5 @@ const mapStateToProps = (state) => {
     requestToUpdate,
   }
 }
+
 export default connect(mapStateToProps)(UpdateRequest);

@@ -3,6 +3,7 @@ import store from '../../redux/store';
 import actions from '../../redux/actions';
 import fetchRequest from './fetchRequest';
 import Dashboard from '../components/Dashboard.jsx';
+import { validateRequiredField } from './formValidation';
 
 /* eslint-disable no-console */
 // get signup data from redux store
@@ -11,7 +12,8 @@ const handleSignup = async (event) => {
   event.preventDefault();
   const { signupDetail } = store.getState();
   if (!signupDetail) {
-    return console.log('Please fill out all required field to signup');
+    return store.dispatch(actions
+      .setErrorValue('Please fill out all required field to signup'));
   }
   const requestField = [
     'fullname', 'username', 'email', 'address',
@@ -19,7 +21,6 @@ const handleSignup = async (event) => {
     'phone', 'isAdmin', 'serviceName'];
   const keys = Object.keys(signupDetail);
   let allFieldPass = true;
-  const emailRegExp = /\w+@\w+\.(com|org|net|co)/i;
   /* eslint-disable no-undef */
   const formData = new FormData();
   requestField.forEach((key) => {
@@ -30,25 +31,29 @@ const handleSignup = async (event) => {
       formData.append(key, signupDetail[key]);
     } else if (key === 'profile-photo' || key === 'isAdmin' || key === 'serviceName') {
       formData.append(key, '');
-    } else {
+    }  else {
       allFieldPass = false;
+      const failingElement = document.getElementsByName(key)[0];
+      event.target = failingElement;
+      validateRequiredField(event)
     }
   });
 
   if (!allFieldPass) {
-    return console.log('Please fill all required fields to create your account');
+    return store.dispatch(actions
+      .setErrorValue('Please fill all required fields to create your account'));
   }
   if (signupDetail.password !== signupDetail.confirmPassword) {
-    return console.log('password you enter does not match');
-  }
-  if (!emailRegExp.test(signupDetail.email)) {
-    return console.log('Please enter a valid email in email field');
+    return store.dispatch(actions
+      .setErrorValue('password you enter does not match'));
   }
 
-  if (signupDetail.isAdmin
+  if (signupDetail.isAdmin === 'true'
     && (!signupDetail.serviceName
     || signupDetail.serviceName.trim().length < 3)) {
-    return console.log('please enter a service name ');
+      const failingElement = document.getElementsByName('serviceName')[0];
+      event.target = failingElement;
+      return validateRequiredField(event);
   }
   const options = {
     body: formData,
@@ -63,7 +68,7 @@ const handleSignup = async (event) => {
     }
   
     // show console modal of the error message
-    return console.log(responseData.message);
+    return store.dispatch(actions.setErrorValue(responseData.message));
 }
 
 export default handleSignup;

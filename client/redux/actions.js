@@ -31,6 +31,13 @@ const actions = {
     type: 'SAVE_REQUESTS',
     value: data,
   }),
+  deleteRequests: data => ({
+    type: 'DELETE_REQUESTS',
+    value: data,
+  }),
+  emptyReducedRequestArray: () => ({
+    type: 'EMPTY_REDUCED_REQUEST_ARRAY',
+  }),
   setRequestToUpdate: data => ({
     type: 'SET_REQUEST_TO_UPDATE',
     value: data,
@@ -38,6 +45,18 @@ const actions = {
   saveServiceProviders: data => ({
     type: 'SAVE_SERVICE_PROVIDERS',
     value: data,
+  }),
+  setErrorValue: data => ({
+    type: 'SET_ERROR_VALUE',
+    value: data,
+  }),
+  clearErrorValue: data => ({
+    type: 'CLEAR_ERROR_VALUE',
+    value: data,
+  }),
+  confirmFormValidation: status => ({
+    type: 'CONFIRM_FORM_VALIDATION',
+    value: status,
   })
 };
 

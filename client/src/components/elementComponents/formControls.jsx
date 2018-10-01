@@ -17,21 +17,30 @@ class FormInputWithoutDiv extends Component {
 
  class FormInput extends Component {
   render() {
+    let requiredFieldIndicator = '';
+    if (this.props.requiredField) {
+      requiredFieldIndicator =
+        <span className={this.props.spanClass}>*</span>;
+    }
     return ( 
       <div id={this.props.divId} className={this.props.divClass}>
         <label htmlFor={this.props.id}>{this.props.labelValue}</label>
-        <span className={this.props.spanClass}>*</span> 
+        {requiredFieldIndicator}
         <input
           type={this.props.inputType}
           id={this.props.inputId}
           className={this.props.inputClass}
           ref={this.props.referred}
           onChange={this.props.onChange}
+          onMouseOut={this.props.onMouseOut}
+          onBlur={this.props.onBlur}
+          onFocus={this.props.onFocus}
           onClick={this.props.click}
           name={this.props.inputName}
           placeholder={this.props.placeholder}
           defaultValue={this.props.value}
         />
+        <span className={this.props.validationClass}>{this.props.validationText}</span>
       </div>
     )
   }
@@ -39,9 +48,15 @@ class FormInputWithoutDiv extends Component {
 
 class TextArea extends Component {
   render() {
+    let requiredFieldIndicator = '';
+    if (this.props.requiredField) {
+      requiredFieldIndicator =
+        <span className={this.props.spanClass}>*</span>;
+    }
     return ( 
       <div className={this.props.divClass}>
-        <label htmlFor={this.props.id}>{this.props.labelValue}</label>  
+        <label htmlFor={this.props.id}>{this.props.labelValue}</label>
+        {requiredFieldIndicator} 
         <textarea
           id={this.props.id}
           className={this.props.inputClass}
@@ -49,11 +64,14 @@ class TextArea extends Component {
           rows={this.props.rows}
           ref={this.props.referred}
           onChange={this.props.onChange}
-          onClick={this.props.click}
+          onMouseOut={this.props.onMouseOut}
+          onBlur={this.props.onBlur}
+          onFocus={this.props.onFocus}
           name={this.props.name}
           placeholder={this.props.placeholder}
           value={this.props.value} >
         </textarea>
+        <span className={this.props.validationClass}>{this.props.validationText}</span>
       </div>
     )
   }
@@ -72,17 +90,26 @@ class FormSubmit extends Component {
 
 class FormSelect extends Component {
   render() {
+    let requiredFieldIndicator = '';
+    if (this.props.requiredField) {
+      requiredFieldIndicator =
+        <span className={this.props.spanClass}>*</span>;
+    }
     return (
       <div id={this.props.divId} className={this.props.divClass}>
         <label htmlFor={this.props.inputId}>{this.props.labelValue}</label>
+        {requiredFieldIndicator}
         <select
-        id={this.props.inputId}
-        className={ this.props.inputClass }
-        name={ this.props.inputName }
-        onChange={this.props.onChange}
+          id={this.props.inputId}
+          className={ this.props.inputClass }
+          name={ this.props.inputName }
+          onChange={this.props.onChange}
+          onBlur={this.props.onBlur}
+          onFocus={this.props.onFocus}
         >
           <FormOptions options={ this.props.options } />
         </select>
+        <span className={this.props.validationClass}>{this.props.validationText}</span>
       </div>
     )
   }
