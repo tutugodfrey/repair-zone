@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store from '../../redux/store';
 
 class App extends Component {
   constructor () {
@@ -9,19 +8,25 @@ class App extends Component {
     };
   }
   render() {
-    let unsubscribe = store.subscribe(() =>{
-      this.setState({
-        home: store.getState().home,
-      })
-    });
+    // let unsubscribe = store.subscribe(() =>{
+    //   this.setState({
+    //     home: store.getState().home,
+    //   })
+    // });
 
-    const Home = store.getState().home;
+    const Home = this.props.home;
     return (
       <div>
-        <Home store={this.props.store}/>
+        <Home />
       </div>
     )
   }
 }
 
-export default connect()(App);
+export const mapStateToProps = (state) => {
+  const { home } = state;
+  return {
+    home,
+  }
+}
+export default connect(mapStateToProps)(App);

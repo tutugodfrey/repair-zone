@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Div from './elementComponents/Div.jsx';
 import Button from './elementComponents/Button.jsx';
-import store from './../../redux/store.js';
 import updateRequest from '../services/updateRequestHandler';
 import { displayUpdateForm } from '../services/displayUserDashboard';
 
-export default class ViewRequest extends Component {
+class ViewRequest extends Component {
   constructor() {
     super();
     this.state = {
@@ -13,7 +13,7 @@ export default class ViewRequest extends Component {
     };
   }
   componentDidMount = () =>  {
-    const { requests } = store.getState();
+    const { requests } = this.props;
     this.setState({
       allRequests: requests,
     });
@@ -78,7 +78,7 @@ export default class ViewRequest extends Component {
         buttonName="Approve"
         onClick={updateRequest.bind(this)}
       />
-    const { userData } = store.getState();
+    const { userData } = this.props;
     if(userData.isAdmin) {
       displayedName = requestInfo.user.fullname;
     }
@@ -180,3 +180,12 @@ export default class ViewRequest extends Component {
     )
   }
 }
+
+export const mapStateToProps = (state) => {
+  const { userData, requests } = state;
+  return {
+    userData,
+    requests,
+  }
+}
+export default connect(mapStateToProps)(ViewRequest);

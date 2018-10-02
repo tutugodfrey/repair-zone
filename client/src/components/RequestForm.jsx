@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import store from '../../redux/store';
+import { connect } from 'react-redux';
 import actions from '../../redux/actions';
 import Button from './elementComponents/Button.jsx';
 import {
@@ -12,17 +12,24 @@ import makeRequestHandler from '../services/makeRequestHandler';
 import { updateServiceProviders } from '../services/getServiceProviders';
 import fetchRequest from '../services/fetchRequest';
 
-export default class RequestForm extends Component {
+class RequestForm extends Component {
   constructor() {
     super();
     this.state = {
-      categories: ['Select', 'Electrical', 'authomobile', 'painting', 'capentary', 'electronics'],
+      categories: [
+        'Select',
+        'Electrical',
+        'authomobile',
+        'painting',
+        'capentary',
+        'electronics'
+      ],
       serviceProviders: [],
     }
   }
 
   componentDidMount = async () => {
-    store.dispatch(actions.setFormToFill('request-form'));
+    this.props.dispatch(actions.setFormToFill('request-form'));
     const options = {
       method: 'get',
     };
@@ -30,18 +37,16 @@ export default class RequestForm extends Component {
     await updateServiceProviders(services);
   }
 
-  componentWillUpdate() {
-    const { serviceProviders } = store.getState();
-    // return serviceProviders;
-    this.state.serviceProviders = serviceProviders;
-  }
+  // componentWillUpdate() {
+  //   const { serviceProviders } = this.props;
+  //   // return serviceProviders;
+  //   this.state.serviceProviders = serviceProviders;
+  // }
 
   formContent() {
     let services;
-    if(!this.state.serviceProviders) {
-      services = '';
-    } else
-    if(this.state.serviceProviders.length > 0) {
+    const { serviceProviders } = this.props
+    if(serviceProviders) {
       services =
       <FormSelect
         divClass=""
@@ -50,7 +55,7 @@ export default class RequestForm extends Component {
         inputId='admin'
         inputClass="form-control border-success"
         inputName="adminId"
-        options={this.state.serviceProviders}
+        options={serviceProviders}
         onChange={dataFieldCollector.bind(this)}
       />
     }
@@ -83,7 +88,7 @@ export default class RequestForm extends Component {
             onChange={dataFieldCollector.bind(this)}
           />
           <br />
-{          <FormInput
+          {<FormInput
             type="text"
             id="address"
             labelValue="Address"
@@ -133,3 +138,12 @@ export default class RequestForm extends Component {
     );
   }
 }
+
+export const mapStateToProps = (state) => {
+  const { serviceProviders } = state;
+  return {
+    serviceProviders,
+  };
+}
+
+export default connect(mapStateToProps)(RequestForm);

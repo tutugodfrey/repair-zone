@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Div from './../components/elementComponents/Div.jsx';
 import Link from './../components/elementComponents/Link.jsx';
 import InlineLogin from './InlineLogin.jsx';
 import SigninPage from './SigninPage.jsx';
 import SignupPage from './SignupPage.jsx';
 import displayUserDashboard from '../services/displayUserDashboard';
-import store from '../../redux/store';
 import actions from '../../redux/actions';
 
-export default class Home extends Component {
+class Home extends Component {
   componentWillMount() {
     if(localStorage.getItem('userData')) {
       displayUserDashboard();
     }
   }
   handleSigninLink = () => {
-    store.dispatch(actions.displayPage(SigninPage));
+    this.props.dispatch(actions.displayPage(SigninPage));
   }
 
   handleSignupLink = () => {
-    store.dispatch(actions.displayPage(SignupPage));
+    this.props.dispatch(actions.displayPage(SignupPage));
   }
   
   homeNav() {
@@ -91,3 +91,7 @@ export default class Home extends Component {
     )
   }
 }
+export const mapStateToProps = (state) => {
+  return state;
+}
+export default connect(mapStateToProps)(Home);

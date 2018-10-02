@@ -36,10 +36,9 @@ import Dashboard from '../components/Dashboard.jsx';
       store.dispatch(actions.setUserData(userData));
 
       // set user data in localStorage
-      //if (localStorage.getItem('userData')) {
-        const userInfo = JSON.stringify(userData);
-        localStorage.setItem('userData', userInfo);
-     // }
+      const userInfo = JSON.stringify(userData);
+      localStorage.setItem('userData', userInfo);
+
 
       const headers = new Headers();
       headers.append('token', userData.token);

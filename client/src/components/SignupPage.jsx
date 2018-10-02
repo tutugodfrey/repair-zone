@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import Form from './elementComponents/Form.jsx';
 import { FormInput, CheckBox }from './elementComponents/formControls.jsx';
 import Button from './elementComponents/Button.jsx';
@@ -9,26 +10,25 @@ import Paragraph from './../components/elementComponents/Paragraph.jsx';
 import HomePage from './Home.jsx';
 import dataFieldCollector from '../services/dataFieldCollector';
 import actions from '../../redux/actions';
-import store from '../../redux/store';
 import signupHandler from '../services/signupHandler';
 
-export default class SignupPage extends Component {
+class SignupPage extends Component {
   // render signin page when user
   // click the signin link
   componentDidMount() {
-    store.dispatch(actions.setFormToFill('signup'));
+    this.props.dispatch(actions.setFormToFill('signup'));
   }
 
   loadSigninPage() {
-    store.dispatch(actions.displayPage(SigninPage));
+    this.props.dispatch(actions.displayPage(SigninPage));
   }
 
   loadHomePage() {
-    store.dispatch(actions.displayPage(HomePage));
+    this.props.dispatch(actions.displayPage(HomePage));
   }
 
   componentDidMount() {
-    store.dispatch(actions.setFormToFill('signup'));
+    this.props.dispatch(actions.setFormToFill('signup'));
   }
   // render the signup page
   formContent() {
@@ -191,6 +191,7 @@ export default class SignupPage extends Component {
       </div>
       <Div divId='signup-form' divClass='card py-4 my-5 col-sm-10 col-md-8 offset-md-2 border-success' content={this.renderForm()}/>
     </div>
-
   }
 }
+
+export default connect()(SignupPage);

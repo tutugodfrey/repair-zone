@@ -36,8 +36,9 @@ const makeRequestHandler = async (event) => {
     };
     const responseData = await fetchRequest('/users/requests', options);
     if(responseData.id) {
-      // sign is successful
-      store.dispatch(actions.saveRequest(responseData));
+      const { requests } = store.getState();
+      // requests.push(responseData)
+      // store.dispatch(actions.saveRequests(requests));
   
       // redirect users to their dashboard
       store.dispatch(actions.setTabToView(ViewRequest));

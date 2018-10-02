@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import store from '../../redux/store';
+import { connect } from 'react-redux';
 import actions from '../../redux/actions';
 import Button from './elementComponents/Button.jsx';
 import {
@@ -15,21 +15,21 @@ import fetchRequest from '../services/fetchRequest';
 /**
  * render update request page
  */
-export default class UpdateRequest extends Component {
+class UpdateRequest extends Component {
   state = {
     categories: ['Select', 'Electrical', 'authomobile', 'painting', 'capentary', 'electronics'],
     serviceProviders: [],
     request: {},
   }
   componentDidMount = async () => {
-    store.dispatch(actions.setFormToFill('update-request-form'));
+    this.props.dispatch(actions.setFormToFill('update-request-form'));
     const options = {
       method: 'get',
     };
     const services = await fetchRequest('/auth/services', options);
     await updateServiceProviders(services);
 
-    const { requestToUpdate } = store.getState();
+    const { requestToUpdate } = this.props;
     const { request, user } = requestToUpdate;
     let checked = false;
     if(request.urgent) {
@@ -45,7 +45,7 @@ export default class UpdateRequest extends Component {
   }
 
   componentWillUpdate() {
-    const { serviceProviders} = store.getState();
+    const { serviceProviders } = this.props;
     this.state.serviceProviders = serviceProviders;
   }
   
@@ -65,9 +65,9 @@ export default class UpdateRequest extends Component {
 
   formContent() {
     let services;
-    if(!this.state.serviceProviders) {
-      services = '';
-    } else if(this.state.serviceProviders.length > 0) {
+
+    const { serviceProviders } = this.props;
+    if(serviceProviders) {
       services =
       <FormSelect
         divClass=""
@@ -76,7 +76,7 @@ export default class UpdateRequest extends Component {
         inputId='admin'
         inputClass="form-control border-success"
         inputName="adminId"
-        options={this.state.serviceProviders}
+        options={serviceProviders}
         onChange={dataFieldCollector.bind(this)}
       />
     }
@@ -170,3 +170,16 @@ export default class UpdateRequest extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  const {
+    requests,
+    serviceProviders,
+    requestToUpdate,
+  } = state;
+  return {
+    requests,
+    serviceProviders,
+    requestToUpdate,
+  }
+}
+export default connect(mapStateToProps)(UpdateRequest);
