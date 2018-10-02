@@ -1,4 +1,4 @@
-import logoutHandler from './logoutHandler';
+
 // make api request using fetch
 const fetchRequest = async (url, options) => {
   const { NODE_ENV } = process.env;

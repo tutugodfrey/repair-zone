@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { NavButton } from './elementComponents/Button.jsx';
 import Link from './elementComponents/Link.jsx';
 import Home from './Home.jsx';
 import ViewRequest from './ViewRequest.jsx';
 import RequestForm from './RequestForm.jsx';
 import SendMessage from './SendMessage.jsx';
-import store from '../../redux/store';
 import actions from '../../redux/actions';
 import fetchRequest from '../services/fetchRequest';
 import logoutHandler from '../services/logoutHandler';
 
-export default class Header extends Component {
+class Header extends Component {
   handleResponse(responseData) {
-    store.dispatch(actions.saveRequests(responseData));
+    this.props.dispatch(actions.saveRequests(responseData));
   }
   changeTab(event, tabContent) {
     event.preventDefault()
@@ -29,6 +29,7 @@ export default class Header extends Component {
       method = 'get';
     } else if (href === 'make-request') {
      // relativeUrl = '/auth/services';
+    return this.props.dispatch(actions.setTabToView(tabContent));
     } else if (href === 'approved-request') {
       relativeUrl = '/requests/approved';
       method = 'get';
@@ -36,7 +37,7 @@ export default class Header extends Component {
       relativeUrl = '/requests/resolved';
       method = 'get';
     }
-    const { userData } = store.getState();
+    const { userData } = this.props;
     const headers = new Headers();
     headers.append('token', userData.token)
     const options = {
@@ -44,16 +45,17 @@ export default class Header extends Component {
       headers,
     }
     fetchRequest(relativeUrl, options, this.handleResponse);
-    store.dispatch(actions.setTabToView(tabContent));
+    this.props.dispatch(actions.setTabToView(tabContent));
   }
 
-  handleHomeLink() {
-    event.preventDefault();
-    store.dispatch(actions.displayPage(Home))
+  handleHomeLink(event, self) {
+    // event.preventDefault();
+    // self.props.dispatch(actions.displayPage(Home))
   }
 
   headerContent() {
-    const { isAdmin } = store.getState().userData;
+    const { userData } = this.props;
+    const { isAdmin } = userData;
     let nanbarContent;
     if(isAdmin) {
       nanbarContent = <ul className="navbar-nav">
@@ -127,7 +129,7 @@ export default class Header extends Component {
         </div>
         <div className="row navbar navbar-expand-md navbar-light bg-success">
           <div className="col-3 col-md-2">
-            <Link href="#" linkClass="logo" linkId="home-logo" onClick={this.handleHomeLink} linkText="Repair-Zone"/>
+            <Link href="#" linkClass="logo" linkId="home-logo" onClick={(event) => this.handleHomeLink(event, this)} linkText="Repair-Zone"/>
           </div>
           <NavButton
             buttonClass="navbar-toggler ml-auto"
@@ -149,3 +151,11 @@ export default class Header extends Component {
     return this.headerContent()
   }
 }
+
+export const mapStateToProps = (state) => {
+  const { userData } = state;
+  return {
+    userData,
+  }
+}
+export default connect(mapStateToProps)(Header);

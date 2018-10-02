@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import Form from './elementComponents/Form.jsx';
 import { FormInput } from './elementComponents/formControls.jsx';
 import Button from './elementComponents/Button.jsx';
@@ -12,7 +13,7 @@ import signinHandler from '../services/signinHandler';
 import actions from '../../redux/actions';
 import store from '../../redux/store';
 
-export default class SigninPage extends Component {
+class SigninPage extends Component {
 
   loadHomePage() {
     store.dispatch(actions.displayPage(HomePage))
@@ -87,3 +88,5 @@ export default class SigninPage extends Component {
     </div>
   }
 }
+
+export default connect()(SigninPage);

@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import Form from './elementComponents/Form.jsx';
 import { FormInputWithoutDiv } from './elementComponents/formControls.jsx';
 import Button from './elementComponents/Button.jsx';
 import actions from '../../redux/actions';
-import store from '../../redux/store';
 import dataFiledCollector from '../services/dataFieldCollector';
-import signinHandler from '../services/signinHandler'
+import signinHandler from '../services/signinHandler';
 
-export default class InlineLogin extends Component {
+class InlineLogin extends Component {
   componentDidMount() {
-    store.dispatch(actions.setFormToFill('signin'));
+    this.props.dispatch(actions.setFormToFill('signin'));
   }
 
   formContent() {
@@ -40,3 +40,5 @@ export default class InlineLogin extends Component {
     return <Form formId="inline-signin-form" formClass="" content={this.formContent()} />
   }
 }
+
+export default connect()(InlineLogin);

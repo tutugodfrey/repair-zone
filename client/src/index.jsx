@@ -8,7 +8,7 @@ import main from './../styles/main.scss'; // eslint-disable-line no-unused-vars
 
 render(
   <Provider store={store} >
-    <App />
+    <App store={store} />
   </Provider>,
   document.getElementById('index')
 );

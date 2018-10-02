@@ -10,5 +10,4 @@ export const updateServiceProviders = (serviceProviders) => {
     serviceProviders.unshift(defaultOption)
     return store.dispatch(actions.saveServiceProviders(serviceProviders));
   }
-  return console.log(serviceProviders)
 }
