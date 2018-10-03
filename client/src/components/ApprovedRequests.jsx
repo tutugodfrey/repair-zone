@@ -4,10 +4,9 @@ import actions from '../../redux/actions';
 import Div from './elementComponents/Div.jsx';
 import Button from './elementComponents/Button.jsx';
 import updateRequest from '../services/updateRequestHandler';
-import { displayUpdateForm } from '../services/displayUserDashboard';
 import Modal from './Modal.jsx';
 
-export class ViewRequest extends Component {
+export class ApprovedRequests extends Component {
   constructor() {
     super();
     this.state = {
@@ -63,21 +62,6 @@ export class ViewRequest extends Component {
     let requestDetail;
     let displayedName = requestInfo.user.serviceName;
     let buttonId = `request-${requestInfo.request.id}`;
-    const { userData } = this.props;
-    let updateRequestBtn = 
-      <Button
-        buttonId={buttonId}
-        buttonClass="update-request-button"
-        buttonName="Update"
-        onClick={displayUpdateForm.bind(this)}
-      />
-    let deleteRequestBtn = 
-      <Button
-        buttonId={buttonId}
-        buttonClass="delete-request-button"
-        buttonName="Delete"
-        onClick={updateRequest.bind(this)}
-      />
     let rejectRequestBtn = 
       <Button
         buttonId={buttonId}
@@ -92,46 +76,9 @@ export class ViewRequest extends Component {
         buttonName="Resolved"
         onClick={updateRequest.bind(this)}
       />
-    let approveRequestBtn = 
-      <Button
-        buttonId={buttonId}
-        buttonClass="approve-request-button"
-        buttonName="Approve"
-        onClick={updateRequest.bind(this)}
-      />
-
+    const { userData } = this.props;
     if(userData.isAdmin) {
       displayedName = requestInfo.user.fullname;
-    }
-
-    // offset button depending on the state of a request
-    if (requestInfo.request.status === 'awaiting confirmation' && userData.isAdmin) {
-      resolveRequestBtn = '';
-    }
-    if (requestInfo.request.status === 'resolved') {
-      updateRequestBtn = '';
-      rejectRequestBtn = '';
-      approveRequestBtn = '';
-      resolveRequestBtn = '';
-    }
-    if (requestInfo.request.status === 'pending') {
-      updateRequestBtn = '';
-      approveRequestBtn = '';
-    }
-
-    if (requestInfo.request.status === 'rejected') {
-      resolveRequestBtn = '';
-      rejectRequestBtn = '';
-    }
-
-    if (userData.isAdmin) {
-      updateRequestBtn = '';
-      deleteRequestBtn = '';
-    }
-    if (!userData.isAdmin) {
-      rejectRequestBtn = '';
-      resolveRequestBtn = '';
-      approveRequestBtn = '';
     }
     const properties = Object.keys(requestInfo.request);
     requestDetail = properties.map((property) => {
@@ -177,9 +124,6 @@ export class ViewRequest extends Component {
           <dl className="request-detail-dl">
             {requestDetail}
           </dl>
-          {updateRequestBtn}
-          {deleteRequestBtn}
-          {approveRequestBtn}
           {rejectRequestBtn}
           {resolveRequestBtn}
         </div>
@@ -187,24 +131,15 @@ export class ViewRequest extends Component {
     )
   }
   renderAllRequest(allRequests) {
-    let viewAllRequest;
-    const { userData } = this.props;
+    let viewAllRequest = [];
     if (allRequests) {
-      if (userData.isAdmin) {
-        viewAllRequest = [];
-        allRequests.forEach(request => {
-          if (request.request.status === 'awaiting confirmation') {
-            viewAllRequest.push(this.requestContainer(request));
-          }
-        })
-        return viewAllRequest;
-      }
-
-      viewAllRequest = allRequests.map(request => {
-        return this.requestContainer(request);
-      });
-      return viewAllRequest;
+      allRequests.forEach(request => {
+        if (request.request.status === 'pending') {
+          viewAllRequest.push(this.requestContainer(request));
+        } 
+      })
     }
+    return viewAllRequest;
   }
   render() {
     const { requests } = this.state;
@@ -225,4 +160,4 @@ export const mapStateToProps = (state) => {
     reducedRequests,
   }
 }
-export default connect(mapStateToProps)(ViewRequest);
+export default connect(mapStateToProps)(ApprovedRequests);

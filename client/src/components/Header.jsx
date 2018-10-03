@@ -4,10 +4,11 @@ import { NavButton } from './elementComponents/Button.jsx';
 import Link from './elementComponents/Link.jsx';
 import Home from './Home.jsx';
 import ViewRequest from './ViewRequest.jsx';
+import ApprovedRequests from './ApprovedRequests.jsx';
+import ResolvedRequests from './ResolvedRequests.jsx';
 import RequestForm from './RequestForm.jsx';
 import SendMessage from './SendMessage.jsx';
 import actions from '../../redux/actions';
-import fetchRequest from '../services/fetchRequest';
 import logoutHandler from '../services/logoutHandler';
 
 class Header extends Component {
@@ -15,37 +16,8 @@ class Header extends Component {
     this.props.dispatch(actions.saveRequests(responseData));
   }
   changeTab(event, tabContent) {
-    event.preventDefault()
-    let { href } = event.target;
-    const hrefValueArray = href.split('#');
-    href = hrefValueArray[1];
-    let relativeUrl;
-    let method;
-    if(href === 'view-request') {
-      relativeUrl = '/requests';
-      method = 'get';
-    } else if (href === 'view-user-request') {
-      relativeUrl = '/users/requests';
-      method = 'get';
-    } else if (href === 'make-request') {
-     // relativeUrl = '/auth/services';
+    event.preventDefault();
     return this.props.dispatch(actions.setTabToView(tabContent));
-    } else if (href === 'approved-request') {
-      relativeUrl = '/requests/approved';
-      method = 'get';
-    } else if (href === 'resolved-request') {
-      relativeUrl = '/requests/resolved';
-      method = 'get';
-    }
-    const { userData } = this.props;
-    const headers = new Headers();
-    headers.append('token', userData.token)
-    const options = {
-      method,
-      headers,
-    }
-    fetchRequest(relativeUrl, options, this.handleResponse);
-    this.props.dispatch(actions.setTabToView(tabContent));
   }
 
   handleHomeLink(event, self) {
@@ -72,7 +44,7 @@ class Header extends Component {
             href="#approved-request"
             className="nav-link"
             linkText="Approved Request"
-            onClick={(event) => this.changeTab(event, ViewRequest)}
+            onClick={(event) => this.changeTab(event, ApprovedRequests)}
           />
         </li>
         <li className="nav-item m-1">
@@ -80,7 +52,7 @@ class Header extends Component {
             href="#resolved-request"
             className="nav-link"
             linkText="Resolved Request"
-            onClick={(event) => this.changeTab(event, ViewRequest)}
+            onClick={(event) => this.changeTab(event, ResolvedRequests)}
           />
         </li>
         <li className="nav-item m-1">
@@ -158,4 +130,5 @@ export const mapStateToProps = (state) => {
     userData,
   }
 }
+
 export default connect(mapStateToProps)(Header);
