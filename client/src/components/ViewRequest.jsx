@@ -1,23 +1,43 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import actions from '../../redux/actions';
 import Div from './elementComponents/Div.jsx';
 import Button from './elementComponents/Button.jsx';
 import updateRequest from '../services/updateRequestHandler';
 import { displayUpdateForm } from '../services/displayUserDashboard';
+import Modal from './Modal.jsx';
 
-class ViewRequest extends Component {
+export class ViewRequest extends Component {
   constructor() {
     super();
     this.state = {
-      btnName: "view"
+      btnName: "view",
+      requests: [],
     };
   }
   componentDidMount = () =>  {
     const { requests } = this.props;
     this.setState({
-      allRequests: requests,
+      requests,
     });
+    if (requests.length === 0) {
+      this.props.dispatch(actions.setErrorValue('Not request found'))
+    } else {
+      this.props.dispatch(actions.clearErrorValue())
+    }
   }
+
+
+  componentWillReceiveProps = (nextProps) => {
+    const { reducedRequests } = nextProps;
+    if (reducedRequests.length > 0) {
+      this.setState({
+        requests: reducedRequests,
+      });
+      this.props.dispatch(actions.emptyReducedRequestArray());
+    }
+  }
+
   handleView(event) {
     event.preventDefault();
     let element = event.target;
@@ -166,26 +186,31 @@ class ViewRequest extends Component {
     )
   }
   renderAllRequest(allRequests) {
-    if(allRequests) {
-      let viewAllRequest;
+    let viewAllRequest;
+    if (allRequests) {
       viewAllRequest = allRequests.map(request => {
         return this.requestContainer(request);
       })
-      return viewAllRequest;
     }
+    return viewAllRequest;
   }
   render() {
+    const { requests } = this.state;
     return (
-      <Div divClass="row py-5" content={this.renderAllRequest(this.state.allRequests)} />
+      <div>
+        <Modal />
+        <Div divClass="row py-5" content={this.renderAllRequest(requests)} />
+      </div>
     )
   }
 }
 
 export const mapStateToProps = (state) => {
-  const { userData, requests } = state;
+  const { userData, requests, reducedRequests } = state;
   return {
     userData,
     requests,
+    reducedRequests,
   }
 }
 export default connect(mapStateToProps)(ViewRequest);

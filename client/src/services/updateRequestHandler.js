@@ -19,6 +19,10 @@ const updateRequest = (event) => {
   };
 
   const updateRequestStore = (updatedRequest, requests) => {
+    // handle error cases
+    if (updatedRequest.message) {
+      return store.dispatch(actions.setErrorValue(updatedRequest.message));
+    }
     const requestId = updatedRequest.request.id;
     let requestToUpdate;
     requestToUpdate =  requests.filter(request => {
@@ -71,7 +75,13 @@ const updateRequest = (event) => {
         const deletedRequest =  requests.filter(request => (request.request.id === parseInt(requestId)));
         const indexOfRequest = requests.indexOf(deletedRequest[0]);
         requests.splice(indexOfRequest, 1);
+        store.dispatch(actions.deleteRequests(requests));
         store.dispatch(actions.setTabToView(ViewRequest));
+        if (deleteMessage.message) {
+          // this is not actually an error
+          // just component reuse
+          return store.dispatch(actions.setErrorValue(deleteMessage.message));
+        }
       })
       break;
     }
