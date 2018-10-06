@@ -8,12 +8,6 @@ class App extends Component {
     };
   }
   render() {
-    // let unsubscribe = store.subscribe(() =>{
-    //   this.setState({
-    //     home: store.getState().home,
-    //   })
-    // });
-
     const Home = this.props.home;
     return (
       <div>

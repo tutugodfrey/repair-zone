@@ -6,7 +6,7 @@ const fetchRequest = async (url, options) => {
   if (NODE_ENV === 'development') {
     BASE_URL = 'http://localhost:8080/api/v1';
   }
-
+  localStorage.setItem('apiUrl', BASE_URL);
   const absoluteUrl = `${BASE_URL}${url}`;
   /* eslint-disable no-undef */
   const responseData  = await fetch(absoluteUrl, options);

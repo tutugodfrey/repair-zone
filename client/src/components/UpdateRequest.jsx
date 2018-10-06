@@ -18,7 +18,7 @@ import fetchRequest from '../services/fetchRequest';
  */
 class UpdateRequest extends Component {
   state = {
-    categories: ['Select', 'Electrical', 'authomobile', 'painting', 'capentary', 'electronics'],
+    categories: ['Select', 'Electrical', 'automobile', 'painting', 'capentary', 'electronics'],
     serviceProviders: [],
     request: {},
   }

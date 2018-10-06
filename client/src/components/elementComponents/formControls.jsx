@@ -3,14 +3,20 @@ import FormOptions from './FormOptions.jsx';
 
 class FormInputWithoutDiv extends Component {
   render() {
-      return <input 
-    type={this.props.inputType} 
-    name={this.props.inputName} 
-    id={this.props.inputId}
-    value={this.props.value}
-    placeholder={this.props.inputPlaceholder} 
-    className={this.props.inputClass}
-    onChange={this.props.onChange} />
+    return (
+      <input 
+        type={this.props.inputType} 
+        name={this.props.inputName} 
+        id={this.props.inputId}
+        value={this.props.value}
+        placeholder={this.props.inputPlaceholder} 
+        className={this.props.inputClass}
+        onChange={this.props.onChange}
+        onMouseOut={this.props.onMouseOut}
+        onBlur={this.props.onBlur}
+        onFocus={this.props.onFocus}
+      />
+    ); 
   };
 }
 

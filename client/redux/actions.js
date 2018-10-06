@@ -57,6 +57,10 @@ const actions = {
   confirmFormValidation: status => ({
     type: 'CONFIRM_FORM_VALIDATION',
     value: status,
+  }),
+  setIdOfActiveTab: elementId => ({
+    type: 'SET_ID_OF_ACTIVE_TAB',
+    value: elementId,
   })
 };
 

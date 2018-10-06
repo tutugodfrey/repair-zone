@@ -6,7 +6,7 @@ export default class Header extends Component {
   sendMessage() {
     return (
       <div>
-        send messages
+        Sorry! this feature is not implemented yet
       </div>
     )
   }
