@@ -41,21 +41,32 @@ export class ViewRequest extends Component {
   handleView(event) {
     event.preventDefault();
     let element = event.target;
+    let eventClass = event.target.className;
     const btnName = event.target.innerHTML;
-    if(btnName === 'view') {
+    const parentDiv = element.parentNode;
+    let parentDivClass = parentDiv.className;
+    if (btnName === 'view') {
       event.target.innerHTML = 'close';
+      eventClass = eventClass.replace('bg-success', 'bg-danger');
+      element.setAttribute('class', eventClass);
+      parentDivClass = parentDivClass.replace('bg-white', 'bg-success');
+      parentDiv.setAttribute('class', parentDivClass);
     } else {
       event.target.innerHTML = 'view';
+      eventClass = eventClass.replace('bg-danger', 'bg-success');
+      element.setAttribute('class', eventClass);
+      parentDivClass = parentDivClass.replace('bg-success', 'bg-white');
+      parentDiv.setAttribute('class', parentDivClass);
     }
     element = element.parentNode;
     element = element.nextSibling
     const eleClass = element.getAttribute('class');
     let newClass;
-    if(eleClass.indexOf('d-none') >= 0) {
-      newClass = eleClass.replace('d-none', 'd-block')
+    if (eleClass.indexOf('d-none') >= 0) {
+      newClass = eleClass.replace('d-none', 'd-block');
       element.setAttribute('class', newClass);
     } else if (eleClass.indexOf('d-block') >= 0) {
-      newClass = eleClass.replace('d-block', 'd-none')
+      newClass = eleClass.replace('d-block', 'd-none');
       element.setAttribute('class', newClass);
     }
   }
@@ -67,35 +78,35 @@ export class ViewRequest extends Component {
     let updateRequestBtn = 
       <Button
         buttonId={buttonId}
-        buttonClass="update-request-button"
+        buttonClass="update-request-button px-3 mr-2 rounded bg-success text-white"
         buttonName="Update"
         onClick={displayUpdateForm.bind(this)}
       />
     let deleteRequestBtn = 
       <Button
         buttonId={buttonId}
-        buttonClass="delete-request-button"
+        buttonClass="delete-request-button px-3 mr-2  rounded bg-danger text-white"
         buttonName="Delete"
         onClick={updateRequest.bind(this)}
       />
     let rejectRequestBtn = 
       <Button
         buttonId={buttonId}
-        buttonClass="reject-request-button"
+        buttonClass="reject-request-button px-3 mr-2  rounded bg-danger text-white"
         buttonName="Reject"
         onClick={updateRequest.bind(this)}
       />
     let resolveRequestBtn = 
       <Button
         buttonId={buttonId}
-        buttonClass="resolve-request-button"
+        buttonClass="resolve-request-button px-3 mr-2 rounded bg-success text-white"
         buttonName="Resolved"
         onClick={updateRequest.bind(this)}
       />
     let approveRequestBtn = 
       <Button
         buttonId={buttonId}
-        buttonClass="approve-request-button"
+        buttonClass="approve-request-button px-3 mr-2 rounded bg-success text-white"
         buttonName="Approve"
         onClick={updateRequest.bind(this)}
       />
@@ -135,7 +146,7 @@ export class ViewRequest extends Component {
     }
     const properties = Object.keys(requestInfo.request);
     requestDetail = properties.map((property) => {
-      if(property === 'id' ||
+      if (property === 'id' ||
         property === 'adminId' ||
         property === 'userId' ||
         property === 'updatedAt'
@@ -145,11 +156,11 @@ export class ViewRequest extends Component {
       let issueDate;
       let term = property.toUpperCase();
       const definition = requestInfo.request[property];
-      if(property === 'issueDate') {
+      if (property === 'issueDate') {
         const issueDataArr = definition.split('T');
         issueDate = issueDataArr[0];
       }
-      if(property === 'urgent' && definition === false) {
+      if (property === 'urgent' && definition === false) {
         return null;
       }
       return (
@@ -165,15 +176,17 @@ export class ViewRequest extends Component {
     })
 
     return (
-      <div className="col-10 view-request-div offset-1 col-md-6 offset-md-3" key={requestInfo.request.id}>
-        <div className="request-header">
-          {displayedName}
-          <Button buttonClass="view-btn justify-self-end"
-            buttonName={this.state.btnName}
-            onClick={this.handleView.bind(this)}
-          />
+      <div className="view-request-div col-10 offset-1 p-0 mb-1 bg-white col-md-6 offset-md-3" key={requestInfo.request.id}>
+        <div className="request-header d-flex flex-row justify-content-between rounded border px-2 py-2 bg-white">
+            <strong className="font-weight-bold">
+              {displayedName}
+            </strong>
+            <Button buttonClass="view-btn rounded text-white bg-success"
+              buttonName={this.state.btnName}
+              onClick={this.handleView.bind(this)}
+            />
         </div>
-        <div className="request-content d-none">
+        <div className="request-content d-none p-3">
           <dl className="request-detail-dl">
             {requestDetail}
           </dl>
@@ -211,7 +224,10 @@ export class ViewRequest extends Component {
     return (
       <div>
         <Modal />
-        <Div divClass="row py-5" content={this.renderAllRequest(requests)} />
+        <div>
+          <h1 className="text-center pt-5">List of Requests</h1>
+          <Div divClass="row py-5" content={this.renderAllRequest(requests)} />
+        </div>
       </div>
     )
   }

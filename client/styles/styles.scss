@@ -1,6 +1,5 @@
 body {
 	background:#ffffff;
-
 }
 
 #home-description {
@@ -9,16 +8,44 @@ body {
 	background-size:cover;
 	background-position: center;
 	line-height: 20px;
-	height:100vh; 
-}
-
-#home-page {
-	padding:0px;
-}
-#home-description {
 	height:90vh;
 	position:relative;
 	top:2px;
+	color:white
+}
+#home-description .modal-body > p {
+	color:black;
+}
+.bg-overlay {
+	background:rgba(14, 13, 13, 0.3);
+	height:90vh;
+	position:relative;
+}
+#home-page {
+	padding:0px;
+}
+
+#home-page-login {
+	position:absolute;
+	left:30%;
+	width:calc(100% - 60%);
+	bottom:180px;
+	align-content: center;
+}
+#signin-1-username {
+	position:relative;
+	width:39%;
+	font-size:0.8em;
+}
+#signin-1-password {
+	position:relative;
+	width:39%;
+	font-size:0.8em;
+}
+#login-1-btn {
+	position:relative;
+	width:18%;
+	font-size:0.8em;
 }
 #home-nav {
 	height:45px;
@@ -33,31 +60,70 @@ body {
 	top:13px;
 	left:2%;
 }
+
+#logo-div3 {
+	width:100px;
+	position:relative;
+	top:-13px;
+	left:2%;
+}
+#logo-div #home-logo {
+	width:150px;
+}
+#logo-div-2 {
+	width:100%;
+	position:relative;
+	top:0px;
+	height:70px;
+}
+#home-logo:hover, #logo-div-2 > a:hover {
+	text-decoration: none;
+}
 #app-description {
 	width:40%;
 	position:relative;
-	top:100px;
+	top:150px;
 	left:30%;
 	text-align:center;
+}
+#app-description p {
+	position:relative;
+	top: -8px;
 }
 #home-signin-signup {
 	width:150px;
 	position:absolute;
 	top:13px;
-	left:80%;
+	left:calc(100% - 150px);
+	font-size:0.8em;
 }
-#make-requests {
-	background-color:#adeaad;
-	position:relative;
-	top:1px;
-	height:70vh;
+#home-signin-signup a:hover {
+	text-decoration: none;
+	background-color: green;
 }
 
+#make-requests {
+	background-color:#d5F19B;
+	position:relative;
+	top:1px;
+	min-height:70vh;
+}
+#make-request-description p {
+	width:70%;
+}
+#make-request-image {
+	width:250px;
+	height:250px;
+}
+#track-progress-image {
+	width:250px;
+	height:250px;
+}
 #track-progress {
 	background-color:#acdcae;
 	position:relative;
 	top:1px;
-	height:70vh;
+	min-height:70vh;
 }
 #contacts {
 	background-color:#adadcf;
@@ -75,21 +141,11 @@ body {
 }
 #home-signup-btn-2 {
 	position:relative;
-	width:20%;
 	height:40px;
-	top:45px;
-	left:45%;
+	top:33px;
 }
-.section-title {
-	position:relative;
-	top:3px;
-	left:40%;
-	width:20%;
-}
-#home-page-login {
-	position:absolute;
-	left:35%;
-	bottom:80px;
+.section {
+	padding:0px;
 }
 
 #login-div {
@@ -101,19 +157,16 @@ body {
 	background-color:#e4f8e4;
 	min-height:80vh;
 }
+#signup-page, #signin-page {
+	background-color:#e4f8e4;
+	min-height:120vh;
+}
 #urgency-div {
 	width:20px;
 	display:"inline"
 }
 #urgent-label {
 	padding:2px 20px;
-}
-.request-header {
-	border:2px solid white;
-}
-.view-btn {
-	position:relative;
-	left:100%;
 }
 
 #logout-link {
@@ -126,4 +179,31 @@ body {
 }
 #top-level-header {
 height:35px;
+}
+// .active {
+// 	background-color: white;
+// }
+
+@media only screen and (min-width:820px) {
+	#make-request-description {
+		width:50%;
+	}
+	#make-request-image-div {
+		width:50%;
+		position: relative;
+		top: 50px;
+	}
+	#track-progress-image-div {
+		width:50%;
+		position: relative;
+		top: 35px;
+	}
+	#track-progress-image {
+		width:300px;
+		height:300px;
+	}
+}
+
+@media only screen and (min-width:1020px) {
+
 }

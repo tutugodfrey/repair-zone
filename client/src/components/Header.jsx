@@ -17,6 +17,16 @@ class Header extends Component {
   }
   changeTab(event, tabContent) {
     event.preventDefault();
+    const { id, className } = event.target;
+    const { idOfActiveTab } = this.props;
+    let elementClass = className.replace('inactive', 'active');
+    elementClass = elementClass.replace('text-white', 'text-black');
+    const previousEle = document.getElementById(idOfActiveTab);
+    let prevElementTabClass = previousEle.className;
+    prevElementTabClass = prevElementTabClass.replace('text-black', 'text-white');
+    previousEle.setAttribute('class', prevElementTabClass)
+    event.target.className = elementClass;
+    this.props.dispatch(actions.setIdOfActiveTab(id));
     return this.props.dispatch(actions.setTabToView(tabContent));
   }
 
@@ -27,14 +37,19 @@ class Header extends Component {
 
   headerContent() {
     const { userData } = this.props;
-    const { isAdmin } = userData;
+    let apiUrl = '';
+    if (localStorage.getItem('apiUrl')) {
+      apiUrl = localStorage.getItem('apiUrl');
+    }
+    const { isAdmin, imgUrl } = userData;
     let nanbarContent;
     if(isAdmin) {
       nanbarContent = <ul className="navbar-nav">
         <li className="nav-item m-1">
           <Link
-            href="#view-request"
-            className="nav-link"
+            href="#view-requests"
+            linkId="view-requests"
+            linkClass="nav-link text-black py-1 border rounded"
             linkText="View Request"
             onClick={(event) =>this.changeTab(event, ViewRequest)}
           />
@@ -42,7 +57,8 @@ class Header extends Component {
         <li className="nav-item m-1">
           <Link
             href="#approved-request"
-            className="nav-link"
+            linkId="approved-requests"
+            linkClass="nav-link text-white py-1 border rounded"
             linkText="Approved Request"
             onClick={(event) => this.changeTab(event, ApprovedRequests)}
           />
@@ -50,7 +66,8 @@ class Header extends Component {
         <li className="nav-item m-1">
           <Link
             href="#resolved-request"
-            className="nav-link"
+            linkId="resolved-requests"
+            linkClass="nav-link text-white py-1 border rounded"
             linkText="Resolved Request"
             onClick={(event) => this.changeTab(event, ResolvedRequests)}
           />
@@ -58,7 +75,8 @@ class Header extends Component {
         <li className="nav-item m-1">
           <Link
             href="#contact-messages"
-            className="nav-link"
+            linkId="message"
+            linkClass="nav-link text-white py-1 border rounded"
             linkText="Contact Messages"
             onClick={(event) => this.changeTab(event, SendMessage)}
           />
@@ -69,7 +87,8 @@ class Header extends Component {
         <li className="nav-item m-1">
           <Link
             href="#view-user-request"
-            className="nav-link"
+            linkId="view-requests"
+            linkClass="nav-link text-black py-1 border active rounded"
             linkText="View Request"
             onClick={(event) =>this.changeTab(event, ViewRequest)}
           />
@@ -77,7 +96,8 @@ class Header extends Component {
         <li className="nav-item m-1">
           <Link
             href="#make-request"
-            className="nav-link"
+            linkId="make-request"
+            linkClass="nav-link text-white py-1 border inactive rounded"
             linkText="Make Request"
             onClick={(event) => this.changeTab(event, RequestForm)}
           />
@@ -85,7 +105,8 @@ class Header extends Component {
         <li className="nav-item m-1">
           <Link
             href="#contact-messages"
-            className="nav-link"
+            linkId="message"
+            linkClass="nav-link text-white py-1 border inactive rounded"
             linkText="Contact Messages"
             onClick={(event) => this.changeTab(event, SendMessage)}
           />
@@ -96,12 +117,13 @@ class Header extends Component {
       <div>
         <div id="top-level-header" className="bg-success row">
         <div className="col-5 offset-6 col-sm-4 offset-sm-8 col-md-3 offset-md-9">
-          <a id="logout-link" href="#" className="ml-auto bg-white py-1 px-2" onClick={logoutHandler}>logout</a>
+          <a id="logout-link" href="#" className="ml-auto text-white py-1 px-2 border rounded" onClick={logoutHandler}>Logout</a>
+          {/* <img src={`${apiUrl}${imgUrl}`} alt="profile pix" className="" /> */}
         </div>
         </div>
         <div className="row navbar navbar-expand-md navbar-light bg-success">
-          <div className="col-3 col-md-2">
-            <Link href="#" linkClass="logo" linkId="home-logo" onClick={(event) => this.handleHomeLink(event, this)} linkText="Repair-Zone"/>
+          <div id="logo-div3" className="col-4 px-0 col-md-2">
+            <Link href="#" linkClass="logo text-white font-weight-bold" linkId="home-logo" onClick={(event) => this.handleHomeLink(event, this)} linkText="Repair-Zone"/>
           </div>
           <NavButton
             buttonClass="navbar-toggler ml-auto"
@@ -125,9 +147,10 @@ class Header extends Component {
 }
 
 export const mapStateToProps = (state) => {
-  const { userData } = state;
+  const { userData, idOfActiveTab } = state;
   return {
     userData,
+    idOfActiveTab,
   }
 }
 

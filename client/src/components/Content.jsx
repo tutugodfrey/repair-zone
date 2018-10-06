@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Div from './elementComponents/Div.jsx';
-import store from '../../redux/store';
 
 class Content extends Component {
   render() {

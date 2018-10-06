@@ -4,8 +4,12 @@ import Form from './elementComponents/Form.jsx';
 import { FormInputWithoutDiv } from './elementComponents/formControls.jsx';
 import Button from './elementComponents/Button.jsx';
 import actions from '../../redux/actions';
-import dataFiledCollector from '../services/dataFieldCollector';
+import dataFieldCollector from '../services/dataFieldCollector';
 import signinHandler from '../services/signinHandler';
+import {
+  validateSigninForm,
+  onFocusHandler,
+} from '../services/formValidation.js';
 
 class InlineLogin extends Component {
   componentDidMount() {
@@ -13,27 +17,39 @@ class InlineLogin extends Component {
   }
 
   formContent() {
-    return <div id='home-page-login' className='d-flex flex-row d-sm-none d-md-block'>
-      <FormInputWithoutDiv
-      inputType='text' 
-      inputClass='ml-1 form-controls-md' 
-      inputId='signin-1-username' 
-      inputPlaceholder='username' 
-      inputName='username'
-      onChange={dataFiledCollector.bind(this)}/>
-      <FormInputWithoutDiv
-      inputType='password'
-      inputClass='ml-1'
-      inputId='signin-1-password'
-      inputPlaceholder='password'
-      inputName='password'
-      onChange={dataFiledCollector.bind(this)} />
-      <Button
-      buttonClass='ml-1 bg-success text-white' 
-      buttonId='' 
-      buttonName='log-In'
-      onClick={signinHandler.bind(this)} />
+    return (
+      <div id='home-page-login' className='d-none d-md-block'>
+        <FormInputWithoutDiv
+          inputType='text' 
+          inputClass='ml-1 border-0 rounded py-1 px-2 field-valid required' 
+          inputId='signin-1-username' 
+          inputPlaceholder='username' 
+          inputName='username'
+          onFocus={onFocusHandler.bind(this)}
+          onChange={dataFieldCollector.bind(this)}
+          onMouseOut={validateSigninForm.bind(this)}
+          onBlur={validateSigninForm.bind(this)}
+        />
+        <span className="text-danger"></span>
+        <FormInputWithoutDiv
+          inputType='password'
+          inputClass='ml-1 border-0 rounded py-1 px-2 field-valid required'
+          inputId='signin-1-password'
+          inputPlaceholder='password'
+          inputName='password'
+          onFocus={onFocusHandler.bind(this)}
+          onChange={dataFieldCollector.bind(this)}
+          onMouseOut={validateSigninForm.bind(this)}
+          onBlur={validateSigninForm.bind(this)}
+        />
+        <span className={this.props.validationClass}></span>
+        <Button
+        buttonClass='ml-1 bg-success text-white border-0 rounded py-1 px-2' 
+        buttonId='login-1-btn' 
+        buttonName='Log-In'
+        onClick={signinHandler.bind(this)} />
       </div>
+    );
   }
   
   render() {

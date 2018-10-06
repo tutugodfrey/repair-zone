@@ -19,10 +19,10 @@ class Modal extends Component {
           <div className="modal-content">
             <div className="modal-header">
               <button type="button" className="close" onClick={this.closeConsoleModal.bind(this)} data-dismiss="modal">
-              <span aria-hidden="true">&times;</span></button>
+              <span aria-hidden="true" className="text-danger">&times;</span></button>
             </div>
             <div className="modal-body">
-              <p>{errorMessage}</p>
+              <p className="text-black">{errorMessage}</p>
             </div>
           </div>
         </div>

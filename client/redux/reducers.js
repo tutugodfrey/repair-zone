@@ -9,6 +9,7 @@ const initialState = {
   errorMessage: '',
   error: false,
   formValidated: true,
+  idOfActiveTab: 'view-requests',
 };
 
 const reducer = (state = initialState, action) => {
@@ -75,9 +76,13 @@ const reducer = (state = initialState, action) => {
         errorStatus: false,
       });
     case 'CONFIRM_FORM_VALIDATION': 
-    return Object.assign({}, state, {
-      formValidated: action.value,
-    })
+      return Object.assign({}, state, {
+        formValidated: action.value,
+    });
+    case 'SET_ID_OF_ACTIVE_TAB':
+      return Object.assign({}, state, {
+        idOfActiveTab: action.value,
+      })
     // return default state if something isn't right
     default:
       return state;

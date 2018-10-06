@@ -7,7 +7,6 @@ import Button from './elementComponents/Button.jsx';
 import Link from './elementComponents/Link.jsx';
 import Div from './elementComponents/Div.jsx';
 import SigninPage from './SigninPage.jsx';
-import Paragraph from './../components/elementComponents/Paragraph.jsx';
 import HomePage from './Home.jsx';
 import dataFieldCollector from '../services/dataFieldCollector';
 import actions from '../../redux/actions';
@@ -48,7 +47,7 @@ class SignupPage extends Component {
           labelId=""
           spanClass="required text-danger"
           inputType='text' 
-          inputClass='my-2 ml-1 pt-1 border-success  form-control form-controls-md field-valid required' 
+          inputClass='ml-1 pt-1 border-success  form-control form-controls-md field-valid required' 
           inputId='fullname'
           validationClass="text-danger"
           inputPlaceholder='fullname' 
@@ -211,15 +210,19 @@ class SignupPage extends Component {
             onBlur={validateSigninForm.bind(this)}
           />
         </fieldset>
-        <Button
-          buttonClass='mx-5 my-3 px-5 py-2 bg-success offset-md-4 text-white' 
-          buttonId='' 
-          buttonName='Signup'
-          onClick={signupHandler.bind(this)}
-        />
+        <div className="my-2 col-10 col-md-6">
+          <Button
+            buttonClass='my-3 px-5 py-2 bg-success rounded text-white' 
+            buttonId='' 
+            buttonName='Signup'
+            onClick={signupHandler.bind(this)}
+          />
+        </div>
       </div>
       </div>
-      <Link href='#' hrefClass='card-link' hrefId='signin-link' linkText='Signin' onClick={this.loadSigninPage.bind(this)}/>
+      <p>I have an account already!&nbsp;
+      <Link href='#' hrefClass='card-link' hrefId='signin-link' linkText='Signin here' onClick={this.loadSigninPage.bind(this)}/>
+      </p>
     </div>
   }
 
@@ -228,14 +231,14 @@ class SignupPage extends Component {
   }
   render() {
     return (
-      <div>
-        <div id='logo-div' className='d-inline'>
-          <a href='#' onClick={this.loadHomePage.bind(this)}>
-            <Paragraph paragraphClass='' paragraphId='' content='Repair-Zone' />
+      <div className="">
+        <div id='logo-div-2' className='py-3 pl-5 bg-success'>
+          <a href='#' className="text-white font-weight-bold" onClick={this.loadHomePage.bind(this)}>
+            Repair-Zone
           </a>
         </div>
         <Modal />
-        <Div divId='signup-form' divClass='card py-4 my-5 col-sm-10 col-md-8 offset-md-2 border-success' content={this.renderForm()}/>
+        <Div divId='signup-form' divClass='card py-4 my-5 col-9 col-sm-6 col-md-8 col-lg-6 offset-2 offset-sm-3 offset-md-2 offset-lg-3 border-success' content={this.renderForm()}/>
       </div>
     );
   }
