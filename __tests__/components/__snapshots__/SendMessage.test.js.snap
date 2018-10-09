@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SendMessage /> should match the snapshot of the component 1`] = `
+<Div
+  content={
+    <div>
+      Sorry! this feature is not implemented yet
+    </div>
+  }
+  divClass=""
+  divId=""
+/>
+`;

@@ -20,34 +20,39 @@ const makeRequestHandler = async (event) => {
     if (key === 'urgent' && !requestDetail[key]) {
       requestDetail[key] = '';
     } else if (key === 'adminId' && requestDetail[key] === '0') {
-      validateRequiredField(event);
       allFieldPass = false;
+      store.dispatch(actions
+        .setErrorValue('please select a service'));
+      validateRequiredField(event);
     } else if (key === 'category' && requestDetail[key] === 'Select') {
+      allFieldPass = false;
+      store.dispatch(actions
+        .setErrorValue('Please select a category'));
       validateRequiredField(event);
-      allFieldPass = false;
     } else if (!requestDetail[key]) {
+      console.log('POPOPOPOPOPOPOPOPOPOPOPOP')
       allFieldPass = false;
+      store.dispatch(actions
+        .setErrorValue('Please fill all required fields'));
       validateRequiredField(event);
     }
-    return allFieldPass;
   });
 
-  if (!allFieldPass) {
-    return store.dispatch(actions
-      .setErrorValue('please fill all required field'));
-  }
   if (allFieldPass) {
-    const headers = new Headers();
     const { token } = store.getState().userData;
-    headers.append('content-type', 'application/json');
-    headers.append('token', token);
+    const headers = {};
+    headers['content-type'] = 'application/json';
+    headers['token'] = token;
     const options = {
       method: 'post',
       body: JSON.stringify(requestDetail),
       headers,
     };
     const responseData = await fetchRequest('/users/requests', options);
-    if(responseData) {
+    if (responseData.message) {
+      // redirect user to the signin page
+      store.dispatch(actions.setErrorValue(responseData.message));
+    } else if(responseData) {
       const { requests } = store.getState();
       requests.push(responseData)
       store.dispatch(actions.saveRequests(requests));
@@ -55,10 +60,6 @@ const makeRequestHandler = async (event) => {
       // redirect users to their dashboard
       store.dispatch(actions.setTabToView(ViewRequest));
       store.dispatch(actions.saveRequestDetails({}));
-    }
-    if (responseData.message) {
-      // redirect user to the signin page
-      store.dispatch(actions.setErrorValue(responseData.message));
     }
   }
 }

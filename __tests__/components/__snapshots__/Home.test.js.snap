@@ -1,0 +1,167 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> unconnected component test should map the snapshot of the component 1`] = `
+<div
+  className="container-fluid"
+  id="home-page"
+>
+  <div
+    className=""
+  >
+    <div
+      className=""
+    >
+      <Div
+        content={
+          <div
+            className="bg-overlay"
+          >
+            <div
+              className="d-flex flex-column"
+            >
+              <div
+                className=""
+                id="home-nav"
+              >
+                <div
+                  className="d-inline"
+                  id="logo-div"
+                >
+                  <Link
+                    href="#"
+                    linkClass="text-white font-weight-bold"
+                    linkId="home-logo"
+                    linkText="Repair-Zone"
+                  />
+                </div>
+                <div
+                  className="d-inline"
+                  id="home-signin-signup"
+                >
+                  <Link
+                    href="#"
+                    linkClass="mr-1 text-white border rounded py-1 px-2"
+                    linkId="#"
+                    linkText="Signup"
+                    onClick={[Function]}
+                  />
+                  <Link
+                    href="#"
+                    linkClass="mr-1 text-white d-md-none d-inline border rounded py-1 px-2"
+                    linkId="#"
+                    linkText="Signin"
+                    onClick={[Function]}
+                  />
+                </div>
+              </div>
+              <div
+                id="app-description"
+              >
+                <h1>
+                   Welcome to repair zone
+                </h1>
+                <br />
+                <p>
+                  We connect Service providers to potential clients
+                </p>
+              </div>
+              <Connect(Modal) />
+              <Connect(InlineLogin)
+                formClass="form-inline"
+                formId="home-login"
+              />
+            </div>
+          </div>
+        }
+        divClass=""
+        divId="home-description"
+      />
+      <Div
+        content={
+          <div
+            className="py-5 px-3 section d-flex flex-md-row flex-column"
+          >
+            <div
+              className="p-2 d-flex flex-column justify-content-center align-self-center"
+              id="make-request-description"
+            >
+              <h1
+                className="section-title align-self-center"
+              >
+                Make Request
+              </h1>
+              <p
+                className="align-self-center"
+              >
+                Stop looking around for service providers when your stuff go bad! Repair Zone brings all available service providers to your desktop. Log your request with a service provider specialized in your equipment type
+              </p>
+            </div>
+            <div
+              className="p-2 d-flex justify-content-center align-self-center"
+              id="make-request-image-div"
+            >
+              <img
+                alt="make request"
+                className="rounded-circle"
+                id="make-request-image"
+                src="./images/typing-on-laptop.jpg"
+              />
+            </div>
+          </div>
+        }
+        divClass=""
+        divId="make-requests"
+      />
+      <Div
+        content={
+          <div
+            className="py-5 px-3 section d-flex flex-md-row flex-column"
+          >
+            <div
+              className="p-2 d-flex justify-content-center align-self-center"
+              id="track-progress-image-div"
+            >
+              <img
+                alt="make request"
+                className="rounded"
+                id="track-progress-image"
+                src="./images/making-call.jpeg"
+              />
+            </div>
+            <div
+              className="p-2 d-flex flex-column justify-content-center align-self-center"
+              id="make-request-description"
+            >
+              <h1
+                className="section-title align-self-center"
+              >
+                Track Progress
+              </h1>
+              <p
+                className="align-self-center"
+              >
+                Track the progress on your requests easily by viewing the status of the request. You can also reach out the relevant service provider for enquiries and complains
+              </p>
+            </div>
+          </div>
+        }
+        divClass=""
+        divId="track-progress"
+      />
+      <Div
+        content={
+          <Link
+            href="#"
+            linkClass="px-5 py-2 text-center border rounded text-white"
+            linkId="home-signup-btn-2"
+            linkText="signup"
+            onClick={[Function]}
+          />
+        }
+        divClass="d-flex justify-content-center"
+        divId="home-footer"
+      />
+    </div>
+  </div>
+</div>
+`;

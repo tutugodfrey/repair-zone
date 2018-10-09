@@ -30,6 +30,7 @@ const handleSignup = async (event) => {
       // the field is filled out
       formData.append(key, signupDetail[key]);
     } else if (key === 'profile-photo' || key === 'isAdmin' || key === 'serviceName') {
+      // this fields are not field out
       formData.append(key, '');
     }  else {
       allFieldPass = false;
@@ -39,10 +40,10 @@ const handleSignup = async (event) => {
     }
   });
 
-  if (!allFieldPass) {
-    return store.dispatch(actions
-      .setErrorValue('Please fill all required fields to create your account'));
-  }
+  // if (!allFieldPass) {
+  //   return store.dispatch(actions
+  //     .setErrorValue('Please fill all required fields to create your account'));
+  // }
   if (signupDetail.password !== signupDetail.confirmPassword) {
     return store.dispatch(actions
       .setErrorValue('password you enter does not match'));
@@ -59,12 +60,13 @@ const handleSignup = async (event) => {
     body: formData,
     method: 'post',
   };
+
   const responseData = await fetchRequest('/auth/signup', options);
     // singup is successful if token is present
     if (responseData.token) {
+      // redirect user to their dashboard
       store.dispatch(actions.setUserData(responseData));
       store.dispatch(actions.displayPage(Dashboard));
-      // redirect user to their dashboard
     }
   
     // show console modal of the error message

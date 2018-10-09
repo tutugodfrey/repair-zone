@@ -4,7 +4,7 @@ import actions from '../../redux/actions';
 import Div from './elementComponents/Div.jsx';
 import Button from './elementComponents/Button.jsx';
 import updateRequest from '../services/updateRequestHandler';
-import { displayUpdateForm } from '../services/displayUserDashboard';
+import displayUpdateForm from '../services/displayUpdateForm';
 import Modal from './Modal.jsx';
 
 export class ViewRequest extends Component {
@@ -15,15 +15,16 @@ export class ViewRequest extends Component {
       requests: [],
     };
   }
+  
   componentDidMount = () =>  {
     const { requests } = this.props;
-    this.setState({
-      requests,
-    });
     if (requests.length === 0) {
-      this.props.dispatch(actions.setErrorValue('Not request found'))
+      this.props.dispatch(actions.setErrorValue('No request found'));
     } else {
-      this.props.dispatch(actions.clearErrorValue())
+      this.props.dispatch(actions.clearErrorValue());
+      this.setState({
+        requests,
+      });
     }
   }
 
@@ -210,6 +211,9 @@ export class ViewRequest extends Component {
             viewAllRequest.push(this.requestContainer(request));
           }
         })
+        if (viewAllRequest.length === 0) {
+          this.props.dispatch(actions.setErrorValue('No pending requests'));
+        }
         return viewAllRequest;
       }
 
@@ -241,4 +245,5 @@ export const mapStateToProps = (state) => {
     reducedRequests,
   }
 }
+
 export default connect(mapStateToProps)(ViewRequest);

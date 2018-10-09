@@ -50,9 +50,8 @@ const actions = {
     type: 'SET_ERROR_VALUE',
     value: data,
   }),
-  clearErrorValue: data => ({
+  clearErrorValue: () => ({
     type: 'CLEAR_ERROR_VALUE',
-    value: data,
   }),
   confirmFormValidation: status => ({
     type: 'CONFIRM_FORM_VALIDATION',
@@ -61,7 +60,7 @@ const actions = {
   setIdOfActiveTab: elementId => ({
     type: 'SET_ID_OF_ACTIVE_TAB',
     value: elementId,
-  })
+  }),
 };
 
 export default actions;

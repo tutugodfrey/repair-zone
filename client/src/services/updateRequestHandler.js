@@ -10,9 +10,9 @@ const updateRequest = (event) => {
   const buttonSubstring = buttonId.split('-');
   const requestId = buttonSubstring[1];
   const { userData, requests, requestDetail } = store.getState();
-  const headers = new Headers();
-  headers.append('content-type', 'application/json');
-  headers.append('token', userData.token);
+  const headers = {};
+  headers['content-type'] = 'application/json';
+  headers['token'] =  userData.token;
   const options = {
     headers,
     method: 'put',
@@ -51,7 +51,7 @@ const updateRequest = (event) => {
       store.dispatch(actions.setTabToView(ViewRequest));
       break;
     }
-    case 'Resolved': {
+    case 'Resolve': {
       const updatedRequest = fetchRequest(`/requests/${requestId}/resolve`, options);
       updatedRequest.then((updatedReq) => {
         updateRequestStore(updatedReq, requests);
@@ -79,7 +79,7 @@ const updateRequest = (event) => {
         store.dispatch(actions.setTabToView(ViewRequest));
         if (deleteMessage.message) {
           // this is not actually an error
-          // just component reuse
+          // just an approach to resue the function
           return store.dispatch(actions.setErrorValue(deleteMessage.message));
         }
       })

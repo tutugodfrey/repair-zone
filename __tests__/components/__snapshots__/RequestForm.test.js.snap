@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RequestForm /> unconnected component test should match the snapshot of the component 1`] = `
+<div
+  className="py-5"
+>
+  <Connect(Modal) />
+  <div
+    className="row"
+  >
+    <div
+      className="card col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 col-lg-4 offset-md-3 offset-lg-4 py-5 my-3"
+    >
+      <form
+        action=""
+      >
+        <div
+          className="card-body"
+        >
+          <h3
+            className="card-title text-center"
+          >
+            Make Repair Request
+          </h3>
+          <FormSelect
+            divClass=""
+            divId="service-div"
+            inputClass="form-control mb-3 border-success field-valid required"
+            inputId="admin"
+            inputName="adminId"
+            labelValue="Service Providers"
+            onChange={[Function]}
+            onFocus={[Function]}
+            options={
+              Array [
+                Object {},
+                Object {},
+              ]
+            }
+            requiredField={true}
+            spanClass="required text-danger"
+            validationClass="text-danger"
+          />
+          <FormSelect
+            divClass=""
+            divId="category-div"
+            inputClass="form-control mb-3 border-success field-valid required"
+            inputId="category"
+            inputName="category"
+            labelValue="Category"
+            onChange={[Function]}
+            onFocus={[Function]}
+            options={
+              Array [
+                "Select",
+                "Electrical",
+                "Automobile",
+                "Painting",
+                "Capentary",
+                "Electronics",
+              ]
+            }
+            requiredField={true}
+            spanClass="required text-danger"
+            validationClass="text-danger"
+          />
+          <TextArea
+            cols="60"
+            divClass="form-group border-success"
+            id="description"
+            inputClass="form-control border-success field-valid required"
+            labelValue="Description"
+            name="description"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onMouseOut={[Function]}
+            placeholder="Describe you requirement here"
+            requiredField={true}
+            rows="10"
+            spanClass="required text-danger"
+            type="text"
+            validationClass="text-danger"
+          />
+          <FormInput
+            divClass="form-group"
+            id="address"
+            inputClass="form-control border-success field-valid required"
+            inputName="address"
+            labelValue="Address"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onMouseOut={[Function]}
+            placeholder="address"
+            requiredField={true}
+            spanClass="required text-danger"
+            type="text"
+            validationClass="text-danger"
+          />
+          <br />
+          <CheckBox
+            divClass="border-success"
+            divId="urgency-div"
+            inputClass="border-success"
+            inputId="urgent"
+            inputName="urgent"
+            labelClass="ml-3"
+            labelId="urgent-label"
+            labelValue="Urgent"
+            onChange={[Function]}
+            value=""
+          />
+          <Button
+            buttonClass="ml-1 my-2 px-2 px-sm-5 py-2 btn btn-sm bg-success text-center text-white"
+            buttonId=""
+            buttonName="Submit Request"
+            onClick={[Function]}
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

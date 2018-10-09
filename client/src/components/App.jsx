@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class App extends Component {
-  constructor () {
-    super();
-    this.state = {
-    };
-  }
+export class App extends Component {
   render() {
     const Home = this.props.home;
     return (
@@ -23,4 +18,5 @@ export const mapStateToProps = (state) => {
     home,
   }
 }
+
 export default connect(mapStateToProps)(App);

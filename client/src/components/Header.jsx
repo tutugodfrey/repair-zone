@@ -11,7 +11,7 @@ import SendMessage from './SendMessage.jsx';
 import actions from '../../redux/actions';
 import logoutHandler from '../services/logoutHandler';
 
-class Header extends Component {
+export class Header extends Component {
   handleResponse(responseData) {
     this.props.dispatch(actions.saveRequests(responseData));
   }

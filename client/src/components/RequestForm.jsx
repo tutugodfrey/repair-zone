@@ -15,7 +15,7 @@ import {
   onFocusHandler,
 } from '../services/formValidation';
 
-class RequestForm extends Component {
+export class RequestForm extends Component {
   constructor() {
     super();
     this.state = {
@@ -43,7 +43,7 @@ class RequestForm extends Component {
   formContent() {
     let services;
     const { serviceProviders } = this.props
-    if(serviceProviders) {
+    if (serviceProviders) {
       services =
       <FormSelect
         divClass=""

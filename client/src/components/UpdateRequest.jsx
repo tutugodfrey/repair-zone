@@ -16,7 +16,7 @@ import fetchRequest from '../services/fetchRequest';
 /**
  * render update request page
  */
-class UpdateRequest extends Component {
+export class UpdateRequest extends Component {
   state = {
     categories: ['Select', 'Electrical', 'automobile', 'painting', 'capentary', 'electronics'],
     serviceProviders: [],
@@ -175,7 +175,7 @@ class UpdateRequest extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   const {
     requests,
     serviceProviders,

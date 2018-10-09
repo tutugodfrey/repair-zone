@@ -84,7 +84,7 @@ export class ApprovedRequests extends Component {
       <Button
         buttonId={buttonId}
         buttonClass="resolve-request-button px-3 mr-2 rounded bg-success text-white"
-        buttonName="Resolved"
+        buttonName="Resolve"
         onClick={updateRequest.bind(this)}
       />
     const { userData } = this.props;

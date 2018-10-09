@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> should match the snapshot of the component 1`] = `
+<div
+  className="row align-items-center bg-success"
+  id="footer-div"
+>
+  <Div
+    content={
+      <Link
+        href="#"
+        linkClass="text-white"
+        linkText="Contact us"
+      />
+    }
+    divClass="col-6 offset-5 col-md-2 offset-md-3 pl-0 pr-0"
+    id=""
+  />
+  <Div
+    content={
+      <Link
+        href="#"
+        linkClass="text-white"
+        linkText="About us"
+      />
+    }
+    divClass="col-6 offset-5 col-md-2 offset-md-0 pl-0 pr-0"
+    id=""
+  />
+  <Div
+    content={
+      <Link
+        href="#"
+        linkClass="text-white"
+        linkText="Term of Use"
+      />
+    }
+    divClass="col-6 offset-5 col-md-2 offset-md-0 pl-0 pr-0"
+    id=""
+  />
+</div>
+`;
