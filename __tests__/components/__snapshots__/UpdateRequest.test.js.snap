@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UpdateRequest /> test unconnected update request component should map the snapshot of the component 1`] = `
+<div>
+  <Connect(Modal) />
+  <Div
+    content={
+      <Div
+        content={
+          <Form
+            content={
+              <div
+                className="card"
+              >
+                <div
+                  className="card-body"
+                >
+                  <h3
+                    className="card-title text-center"
+                  >
+                    Make Repair Request
+                  </h3>
+                  <FormSelect
+                    divClass=""
+                    divId="service-div"
+                    inputClass="form-control border-success"
+                    inputId="admin"
+                    inputName="adminId"
+                    labelValue="Service Providers"
+                    onChange={[Function]}
+                    options={Array []}
+                  />
+                  <p>
+                    Your previous selection is 
+                    <strong />
+                  </p>
+                  <FormSelect
+                    divClass=""
+                    divId="category-div"
+                    inputClass="form-control border-success"
+                    inputId="category"
+                    inputName="category"
+                    labelValue="Category"
+                    onChange={[Function]}
+                    options={
+                      Array [
+                        "Select",
+                        "Electrical",
+                        "automobile",
+                        "painting",
+                        "capentary",
+                        "electronics",
+                      ]
+                    }
+                  />
+                  <p>
+                    Your previous selection is 
+                    <strong />
+                  </p>
+                  <TextArea
+                    cols="60"
+                    divClass="form-group border-success"
+                    id="description"
+                    inputClass="form-control border-success"
+                    labelValue="Description"
+                    name="description"
+                    onChange={[Function]}
+                    placeholder="Describe you requirement here"
+                    rows="10"
+                    type="text"
+                  />
+                  <br />
+                  <FormInput
+                    divClass="form-group"
+                    id="address"
+                    inputClass="form-control border-success"
+                    inputName="address"
+                    labelValue="Address"
+                    onChange={[Function]}
+                    placeholder="address"
+                    type="text"
+                  />
+                  <br />
+                  <CheckBox
+                    divClass="border-success"
+                    divId="urgency-div"
+                    inputClass="border-success"
+                    inputId="urgent"
+                    inputName="urgent"
+                    labelClass="ml-3"
+                    labelId="urgent-label"
+                    labelValue="Urgent"
+                    onChange={[Function]}
+                    value=""
+                  />
+                  <Button
+                    buttonClass="ml-1 my-2 px-5 py-2 btn btn-sm bg-success text-center text-white"
+                    buttonId="user-undefined-update"
+                    buttonName="Save Update"
+                    onClick={[Function]}
+                  />
+                </div>
+              </div>
+            }
+            formClass=""
+            formId=""
+          />
+        }
+        divClass="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3 py-5 my-3"
+        divId=""
+      />
+    }
+    divClass="row"
+    divId=""
+  />
+</div>
+`;

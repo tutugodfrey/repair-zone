@@ -11,7 +11,7 @@ import {
   onFocusHandler,
 } from '../services/formValidation.js';
 
-class InlineLogin extends Component {
+export class InlineLogin extends Component {
   componentDidMount() {
     this.props.dispatch(actions.setFormToFill('signin'));
   }

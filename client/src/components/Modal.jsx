@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from '../../redux/actions';
 
-class Modal extends Component {
+export class Modal extends Component {
   closeConsoleModal(event) {
     event.preventDefault();
     this.props.dispatch(actions.clearErrorValue())

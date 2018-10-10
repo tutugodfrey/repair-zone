@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Dashboard /> should match the snapshot of the component 1`] = `
+<Div
+  content={
+    <div>
+      <Connect(Header) />
+      <Connect(Content) />
+      <Footer />
+    </div>
+  }
+  divClass=""
+  divId=""
+/>
+`;

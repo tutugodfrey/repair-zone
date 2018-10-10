@@ -1,0 +1,198 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> unconnected component test admin dashboard shoudld match the component snapshot for admin 1`] = `
+<div>
+  <div
+    className="bg-success row"
+    id="top-level-header"
+  >
+    <div
+      className="col-5 offset-6 col-sm-4 offset-sm-8 col-md-3 offset-md-9"
+    >
+      <a
+        className="ml-auto text-white py-1 px-2 border rounded"
+        href="#"
+        id="logout-link"
+        onClick={[Function]}
+      >
+        Logout
+      </a>
+    </div>
+  </div>
+  <div
+    className="row navbar navbar-expand-md navbar-light bg-success"
+  >
+    <div
+      className="col-4 px-0 col-md-2"
+      id="logo-div3"
+    >
+      <Link
+        href="#"
+        linkClass="logo text-white font-weight-bold"
+        linkId="home-logo"
+        linkText="Repair-Zone"
+        onClick={[Function]}
+      />
+    </div>
+    <NavButton
+      aria-controls="narbar-content"
+      aria-label="Toggle-navigation"
+      buttonClass="navbar-toggler ml-auto"
+      buttonId=""
+      buttonName={
+        <span
+          className="navbar-toggler-icon"
+        />
+      }
+      data-target="#navbar-content"
+      data-toggle="collapse"
+    />
+    <div
+      className="col-9 collapse navbar-collapse"
+      id="navbar-content"
+    >
+      <ul
+        className="navbar-nav"
+      >
+        <li
+          className="nav-item m-1"
+        >
+          <Link
+            href="#view-requests"
+            linkClass="nav-link text-black py-1 border rounded"
+            linkId="view-requests"
+            linkText="View Request"
+            onClick={[Function]}
+          />
+        </li>
+        <li
+          className="nav-item m-1"
+        >
+          <Link
+            href="#approved-request"
+            linkClass="nav-link text-white py-1 border rounded"
+            linkId="approved-requests"
+            linkText="Approved Request"
+            onClick={[Function]}
+          />
+        </li>
+        <li
+          className="nav-item m-1"
+        >
+          <Link
+            href="#resolved-request"
+            linkClass="nav-link text-white py-1 border rounded"
+            linkId="resolved-requests"
+            linkText="Resolved Request"
+            onClick={[Function]}
+          />
+        </li>
+        <li
+          className="nav-item m-1"
+        >
+          <Link
+            href="#contact-messages"
+            linkClass="nav-link text-white py-1 border rounded"
+            linkId="message"
+            linkText="Contact Messages"
+            onClick={[Function]}
+          />
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<Header /> unconnected component test user dashboard shoudld match the component snapshot for user 1`] = `
+<div>
+  <div
+    className="bg-success row"
+    id="top-level-header"
+  >
+    <div
+      className="col-5 offset-6 col-sm-4 offset-sm-8 col-md-3 offset-md-9"
+    >
+      <a
+        className="ml-auto text-white py-1 px-2 border rounded"
+        href="#"
+        id="logout-link"
+        onClick={[Function]}
+      >
+        Logout
+      </a>
+    </div>
+  </div>
+  <div
+    className="row navbar navbar-expand-md navbar-light bg-success"
+  >
+    <div
+      className="col-4 px-0 col-md-2"
+      id="logo-div3"
+    >
+      <Link
+        href="#"
+        linkClass="logo text-white font-weight-bold"
+        linkId="home-logo"
+        linkText="Repair-Zone"
+        onClick={[Function]}
+      />
+    </div>
+    <NavButton
+      aria-controls="narbar-content"
+      aria-label="Toggle-navigation"
+      buttonClass="navbar-toggler ml-auto"
+      buttonId=""
+      buttonName={
+        <span
+          className="navbar-toggler-icon"
+        />
+      }
+      data-target="#navbar-content"
+      data-toggle="collapse"
+    />
+    <div
+      className="col-9 collapse navbar-collapse"
+      id="navbar-content"
+    >
+      <ul
+        className="navbar-nav"
+      >
+        <li
+          className="nav-item m-1"
+        >
+          <Link
+            href="#view-user-request"
+            linkClass="nav-link text-black py-1 border active rounded"
+            linkId="view-requests"
+            linkText="View Request"
+            onClick={[Function]}
+          />
+        </li>
+        <li
+          className="nav-item m-1"
+        >
+          <Link
+            href="#make-request"
+            linkClass="nav-link text-white py-1 border inactive rounded"
+            linkId="make-request"
+            linkText="Make Request"
+            onClick={[Function]}
+          />
+        </li>
+        <li
+          className="nav-item m-1"
+        >
+          <Link
+            href="#contact-messages"
+            linkClass="nav-link text-white py-1 border inactive rounded"
+            linkId="message"
+            linkText="Contact Messages"
+            onClick={[Function]}
+          />
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;

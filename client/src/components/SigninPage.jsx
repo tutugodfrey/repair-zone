@@ -17,7 +17,7 @@ import {
 import actions from '../../redux/actions';
 import store from '../../redux/store';
 
-class SigninPage extends Component {
+export class SigninPage extends Component {
 
   loadHomePage() {
     store.dispatch(actions.displayPage(HomePage))

@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InlineLogin /> unconnected component test should map the snapshot of the component 1`] = `
+<Form
+  content={
+    <div
+      className="d-none d-md-block"
+      id="home-page-login"
+    >
+      <FormInputWithoutDiv
+        inputClass="ml-1 border-0 rounded py-1 px-2 field-valid required"
+        inputId="signin-1-username"
+        inputName="username"
+        inputPlaceholder="username"
+        inputType="text"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+      />
+      <span
+        className="text-danger"
+      />
+      <FormInputWithoutDiv
+        inputClass="ml-1 border-0 rounded py-1 px-2 field-valid required"
+        inputId="signin-1-password"
+        inputName="password"
+        inputPlaceholder="password"
+        inputType="password"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onMouseOut={[Function]}
+      />
+      <span />
+      <Button
+        buttonClass="ml-1 bg-success text-white border-0 rounded py-1 px-2"
+        buttonId="login-1-btn"
+        buttonName="Log-In"
+        onClick={[Function]}
+      />
+    </div>
+  }
+  formClass=""
+  formId="inline-signin-form"
+/>
+`;

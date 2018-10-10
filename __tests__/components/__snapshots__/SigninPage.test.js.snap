@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SignupPage /> test unconnected signup page should map the snapshot of the component correctly 1`] = `
+<div>
+  <div
+    className="py-3 pl-5 bg-success"
+    id="logo-div-2"
+  >
+    <a
+      className="text-white font-weight-bold"
+      href="#"
+      onClick={[Function]}
+    >
+      Repair-Zone
+    </a>
+  </div>
+  <Connect(Modal) />
+  <div
+    className="row"
+  >
+    <div
+      className="card py-2 border-success px-5 col-10 offset-col-1 col-sm-6 col-md-4 offset-md-4 offset-sm-3"
+      id="login-div"
+    >
+      <div
+        className="card-body"
+      >
+        <form
+          action=""
+        >
+          <h3
+            className="card-title"
+          >
+            Sign In
+          </h3>
+          <FormInput
+            divClass="my-2"
+            divId=""
+            inputClass="ml-1 border-success form-control field-valid required"
+            inputId="signin-2-username"
+            inputName="username"
+            inputType="text"
+            labelId=""
+            labelValue="Username"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onMouseOut={[Function]}
+            placeholder="username"
+            requiredField={true}
+            spanClass="required text-danger"
+            validationClass="text-danger"
+          />
+          <FormInput
+            divClass="my-2"
+            divId=""
+            inputClass="ml-1 border-success form-control field-valid required"
+            inputId="signin-2-password"
+            inputName="password"
+            inputType="password"
+            labelId=""
+            labelValue="password"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onMouseOut={[Function]}
+            placeholder="password"
+            requiredField={true}
+            spanClass="required text-danger"
+            validationClass="text-danger"
+          />
+          <Button
+            buttonClass="ml-1 my-2 px-5 py-2 btn btn-sm bg-success text-white"
+            buttonId=""
+            buttonName="log-In"
+            onClick={[Function]}
+          />
+          <p>
+            You don't have an account? 
+            <br />
+            <Link
+              href="#"
+              hrefClass="card-link"
+              linkText="Sign Up"
+              onClick={[Function]}
+            />
+             here
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;

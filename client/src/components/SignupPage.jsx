@@ -16,7 +16,7 @@ import {
   onFocusHandler,
 } from '../services/formValidation.js';
 
-class SignupPage extends Component {
+export class SignupPage extends Component {
   // render signin page when user
   // click the signin link
   componentDidMount() {

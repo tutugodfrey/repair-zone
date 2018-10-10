@@ -16,27 +16,28 @@ const handleLogin = async (event) => {
   requiredField.forEach((key) => {
     if (!signinDetail[key] || signinDetail[key].trim().length < 3) {
       const failingElement = document.getElementsByName(key)[0];
-
+      allFieldPass = false;
       // change the object of the event
       event.target = failingElement,
       validateRequiredField(event);
-      allFieldPass = false;
+
     }
     return allFieldPass;
   });
 
-  if (!allFieldPass) {
-    return store.dispatch(actions
-      .setErrorValue('please fill all required field'));
-  }
+  // if (!allFieldPass) {
+  //   return store.dispatch(actions
+  //     .setErrorValue('please fill all required field'));
+  // }
   if (allFieldPass) {
-    const headers = new Headers();
-    headers.append('content-type', 'application/json');
+    const headers = {};
+    headers['content-type'] = 'application/json';
     const options = {
       method: 'post',
       body: JSON.stringify(signinDetail),
       headers,
     };
+
     const userData = await fetchRequest('/auth/signin', options);
     if(userData.token) {
       // sign is successful
@@ -47,8 +48,8 @@ const handleLogin = async (event) => {
       localStorage.setItem('userData', userInfo);
 
 
-      const headers = new Headers();
-      headers.append('token', userData.token);
+      const headers = {};
+      headers.token = userData.token;
       const options = {
         method: 'get',
         headers,

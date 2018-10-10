@@ -1,0 +1,242 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SignupPage /> test unconnected signup page should map the snapshot of the component correctly 1`] = `
+<div
+  className=""
+>
+  <div
+    className="py-3 pl-5 bg-success"
+    id="logo-div-2"
+  >
+    <a
+      className="text-white font-weight-bold"
+      href="#"
+      onClick={[Function]}
+    >
+      Repair-Zone
+    </a>
+  </div>
+  <Connect(Modal) />
+  <Div
+    content={
+      <Form
+        content={
+          <div>
+            <div
+              className="card-body"
+            >
+              <h3
+                className="card-title text-center"
+              >
+                Sign Up to start
+              </h3>
+              <div
+                className="row"
+              >
+                <FormInput
+                  divClass="my-2 col-10 col-md-6 offset-col-1"
+                  divId=""
+                  inputClass="ml-1 pt-1 border-success  form-control form-controls-md field-valid required"
+                  inputId="fullname"
+                  inputName="fullname"
+                  inputPlaceholder="fullname"
+                  inputType="text"
+                  labelId=""
+                  labelValue="Fullname"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onMouseOut={[Function]}
+                  requiredField={true}
+                  spanClass="required text-danger"
+                  validationClass="text-danger"
+                />
+                <FormInput
+                  divClass="my-2 col-10 col-md-6 offset-col-1"
+                  divId=""
+                  inputClass="ml-1 pt-1 border-success form-control form-controls-md field-valid required"
+                  inputId="username"
+                  inputName="username"
+                  inputPlaceholder="username"
+                  inputType="text"
+                  labelId=""
+                  labelValue="Username"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onMouseOut={[Function]}
+                  requiredField={true}
+                  spanClass="required text-danger"
+                  validationClass="text-danger"
+                />
+                <FormInput
+                  divClass="my-2 col-10 col-md-6 offset-col-1"
+                  divId=""
+                  inputClass="ml-1 pt-1 border-success form-control form-controls-md field-valid required"
+                  inputId="email"
+                  inputName="email"
+                  inputPlaceholder="email"
+                  inputType="text"
+                  labelId=""
+                  labelValue="Email"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onMouseOut={[Function]}
+                  requiredField={true}
+                  spanClass="required text-danger"
+                  validationClass="text-danger"
+                />
+                <FormInput
+                  divClass="my-2 col-10 col-md-6 offset-col-1"
+                  divId=""
+                  inputClass="ml-1 pt-1 border-success form-control form-controls-md field-valid required"
+                  inputId="address"
+                  inputName="address"
+                  inputPlaceholder="address"
+                  inputType="text"
+                  labelId=""
+                  labelValue="Address"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onMouseOut={[Function]}
+                  requiredField={true}
+                  spanClass="required text-danger"
+                  validationClass="text-danger"
+                />
+                <FormInput
+                  divClass="my-2 col-10 col-md-6 offset-col-1"
+                  divId=""
+                  inputClass="ml-1 pt-1 border-success form-control form-controls-md field-valid required"
+                  inputId="phone"
+                  inputName="phone"
+                  inputPlaceholder="phone"
+                  inputType="text"
+                  labelId=""
+                  labelValue="Phone"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onMouseOut={[Function]}
+                  requiredField={true}
+                  spanClass="required text-danger"
+                  validationClass="text-danger"
+                />
+                <FormInput
+                  divClass="my-2 col-10 col-md-6 offset-col-1"
+                  divId=""
+                  inputClass="ml-1 pt-1 border-success form-control form-controls-md"
+                  inputId="profile-photo"
+                  inputName="profile-photo"
+                  inputType="file"
+                  labelId=""
+                  labelValue="Profile Photo"
+                  onChange={[Function]}
+                />
+                <FormInput
+                  divClass="my-2 col-10 col-md-6 offset-col-1"
+                  divId=""
+                  inputClass="ml-1 pt-3 border-success form-control field-valid required"
+                  inputId="password"
+                  inputName="password"
+                  inputPlaceholder="password"
+                  inputType="password"
+                  labelId=""
+                  labelValue="Password"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocus={[Function]}
+                  onMouseOut={[Function]}
+                  requiredField={true}
+                  spanClass="required text-danger"
+                  validationClass="text-danger"
+                />
+                <FormInput
+                  divClass="my-2 col-10 col-md-6 offset-col-1"
+                  divId=""
+                  inputClass="ml-1 pt-3 border-success form-control field-valid required"
+                  inputId="confrm-password"
+                  inputName="confirmPassword"
+                  inputPlaceholder="confirm-password"
+                  inputType="password"
+                  labelId=""
+                  labelValue="Confirm Password"
+                  onBlur={[Function]}
+                  onChange={[Function]}
+                  onFocu={[Function]}
+                  onMouseOut={[Function]}
+                  requiredField={true}
+                  spanClass="required text-danger"
+                  validationClass="text-danger"
+                />
+                <fieldset
+                  className="my-2 col-10 col-md-10 offset-col-1"
+                >
+                  <legend>
+                    I am a service provider
+                  </legend>
+                  <CheckBox
+                    divClass=""
+                    divId=""
+                    inputClass="ml-1 pt-3 border-success form-control"
+                    inputId="is-admin"
+                    inputName="isAdmin"
+                    inputType="checkbox"
+                    labelId=""
+                    labelValue="Click here"
+                    onChange={[Function]}
+                    spanClass="required text-danger"
+                    value="true"
+                  />
+                   
+                  <br />
+                  <FormInput
+                    divClass=""
+                    divId=""
+                    inputClass="ml-1 pt-3 border-success form-control required field-valid"
+                    inputId="service-name"
+                    inputName="serviceName"
+                    inputPlaceholder="Service Name"
+                    inputType="text"
+                    labelId=""
+                    labelValue="Service Name"
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFous={[Function]}
+                    onMouseOut={[Function]}
+                    spanClass="required text-danger"
+                    validationClass="text-danger"
+                  />
+                </fieldset>
+                <div
+                  className="my-2 col-10 col-md-6"
+                >
+                  <Button
+                    buttonClass="my-3 px-5 py-2 bg-success rounded text-white"
+                    buttonId=""
+                    buttonName="Signup"
+                    onClick={[Function]}
+                  />
+                </div>
+              </div>
+            </div>
+            <p>
+              I have an account already! 
+              <Link
+                href="#"
+                hrefClass="card-link"
+                hrefId="signin-link"
+                linkText="Signin here"
+                onClick={[Function]}
+              />
+            </p>
+          </div>
+        }
+      />
+    }
+    divClass="card py-4 my-5 col-9 col-sm-6 col-md-8 col-lg-6 offset-2 offset-sm-3 offset-md-2 offset-lg-3 border-success"
+    divId="signup-form"
+  />
+</div>
+`;

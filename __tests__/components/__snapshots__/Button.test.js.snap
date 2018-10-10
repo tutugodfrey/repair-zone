@@ -1,3 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Button /> render() renders the component 1`] = `<button />`;
+exports[`button test <Button /> should renders without error 1`] = `
+<button
+  className="class value"
+  onClick={[MockFunction]}
+>
+  name
+</button>
+`;
+
+exports[`button test <NavButton /> should render without error 1`] = `
+<button
+  aria-controls="narbar-content"
+  aria-expanded="false"
+  aria-label="Toggle-navigation"
+  className="class value"
+  data-target="#navbar-content"
+  data-toggle="collapse"
+  id="unique"
+>
+  name
+</button>
+`;

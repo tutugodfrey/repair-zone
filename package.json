@@ -8,13 +8,18 @@
     "npm": "5.6.0"
   },
   "jest": {
-    "setupTestFrameworkScriptFile": "<rootDir>/__tests__/setup/enzymeSetup.js",
+    "setupFiles": [
+      "<rootDir>/__tests__/setup/enzymeSetup.js",
+      "<rootDir>/__tests__/setup/localStorageMock.js"
+    ],
     "testPathIgnorePatterns": [
       "<rootDir>/__tests__/setup/"
     ]
   },
   "scripts": {
     "test": "jest test",
+    "update:test": "jest test -u",
+    "coverage": "jest --coverage",
     "webpacgk": "webpack",
     "webpack": "webpack -w -d",
     "dev": "webpack-dev-server --mode development",
@@ -22,6 +27,7 @@
     "start": "nodemon --exec babel-node ./server/app",
     "webpack:dev": "webpack-dev-server  --open --hot",
     "elint": "eslint client/",
+    "send:coverage": "istanbul cover cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "elint:table": "eslint . — ext .js — ext .jsx — cache — format table || true",
     "elint:summary": "eslint . — ext .js — ext .jsx — cache — format ‘node_modules/eslint-friendly-formatter’ || true"
   },
@@ -45,10 +51,13 @@
   "dependencies": {
     "babel-cli": "^6.26.0",
     "bootstrap": "^4.1.3",
+    "codeclimate-test-reporter": "^0.5.1",
     "cors": "^2.8.4",
+    "coveralls": "^3.0.2",
     "dotenv-safe": "^6.0.0",
     "express": "^4.16.3",
     "file-loader": "^1.1.11",
+    "istanbul": "^0.4.5",
     "jquery": "^3.3.1",
     "nodemon": "^1.18.3",
     "popper.js": "^1.14.3",

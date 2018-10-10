@@ -9,12 +9,13 @@ import SignupPage from './SignupPage.jsx';
 import displayUserDashboard from '../services/displayUserDashboard';
 import actions from '../../redux/actions';
 
-class Home extends Component {
+export class Home extends Component {
   componentWillMount() {
-    if(localStorage.getItem('userData')) {
+    if (localStorage.getItem('userData')) {
       displayUserDashboard();
     }
   }
+
   handleSigninLink = () => {
     this.props.dispatch(actions.displayPage(SigninPage));
   }
@@ -107,6 +108,7 @@ class Home extends Component {
     )
   }
 }
+
 export const mapStateToProps = (state) => {
   return state;
 }

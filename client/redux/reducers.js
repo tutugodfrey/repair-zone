@@ -7,7 +7,7 @@ const initialState = {
   TabContent: ViewRequest,
   requests: [],
   errorMessage: '',
-  error: false,
+  errorStatus: false,
   formValidated: true,
   idOfActiveTab: 'view-requests',
 };

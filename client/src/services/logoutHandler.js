@@ -8,7 +8,7 @@ import SigninPage from '../components/SigninPage.jsx';
  * page when user click the signin page
  */
 const logoutHandler = () => {
-  if(localStorage.getItem('userData')) {
+  if (localStorage.getItem('userData')) {
     localStorage.removeItem('userData');
     store.dispatch(actions.displayPage(SigninPage));
   }

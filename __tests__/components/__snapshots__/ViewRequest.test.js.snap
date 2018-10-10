@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ViewRequest Component test Unconnected View request component should correctly map the snapshot of the component 1`] = `
+<div>
+  <Connect(Modal) />
+  <div>
+    <h1
+      className="text-center pt-5"
+    >
+      List of Requests
+    </h1>
+    <Div
+      content={
+        Array [
+          <div
+            className="view-request-div col-10 offset-1 p-0 mb-1 bg-white col-md-6 offset-md-3"
+          >
+            <div
+              className="request-header d-flex flex-row justify-content-between rounded border px-2 py-2 bg-white"
+            >
+              <strong
+                className="font-weight-bold"
+              />
+              <Button
+                buttonClass="view-btn rounded text-white bg-success"
+                buttonName="view"
+                onClick={[Function]}
+              />
+            </div>
+            <div
+              className="request-content d-none p-3"
+            >
+              <dl
+                className="request-detail-dl"
+              >
+                <div
+                  className="request-detail-div"
+                >
+                  <dt
+                    className="status-term"
+                  >
+                    STATUS
+                  </dt>
+                  <dd
+                    className="status-def"
+                  >
+                    awaiting confirmation
+                  </dd>
+                </div>
+              </dl>
+              
+              
+              <Button
+                buttonClass="approve-request-button px-3 mr-2 rounded bg-success text-white"
+                buttonId="request-1"
+                buttonName="Approve"
+                onClick={[Function]}
+              />
+              <Button
+                buttonClass="reject-request-button px-3 mr-2  rounded bg-danger text-white"
+                buttonId="request-1"
+                buttonName="Reject"
+                onClick={[Function]}
+              />
+              
+            </div>
+          </div>,
+        ]
+      }
+      divClass="row py-5"
+    />
+  </div>
+</div>
+`;
