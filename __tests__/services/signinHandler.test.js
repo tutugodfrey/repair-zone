@@ -9,7 +9,8 @@ describe('signHandler test', () => {
   }
   test('should not submit form if signinDetail has not been filled out', () => {
     signinHandler(event);
-    const { signinDetail, errorMessage } = store.getState();
+    const { errorMessage } = store.getState().pageReducer;
+    const { signinDetail } = store.getState().formDetailReducer;
     expect(signinDetail).toEqual(undefined);
     expect(errorMessage).toBe('please enter your username and password');
   });
@@ -20,8 +21,7 @@ describe('signHandler test', () => {
     }
     store.dispatch(actions.saveSigninDetails(signinDetai))
     signinHandler(event);
-    const { signinDetail, errorMessage } = store.getState();
-    // expect(signinDetail).toEqual(undefined);
+    const { errorMessage } = store.getState().pageReducer
     expect(errorMessage).toBe('please enter your username and password');
   });
 
@@ -32,7 +32,7 @@ describe('signHandler test', () => {
     }
     store.dispatch(actions.saveSigninDetails(signinData))
     await signinHandler(event);
-    const { userData } = store.getState();
+    const { userData } = store.getState().userReducer;
     expect(userData.isAdmin).toBe(false);
   });
 
@@ -43,7 +43,7 @@ describe('signHandler test', () => {
     }
     store.dispatch(actions.saveSigninDetails(signinData))
     await signinHandler(event);
-    const { userData } = store.getState();
+    const { userData } = store.getState().userReducer;
     expect(userData.isAdmin).toEqual(true);
   });
 
@@ -54,7 +54,7 @@ describe('signHandler test', () => {
     }
     store.dispatch(actions.saveSigninDetails(signinData))
     await signinHandler(event);
-    const { userData } = store.getState();
+    const { userData } = store.getState().userReducer;
     expect(userData.isAdmin).toEqual(true);
   });
 });

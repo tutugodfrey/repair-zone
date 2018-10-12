@@ -238,7 +238,8 @@ export class ViewRequest extends Component {
 }
 
 export const mapStateToProps = (state) => {
-  const { userData, requests, reducedRequests } = state;
+  const { requests, reducedRequests } = state.requestReducer;
+  const { userData } = state.userReducer;
   return {
     userData,
     requests,

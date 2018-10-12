@@ -8,7 +8,7 @@ const handleLogin = async (event) => {
   event.preventDefault();
   const requiredField = ['username', 'password'];
   let allFieldPass = true;
-  const { signinDetail } = store.getState();
+  const { signinDetail } = store.getState().formDetailReducer;
   if (!signinDetail) {
     return store.dispatch(actions
       .setErrorValue('please enter your username and password'))

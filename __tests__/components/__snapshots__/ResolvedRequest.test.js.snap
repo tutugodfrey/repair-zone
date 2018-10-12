@@ -20,7 +20,9 @@ exports[`<ResolvedRequest /> unconnected component test should map the snapshot 
             >
               <strong
                 className="font-weight-bold"
-              />
+              >
+                fullname
+              </strong>
               <Button
                 buttonClass="view-btn rounded text-white bg-success"
                 buttonName="view"

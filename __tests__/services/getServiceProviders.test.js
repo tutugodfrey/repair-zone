@@ -6,7 +6,7 @@ describe('getServiceProviders', () => {
 
     const serviceProviderArray = [{}, {}, {}]
     updateServiceProviders(serviceProviderArray);
-    const { serviceProviders } = store.getState();
+    const { serviceProviders } = store.getState().requestReducer;
     expect(serviceProviders.length).toBe(4);
     expect(serviceProviders[0].serviceName).toBe('Select');
     expect(serviceProviders[0].id).toBe(0);

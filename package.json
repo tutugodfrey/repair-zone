@@ -17,9 +17,9 @@
     ]
   },
   "scripts": {
-    "test": "jest test",
+    "test": "jest --verbose --env=jsdom --coverage --detectOpenHandles",
     "update:test": "jest test -u",
-    "coverage": "jest --coverage",
+    "coverage": "jest signupHandler.test.js --coverage --watchnp",
     "webpacgk": "webpack",
     "webpack": "webpack -w -d",
     "dev": "webpack-dev-server --mode development",
@@ -27,7 +27,7 @@
     "start": "nodemon --exec babel-node ./server/app",
     "webpack:dev": "webpack-dev-server  --open --hot",
     "elint": "eslint client/",
-    "send:coverage": "istanbul cover cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "send:coverage": "jest --verbose --env=jsdom --coverage --forceExit --coverageReporters=text-lcov | coveralls",
     "elint:table": "eslint . — ext .js — ext .jsx — cache — format table || true",
     "elint:summary": "eslint . — ext .js — ext .jsx — cache — format ‘node_modules/eslint-friendly-formatter’ || true"
   },
@@ -53,7 +53,6 @@
     "bootstrap": "^4.1.3",
     "codeclimate-test-reporter": "^0.5.1",
     "cors": "^2.8.4",
-    "coveralls": "^3.0.2",
     "dotenv-safe": "^6.0.0",
     "express": "^4.16.3",
     "file-loader": "^1.1.11",
@@ -86,6 +85,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
     "css-loader": "^1.0.0",
+    "coveralls": "^3.0.2",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.4",

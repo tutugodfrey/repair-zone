@@ -20,7 +20,9 @@ exports[`<ApprovedRequest /> unconnected component test should map the snapshot 
             >
               <strong
                 className="font-weight-bold"
-              />
+              >
+                fullname
+              </strong>
               <Button
                 buttonClass="view-btn rounded text-white bg-success"
                 buttonName="view"
@@ -33,6 +35,76 @@ exports[`<ApprovedRequest /> unconnected component test should map the snapshot 
               <dl
                 className="request-detail-dl"
               >
+                <div
+                  className="request-detail-div"
+                >
+                  <dt
+                    className="issueData-term"
+                  >
+                    ISSUEDATA
+                  </dt>
+                  <dd
+                    className="issueData-def"
+                  >
+                    2018-06-17T23:00:00.000Z
+                  </dd>
+                </div>
+                <div
+                  className="request-detail-div"
+                >
+                  <dt
+                    className="category-term"
+                  >
+                    CATEGORY
+                  </dt>
+                  <dd
+                    className="category-def"
+                  >
+                    electrical
+                  </dd>
+                </div>
+                <div
+                  className="request-detail-div"
+                >
+                  <dt
+                    className="description-term"
+                  >
+                    DESCRIPTION
+                  </dt>
+                  <dd
+                    className="description-def"
+                  >
+                    my wall socket got burnt and need replacement
+                  </dd>
+                </div>
+                <div
+                  className="request-detail-div"
+                >
+                  <dt
+                    className="address-term"
+                  >
+                    ADDRESS
+                  </dt>
+                  <dd
+                    className="address-def"
+                  >
+                    provide for user making request
+                  </dd>
+                </div>
+                <div
+                  className="request-detail-div"
+                >
+                  <dt
+                    className="urgent-term"
+                  >
+                    URGENT
+                  </dt>
+                  <dd
+                    className="urgent-def"
+                  >
+                    true
+                  </dd>
+                </div>
                 <div
                   className="request-detail-div"
                 >

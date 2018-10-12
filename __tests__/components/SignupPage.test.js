@@ -8,7 +8,10 @@ import ConnectSignupPage, { SignupPage, mapStateToProps }
 
 let wrapper;
 let mockStore = configureStore();
-let store = mockStore();
+const initialState = {
+  pageReducer: {},
+};
+let store = mockStore(initialState);
 describe('<SignupPage /> test', () => {
   describe('unconnected signup page', () => {
     beforeEach(() => {

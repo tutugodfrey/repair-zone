@@ -8,7 +8,7 @@ const makeRequestHandler = async (event) => {
   event.preventDefault();
   const requiredField = ['category', 'description', 'address', 'urgent', 'adminId'];
   let allFieldPass = true;
-  const { requestDetail } = store.getState();
+  const { requestDetail } = store.getState().formDetailReducer;
   if (!requestDetail) {
     return store.dispatch(actions
       .setErrorValue('please fill all required fields to make your request'));
@@ -30,7 +30,6 @@ const makeRequestHandler = async (event) => {
         .setErrorValue('Please select a category'));
       validateRequiredField(event);
     } else if (!requestDetail[key]) {
-      console.log('POPOPOPOPOPOPOPOPOPOPOPOP')
       allFieldPass = false;
       store.dispatch(actions
         .setErrorValue('Please fill all required fields'));
@@ -39,7 +38,7 @@ const makeRequestHandler = async (event) => {
   });
 
   if (allFieldPass) {
-    const { token } = store.getState().userData;
+    const { token } = store.getState().userReducer.userData;
     const headers = {};
     headers['content-type'] = 'application/json';
     headers['token'] = token;
@@ -53,7 +52,7 @@ const makeRequestHandler = async (event) => {
       // redirect user to the signin page
       store.dispatch(actions.setErrorValue(responseData.message));
     } else if(responseData) {
-      const { requests } = store.getState();
+      const { requests } = store.getState().requestReducer;
       requests.push(responseData)
       store.dispatch(actions.saveRequests(requests));
   

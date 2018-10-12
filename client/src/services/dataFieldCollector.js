@@ -13,7 +13,7 @@ const dataFieldCollector = (event) => {
   if(event.target.type === 'checkbox') {
     value = `${event.target.checked}`;
   }
-  const state = store.getState();
+  const state = store.getState().formDetailReducer;
   const { formType } = state;
   switch (formType) {
     case 'signup': {

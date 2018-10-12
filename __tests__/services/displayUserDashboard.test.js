@@ -15,7 +15,7 @@ describe('displayUserDashboard test', () => {
     });
     test('should load the admin dashboard', async () => {
       await displayUserDashboard();
-      const { userData, TabContent } = store.getState();
+      const { userData, TabContent } = store.getState()
       let user = localStorage.getItem('userData');
       user = JSON.parse(user)
       expect(user.isAdmin).toBe(false);

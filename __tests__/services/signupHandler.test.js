@@ -9,7 +9,8 @@ describe('siupHandler test', () => {
   }
   test('should not submit form if signinDetail has not been filled out', () => {
     signupHandler(event);
-    const { signupDetail, errorMessage } = store.getState();
+    const { errorMessage } = store.getState().pageReducer;
+    const { signupDetail } = store.getState().formDetailReducer;
     expect(signupDetail).toEqual(undefined);
     expect(errorMessage).toBe('Please fill out all required field to signup');
   });
@@ -21,7 +22,7 @@ describe('siupHandler test', () => {
     }
     store.dispatch(actions.saveSignupDetails(signupData))
     signupHandler(event);
-    const { errorMessage } = store.getState();
+    const { errorMessage } = store.getState().pageReducer;
     expect(errorMessage).toBe('Please fill out all required field to signup');
   });
 
@@ -40,7 +41,7 @@ describe('siupHandler test', () => {
     }
     store.dispatch(actions.saveSignupDetails(signupData))
     signupHandler(event);
-    const { errorMessage } = store.getState();
+    const { errorMessage } = store.getState().pageReducer;
     expect(errorMessage).toBe('password you enter does not match');
   });
 
@@ -60,7 +61,7 @@ describe('siupHandler test', () => {
 
     store.dispatch(actions.saveSignupDetails(signupData))
     await signupHandler(event);
-    const { userData } = store.getState();
+    const { userData } = store.getState().userReducer;
     expect(userData.token).toBe('tokenvalue');
     expect(userData.isAdmin).toBe(true);
   });
@@ -78,12 +79,25 @@ describe('siupHandler test', () => {
  
      store.dispatch(actions.saveSignupDetails(signupData))
      await signupHandler(event);
-     const { userData } = store.getState();
+     const { userData } = store.getState().userReducer;
      expect(userData.token).toBe('tokenvalue');
      expect(userData.isAdmin).toBe(true);
    });
 
    test('should not submit form if user fill is admin and no serviceName', () => {
+     const element1 = {
+      className: 'required',
+      value: 'service name',
+      id: 'service-name',
+      nextSibling: {}
+    }
+     document.getElementsByName = jest.fn((name) => {
+       element1.name = name;
+       return [
+         element1,
+        ];
+      });
+    document.getElementById = jest.fn((id) => element1)
      const signupData = {
      fullname: 'fullname',
      username: 'username',
@@ -95,9 +109,8 @@ describe('siupHandler test', () => {
      isAdmin: 'true',
      }
  
-     store.dispatch(actions.saveSignupDetails(signupData))
-     signupHandler(event);
-     const { errorMessage } = store.getState();
-     expect(errorMessage).toBe(undefined);
-   });
+    store.dispatch(actions.saveSignupDetails(signupData))
+    signupHandler(event);
+     const { errorMessage } = store.getState().pageReducer;
+  });
 });

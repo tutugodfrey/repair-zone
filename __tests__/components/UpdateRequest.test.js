@@ -12,9 +12,15 @@ const requests = [{}, {}]
 const requestToUpdate = {};
 const serviceProviders = [];
 const initialState = {
-  requests,
-  requestToUpdate,
-  serviceProviders,
+  requestReducer: {
+    requests,
+    requestToUpdate,
+    serviceProviders,
+  },
+  pageReducer: {
+    errorStatus: false,
+    errorMessage: '',
+  }
 }
 const mockStore = configureStore();
 const store = mockStore(initialState);
@@ -49,7 +55,7 @@ describe('<UpdateRequest /> test', () => {
           }
         }
       ];
-      store.getState().requests = requests;
+      store.getState().requestReducer.requests = requests;
       const dispatch = jest.fn();
       connectedWrapper = mount(
         <Provider store={store}>
@@ -72,11 +78,15 @@ describe('<UpdateRequest /> test', () => {
   describe('mapStateToProps', () => {
     test('should map the state of the component correctly', () => {
       const appState = {
-        requests: [{}, {}, {}],
-        requestToUpdate: {},
-        serviceProviders: [],
-        errorMessage: '',
-        errorStatus: true,
+        requestReducer: {
+          requests: [{}, {}, {}],
+          requestToUpdate: {},
+          serviceProviders: [],
+        },
+        pageReducer: {
+          errorMessage: '',
+          errorStatus: true,
+        }
       }
       const expectedState = {
         requests: [{}, {}, {}],

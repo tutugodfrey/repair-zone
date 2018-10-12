@@ -26,17 +26,6 @@ export class ApprovedRequests extends Component {
     }
   }
 
-
-  componentWillReceiveProps = (nextProps) => {
-    const { reducedRequests } = nextProps;
-    if (reducedRequests.length > 0) {
-      this.setState({
-        requests: reducedRequests,
-      });
-      this.props.dispatch(actions.emptyReducedRequestArray());
-    }
-  }
-
   handleView(event) {
     event.preventDefault();
     let element = event.target;
@@ -169,11 +158,11 @@ export class ApprovedRequests extends Component {
 }
 
 export const mapStateToProps = (state) => {
-  const { userData, requests, reducedRequests } = state;
+  const { userData } = state.userReducer;
+  const { requests } = state.requestReducer;
   return {
     userData,
     requests,
-    reducedRequests,
   }
 }
 export default connect(mapStateToProps)(ApprovedRequests);

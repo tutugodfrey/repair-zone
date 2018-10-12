@@ -12,7 +12,7 @@ class Content extends Component {
 
 export const mapStateToProps = (state) => {
 
-  const { TabContent } = state;
+  const { TabContent } = state.pageReducer;
   return {
     TabContent,
   }

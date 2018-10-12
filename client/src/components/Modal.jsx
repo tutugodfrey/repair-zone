@@ -32,7 +32,7 @@ export class Modal extends Component {
 }
 
 export const mapStateToProps =(state) => {
-  const { errorStatus, errorMessage } = state;
+  const { errorStatus, errorMessage } = state.pageReducer;
   return {
     errorStatus,
     errorMessage,

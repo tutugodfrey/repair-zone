@@ -6,7 +6,10 @@ import configureStore from 'redux-mock-store';
 import Content from '../../client/src/components/Content.jsx';
 
 const mockStore = configureStore();
-const store = mockStore();
+const initialState = {
+  pageReducer: {},
+}
+const store = mockStore(initialState);
 
 describe('<Content />', () => {
   const wrapper = shallow(

@@ -12,9 +12,6 @@ import actions from '../../redux/actions';
 import logoutHandler from '../services/logoutHandler';
 
 export class Header extends Component {
-  handleResponse(responseData) {
-    this.props.dispatch(actions.saveRequests(responseData));
-  }
   changeTab(event, tabContent) {
     event.preventDefault();
     const { id, className } = event.target;
@@ -37,11 +34,7 @@ export class Header extends Component {
 
   headerContent() {
     const { userData } = this.props;
-    let apiUrl = '';
-    if (localStorage.getItem('apiUrl')) {
-      apiUrl = localStorage.getItem('apiUrl');
-    }
-    const { isAdmin, imgUrl } = userData;
+    const { isAdmin } = userData;
     let nanbarContent;
     if(isAdmin) {
       nanbarContent = <ul className="navbar-nav">
@@ -117,13 +110,26 @@ export class Header extends Component {
       <div>
         <div id="top-level-header" className="bg-success row">
         <div className="col-5 offset-6 col-sm-4 offset-sm-8 col-md-3 offset-md-9">
-          <a id="logout-link" href="#" className="ml-auto text-white py-1 px-2 border rounded" onClick={logoutHandler}>Logout</a>
+          <a
+          id="logout-link"
+          href="#"
+          className="ml-auto text-white py-1 px-2 border rounded"
+          onClick={logoutHandler}
+          >
+          Logout
+          </a>
           {/* <img src={`${apiUrl}${imgUrl}`} alt="profile pix" className="" /> */}
         </div>
         </div>
         <div className="row navbar navbar-expand-md navbar-light bg-success">
           <div id="logo-div3" className="col-4 px-0 col-md-2">
-            <Link href="#" linkClass="logo text-white font-weight-bold" linkId="home-logo" onClick={(event) => this.handleHomeLink(event, this)} linkText="Repair-Zone"/>
+            <Link
+              href="#"
+              linkClass="logo text-white font-weight-bold"
+              linkId="home-logo"
+              onClick={(event) => this.handleHomeLink(event, this)}
+              linkText="Repair-Zone"
+            />
           </div>
           <NavButton
             buttonClass="navbar-toggler ml-auto"
@@ -147,7 +153,8 @@ export class Header extends Component {
 }
 
 export const mapStateToProps = (state) => {
-  const { userData, idOfActiveTab } = state;
+  const { userData } = state.userReducer;
+  const { idOfActiveTab } = state.pageReducer;
   return {
     userData,
     idOfActiveTab,

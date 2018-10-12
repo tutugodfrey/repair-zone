@@ -9,7 +9,9 @@ const updateRequest = (event) => {
   const buttonId = event.target.id;
   const buttonSubstring = buttonId.split('-');
   const requestId = buttonSubstring[1];
-  const { userData, requests, requestDetail } = store.getState();
+  const { userData } = store.getState().userReducer;
+  const { requestDetail } = store.getState().formDetailReducer;
+  const { requests } = store.getState().requestReducer;
   const headers = {};
   headers['content-type'] = 'application/json';
   headers['token'] =  userData.token;
