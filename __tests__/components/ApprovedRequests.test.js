@@ -7,8 +7,18 @@ import ConnectedApprovedRequest, { ApprovedRequests, mapStateToProps }
   from '../../client/src/components/ApprovedRequests.jsx';
 
 let wrapper;
+const userData = {
+  id: 2,
+  fullname: 'fullname',
+  isAdmin: true,
+}
+const initialState = {
+  requestReducer: {},
+  userReducer: {},
+  pageReducer: {},
+}
 let mockStore = configureStore();
-let store = mockStore();
+let store = mockStore(initialState);
 
 describe('<ApprovedRequest />', () => {
   describe('unconnected component test', () => {
@@ -21,7 +31,14 @@ describe('<ApprovedRequest />', () => {
         },
         request: {
           id: 1,
+          issueData: '2018-06-17T23:00:00.000Z',
+          category: 'electrical',
+          description: 'my wall socket got burnt and need replacement',
+          address: 'provide for user making request',
+          urgent: true,
+          adminId: 2,
           status: 'pending',
+          updatedAt: '2018-06-17T23:00:00.000Z'
         },
       }
     ];
@@ -30,8 +47,7 @@ describe('<ApprovedRequest />', () => {
       wrapper = shallow(
         <ApprovedRequests
           requests={requests}
-          reducedRequests={[]}
-          userData={{}}
+          userData={userData}
           dispatch={dispatch}
         />
       );
@@ -59,9 +75,8 @@ describe('<ApprovedRequest />', () => {
       fullname: {},
       token: 'tokenvalue',
     }
-    store.getState().requests = requests;
-    store.getState().userData = userData;
-    store.getState().reducedRequests = [];
+    store.getState().requestReducer.requests = requests;
+    store.getState().userReducer.userData = userData;
     beforeEach(() => {
       wrapper = mount(
         <Provider store={store}>
@@ -77,15 +92,19 @@ describe('<ApprovedRequest />', () => {
   describe('mapStateToProps', () => {
     test('should map the state of the component correctly', () => {
       const appState = {
-        userData: {},
-        reducedRequests: [],
-        requests: [],
-        errorStatus: true,
-        errorMessage: 'ssssss'
+        requestReducer: {
+          requests: [],
+        },
+        userReducer: {
+          userData: {},
+        },
+        pageReducer: {
+          errorStatus: true,
+          errorMessage: 'ssssss'
+        }
       };
       const expectedState = {
         userData: {},
-        reducedRequests: [],
         requests: [], 
       };
       const componentState = mapStateToProps(appState);

@@ -18,7 +18,7 @@ describe('dataFieldCollector test', () => {
     })
     test('should add user detail to redux store', () => {
       dataFieldCollector(event)
-      const result = store.getState().signinDetail;
+      const result = store.getState().formDetailReducer.signinDetail;
       expect(result.name).toBe('value')
     });
     test('should update user detail as user continue to type', () => {
@@ -27,7 +27,7 @@ describe('dataFieldCollector test', () => {
       }
       store.dispatch(actions.saveSigninDetails(signinDetail));
       dataFieldCollector(event)
-      const result = store.getState().signinDetail;
+      const result = store.getState().formDetailReducer.signinDetail;
       expect(result.name).toBe('value')
     });
   });
@@ -38,7 +38,7 @@ describe('dataFieldCollector test', () => {
     })
     test('should add user detail to redux store', () => {
       dataFieldCollector(event)
-      const result = store.getState().signupDetail;
+      const result = store.getState().formDetailReducer.signupDetail;
       expect(result.name).toBe('value')
     });
     test('should update user detail as user continue to type', () => {
@@ -50,7 +50,7 @@ describe('dataFieldCollector test', () => {
       event.target.type = 'file';
       event.target.files = files;
       dataFieldCollector(event)
-      const result = store.getState().signupDetail;
+      const result = store.getState().formDetailReducer.signupDetail;
       expect(result.name).toBe('value');
       event.target.type = 'text';
     });
@@ -63,7 +63,7 @@ describe('dataFieldCollector test', () => {
     test('should save request detail as user type', () => {
       event.target.type = 'text';
       dataFieldCollector(event)
-      const result = store.getState().requestDetail;
+      const result = store.getState().formDetailReducer.requestDetail;
       expect(result.name).toBe('value')
     });
 
@@ -75,7 +75,7 @@ describe('dataFieldCollector test', () => {
       event.target.type = 'checkbox';
       event.target.checked = true;
       dataFieldCollector(event)
-      const result = store.getState().requestDetail;
+      const result = store.getState().formDetailReducer.requestDetail;
       expect(result.name).toBe('true');
     });
   });
@@ -86,9 +86,9 @@ describe('dataFieldCollector test', () => {
     })
     test('should save request detail when user type in value', () => {
       event.target.type = 'text';
-      store.getState().requestDetail = undefined;
+      store.getState().formDetailReducer.requestDetail = undefined;
       dataFieldCollector(event)
-      const result = store.getState().requestDetail;
+      const result = store.getState().formDetailReducer.requestDetail;
       expect(result.name).toBe('value')
     });
     test('should add request detail to redux store', () => {
@@ -98,7 +98,7 @@ describe('dataFieldCollector test', () => {
       event.target.type = 'text';
       store.dispatch(actions.saveRequestDetails(requestDetail));
       dataFieldCollector(event)
-      const result = store.getState().requestDetail;
+      const result = store.getState().formDetailReducer.requestDetail;
       expect(result.name).toBe('value')
     });
   });

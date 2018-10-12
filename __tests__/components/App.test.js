@@ -7,7 +7,9 @@ import Home from '../../client/src/components/Home';
 import { Provider } from 'react-redux';
 const mockStore = configureStore();
 
-const initialState = {};
+const initialState = {
+  pageReducer: {},
+};
 const store = mockStore(initialState);
 
 describe('<App />', () => {
@@ -18,25 +20,30 @@ describe('<App />', () => {
       expect(toJson(wrapper)).toMatchSnapshot();
     });
 
-    test.skip('renders the component', () => {
+    test('renders the component', () => {
       const localStorage = {
         getItem: jest.fn(),
-      }
-      store.getState().home = Home;
+      };
+
+      store.getState().pageReducer.home = Home;
       const wrapper = mount(
         <Provider store={store}>
           <ConnectedApp
           />
         </Provider>
       );
+      const logo = wrapper.find('#home-logo');
+      expect(logo.text()).toBe('Repair-Zone');
     });
   });
 
   test('mapStateToProps should map the component state correctly', () => {
     const appState = {
-      home: '<p>some html character</p>',
+      pageReducer: {
+        home: '<p>some html character</p>',
+      }
     }
     const componentState = mapStateToProps(appState);
-    expect(componentState.home).toEqual(appState.home)
+    expect(componentState.home).toEqual(appState.pageReducer.home)
   })
 });

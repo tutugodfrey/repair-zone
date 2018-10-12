@@ -180,7 +180,7 @@ export const mapStateToProps = (state) => {
     requests,
     serviceProviders,
     requestToUpdate,
-  } = state;
+  } = state.requestReducer;
   return {
     requests,
     serviceProviders,

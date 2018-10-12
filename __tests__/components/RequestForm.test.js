@@ -32,10 +32,16 @@ describe('<RequestForm />', () => {
   describe('mapStateToProps', () => {
     test('map the state of the component correctly', () => {
       const appState = {
-        userData: {},
-        idOfActiveTab: 'view request',
+        requestReducer: {
+          serviceProviders: [],
+        },
+        userReducer: {
+          userData: {},
+        },
+        pageReducer: {
+          idOfActiveTab: 'view request',
+        },
         someRandomField: {},
-        serviceProviders: [],
       };
       const expectedState = {
         serviceProviders: [],

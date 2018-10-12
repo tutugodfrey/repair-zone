@@ -23,7 +23,7 @@ jest.mock('../../client/src/services/fetchRequest');
 describe('makeRequestHandler test', () => {
   test('should not process the request if request detail is not filled out', () => {
     makeRequestHandler(event);
-    const { errorMessage } = store.getState();
+    const { errorMessage } = store.getState().pageReducer;
     expect(errorMessage).toBe('please fill all required fields to make your request')
   });
 
@@ -31,7 +31,7 @@ describe('makeRequestHandler test', () => {
     requestDetail.adminId = '0';
     store.dispatch(actions.saveRequestDetails(requestDetail));
     makeRequestHandler(event);
-    const { errorMessage, requestDetail: requestDetails } = store.getState();
+    const { errorMessage } = store.getState().pageReducer;
     expect(errorMessage).toBe('please select a service');
   });
 
@@ -39,7 +39,7 @@ describe('makeRequestHandler test', () => {
     requestDetail.category = 'Select';
     store.dispatch(actions.saveRequestDetails(requestDetail));
     makeRequestHandler(event);
-    const { errorMessage } = store.getState();
+    const { errorMessage } = store.getState().pageReducer;
     expect(errorMessage).toBe(errorMessage);
   });
 
@@ -48,7 +48,7 @@ describe('makeRequestHandler test', () => {
     requestDetail.category = 'category';
     store.dispatch(actions.saveRequestDetails(requestDetail));
     makeRequestHandler(event);
-    const { errorMessage, requestDetail: requestDetails } = store.getState();
+    const { errorMessage} = store.getState().pageReducer;
     expect(errorMessage).toBe('Please fill all required fields');
   });
 
@@ -59,7 +59,7 @@ describe('makeRequestHandler test', () => {
     store.dispatch(actions.saveRequestDetails(requestDetail));
     store.dispatch(actions.setUserData(userData));
     await makeRequestHandler(event);
-    const { requests } = store.getState();
+    const { requests } = store.getState().requestReducer;
     expect(requests.length).toBe(1);
   });
 
@@ -67,7 +67,7 @@ describe('makeRequestHandler test', () => {
     requestDetail.urgent = '';
     store.dispatch(actions.saveRequestDetails(requestDetail));
     await makeRequestHandler(event);
-    const { requests } = store.getState();
+    const { requests } = store.getState().requestReducer;
     expect(requests.length).toBe(2);
   });
 
@@ -76,7 +76,8 @@ describe('makeRequestHandler test', () => {
     store.dispatch(actions.saveRequestDetails(requestDetail));
     store.dispatch(actions.setUserData(userData));
     await makeRequestHandler(event);
-    const {errorMessage, requests } = store.getState();
+    const {errorMessage } = store.getState().pageReducer;
+    const { requests } = store.getState().requestReducer;
     expect(errorMessage).toBe('The service provider does not exist');
     expect(requests.length).toBe(2);
   });

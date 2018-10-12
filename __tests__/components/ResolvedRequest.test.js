@@ -6,9 +6,19 @@ import configureStore from 'redux-mock-store';
 import ConnectResolvedRequest, { ResolvedRequests, mapStateToProps }
   from '../../client/src/components/ResolvedRequests.jsx';
 
-let wrapper;
+let userData = {
+  id: 2,
+  fullname: 'fullname',
+  isAdmin: true,
+}
+const initialState = {
+  requestReducer: {},
+  userReducer: {},
+  pageReducer: {},
+}
 let mockStore = configureStore();
-let store = mockStore();
+let store = mockStore(initialState);
+
 
 describe('<ResolvedRequest />', () => {
   describe('unconnected component test', () => {
@@ -30,8 +40,7 @@ describe('<ResolvedRequest />', () => {
       wrapper = shallow(
         <ResolvedRequests
           requests={requests}
-          reducedRequests={[]}
-          userData={{}}
+          userData={userData}
           dispatch={dispatch}
         />
       );
@@ -50,7 +59,14 @@ describe('<ResolvedRequest />', () => {
         },
         request: {
           id: 1,
-          status: 'resolved',
+          issueData: '2018-06-17T23:00:00.000Z',
+          category: 'electrical',
+          description: 'my wall socket got burnt and need replacement',
+          address: 'provide for user making request',
+          urgent: true,
+          adminId: 2,
+          status: 'Resolved',
+          updatedAt: '2018-06-17T23:00:00.000Z'
         },
       }
     ];
@@ -59,9 +75,8 @@ describe('<ResolvedRequest />', () => {
       fullname: {},
       token: 'tokenvalue',
     }
-    store.getState().requests = requests;
-    store.getState().userData = userData;
-    store.getState().reducedRequests = [];
+    store.getState().requestReducer.requests = requests;
+    store.getState().userReducer.userData = userData;
     beforeEach(() => {
       wrapper = mount(
         <Provider store={store}>
@@ -71,21 +86,25 @@ describe('<ResolvedRequest />', () => {
     });
     test('should not have a button', () => {
       const btns = wrapper.find('button');
-      expect(btns.length).toBe(2)
+      expect(btns.length).toBe(1)
     })
   });
   describe('mapStateToProps', () => {
     test('should map the state of the component correctly', () => {
       const appState = {
-        userData: {},
-        reducedRequests: [],
-        requests: [],
-        errorStatus: true,
-        errorMessage: 'ssssss'
+        userReducer: {
+          userData: {},
+        },
+        requestReducer: {
+          requests: [],
+        },
+        pageReducer: {
+          errorStatus: true,
+          errorMessage: 'ssssss',
+        },
       };
       const expectedState = {
         userData: {},
-        reducedRequests: [],
         requests: [], 
       };
       const componentState = mapStateToProps(appState);

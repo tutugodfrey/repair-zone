@@ -207,7 +207,7 @@ export class ViewRequest extends Component {
       if (userData.isAdmin) {
         viewAllRequest = [];
         allRequests.forEach(request => {
-          if (request.request.status === 'awaiting confirmation') {
+          if (request.request.status === 'awaiting confirmation' || request.request.status === 'rejected') {
             viewAllRequest.push(this.requestContainer(request));
           }
         })
@@ -238,7 +238,8 @@ export class ViewRequest extends Component {
 }
 
 export const mapStateToProps = (state) => {
-  const { userData, requests, reducedRequests } = state;
+  const { requests, reducedRequests } = state.requestReducer;
+  const { userData } = state.userReducer;
   return {
     userData,
     requests,

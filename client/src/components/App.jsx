@@ -13,7 +13,7 @@ export class App extends Component {
 }
 
 export const mapStateToProps = (state) => {
-  const { home } = state;
+  const { home } = state.pageReducer;
   return {
     home,
   }

@@ -154,7 +154,7 @@ export class RequestForm extends Component {
 }
 
 export const mapStateToProps = (state) => {
-  const { serviceProviders } = state;
+  const { serviceProviders } = state.requestReducer;
   return {
     serviceProviders,
   };

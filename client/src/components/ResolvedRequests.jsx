@@ -25,17 +25,6 @@ export class ResolvedRequests extends Component {
     }
   }
 
-
-  componentWillReceiveProps = (nextProps) => {
-    const { reducedRequests } = nextProps;
-    if (reducedRequests.length > 0) {
-      this.setState({
-        requests: reducedRequests,
-      });
-      this.props.dispatch(actions.emptyReducedRequestArray());
-    }
-  }
-
   handleView(event) {
     event.preventDefault();
     let element = event.target;
@@ -151,11 +140,11 @@ export class ResolvedRequests extends Component {
 }
 
 export const mapStateToProps = (state) => {
-  const { userData, requests, reducedRequests } = state;
+  const { requests } = state.requestReducer;
+  const { userData } = state.userReducer;
   return {
     userData,
     requests,
-    reducedRequests,
   }
 }
 export default connect(mapStateToProps)(ResolvedRequests);

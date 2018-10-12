@@ -22,14 +22,14 @@ describe('formValidation test', () => {
     }
     test('should flag error if user field length is > 1 < 4', () => {
       validateSigninForm(event);
-      const errorStatus = store.getState().formValidated;
+      const errorStatus = store.getState().formDetailReducer.formValidated;
       expect(errorStatus).toBe(false)
     });
 
     test('should flag error if password field length is > 1 < 6', () => {
       event.target.name = 'password';
       validateSigninForm(event);
-      const errorStatus = store.getState().formValidated;
+      const errorStatus = store.getState().formDetailReducer.formValidated;
       expect(errorStatus).toBe(false)
     });
 
@@ -46,7 +46,7 @@ describe('formValidation test', () => {
       event.target.name = 'name';
       event.target.value = 'value'
       validateSigninForm(event);
-      const errorStatus = store.getState().formValidated;
+      const errorStatus = store.getState().formDetailReducer.formValidated;
       expect(errorStatus).toBe(true)
     });
 
@@ -54,7 +54,7 @@ describe('formValidation test', () => {
       event.target.name = 'password';
       event.target.value = 'value'
       validateSigninForm(event);
-      const errorStatus = store.getState().formValidated;
+      const errorStatus = store.getState().formDetailReducer.formValidated;
       expect(errorStatus).toBe(false)
     });
   });
@@ -73,21 +73,21 @@ describe('formValidation test', () => {
     test('should flag error if user field length is > 1 < 4', () => {
       event.target.value = ''
       validateRequiredField(event);
-      const errorStatus = store.getState().formValidated;
+      const errorStatus = store.getState().formDetailReducer.formValidated;
       expect(errorStatus).toBe(false)
     });
 
     test('should flag error if user select default "Select"', () => {
       event.target.value = 'Select'
       validateRequiredField(event);
-      const errorStatus = store.getState().formValidated;
+      const errorStatus = store.getState().formDetailReducer.formValidated;
       expect(errorStatus).toBe(false)
     });
 
     test('should pass when require field is field out', () => {
       event.target.value = 'automobile'
       validateRequiredField(event);
-      const errorStatus = store.getState().formValidated;
+      const errorStatus = store.getState().formDetailReducer.formValidated;
       expect(errorStatus).toBe(true)
     });
   });
@@ -105,7 +105,7 @@ describe('formValidation test', () => {
     }
     test('should flag error if user field length is > 1 < 4', () => {
       onFocusHandler(event);
-      const errorStatus = store.getState().formValidated;
+      const errorStatus = store.getState().formDetailReducer.formValidated;
       expect(errorStatus).toBe(true)
     });
   });
@@ -123,13 +123,13 @@ describe('formValidation test', () => {
     }
     test('should flag error if user field length is > 1 < 4', () => {
       validateRequestForm(event);
-      const errorStatus = store.getState().formValidated;
+      const errorStatus = store.getState().formDetailReducer.formValidated;
       expect(errorStatus).toBe(false)
     });
     test('should flag error if user field length is > 1 < 4', () => {
       event.target.value = 'value'
       validateRequestForm(event);
-      const errorStatus = store.getState().formValidated;
+    const errorStatus = store.getState().formDetailReducer.formValidated;
       expect(errorStatus).toBe(true)
     });
   });

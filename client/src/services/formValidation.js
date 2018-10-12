@@ -64,6 +64,7 @@ const validateRequiredField = (event) => {
     event.target.className = eleClass;
     store.dispatch(actions.confirmFormValidation(true));
   }
+  return event;
 }
 
 const onFocusHandler = (event) => {

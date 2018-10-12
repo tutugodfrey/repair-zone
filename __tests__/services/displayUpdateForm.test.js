@@ -24,7 +24,7 @@ describe('displayUpdateForm', () => {
   test('should render the update request page', () => {
     store.dispatch(actions.saveRequests(requests))
     displayUpdateForm(event);
-    const result = store.getState().requestToUpdate;
+    const result = store.getState().requestReducer.requestToUpdate;
     expect(result).toEqual(requests[0]);
   });
 });

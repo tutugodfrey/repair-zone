@@ -16,7 +16,7 @@ describe('action Creator test', () => {
     const action = store.dispatch(actions.setUserData(userData));
     expect(action.type).toBe('SET_USER_DATA');
     expect(action.value).toEqual(userData);
-    expect(store.getState().userData).toEqual(userData);
+    expect(store.getState().userReducer.userData).toEqual(userData);
   });
 
   test('set display page', () => {
@@ -24,27 +24,27 @@ describe('action Creator test', () => {
     const action = store.dispatch(actions.displayPage(page));
     expect(action.type).toBe('SET_DISPLAY_PAGE');
     expect(action.value).toEqual(page);
-    expect(store.getState().home).toEqual(page);
+    expect(store.getState().pageReducer.home).toEqual(page);
   });
 
   test('save signin detail', () => {
     const signinDetails = {};
     const action = store.dispatch(actions.saveSigninDetails(signinDetails));
     expect(action.type).toBe('SAVE_SIGNIN_DETAIL');
-    expect(store.getState().signinDetail).toEqual(signinDetails);
+    expect(store.getState().formDetailReducer.signinDetail).toEqual(signinDetails);
   });
 
   test('save signup detail', () => {
     const signupDetails = {};
     const action = store.dispatch(actions.saveSignupDetails(signupDetails));
     expect(action.type).toBe('SAVE_SIGNUP_DETAIL');
-    expect(store.getState().signupDetail).toEqual(signupDetails);
+    expect(store.getState().formDetailReducer.signupDetail).toEqual(signupDetails);
   });
 
   test('save request detail', () => {
     const action = store.dispatch(actions.saveRequestDetails({name: 'name'}));
     expect(action.type).toBe('SAVE_REQUEST_DETAIL');
-    expect(store.getState().requestDetail).toEqual({name: 'name'});
+    expect(store.getState().formDetailReducer.requestDetail).toEqual({name: 'name'});
   });
 
   test('set form to fill', () => {
@@ -52,14 +52,14 @@ describe('action Creator test', () => {
     const action = store.dispatch(actions.setFormToFill(formToFill));
     expect(action.type).toBe('SET_FORM_TO_FILL');
     expect(action.value).toBe('signin form');
-    expect(store.getState().formType).toBe('signin form');
+    expect(store.getState().formDetailReducer.formType).toBe('signin form');
   });
 
   test('set tab to view', () => {
     const tabToView = 'string of html character';
     const action = store.dispatch(actions.setTabToView(tabToView));
     expect(action.type).toBe('SET_TAB_TO_VIEW');
-    expect(store.getState().TabContent).toEqual(tabToView);
+    expect(store.getState().pageReducer.TabContent).toEqual(tabToView);
   });
 
   test('save requests', () => {

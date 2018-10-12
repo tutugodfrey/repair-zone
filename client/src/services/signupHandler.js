@@ -10,7 +10,7 @@ import { validateRequiredField } from './formValidation';
 // make api request
 const handleSignup = async (event) => {
   event.preventDefault();
-  const { signupDetail } = store.getState();
+  const { signupDetail } = store.getState().formDetailReducer;
   if (!signupDetail) {
     return store.dispatch(actions
       .setErrorValue('Please fill out all required field to signup'));
@@ -40,10 +40,6 @@ const handleSignup = async (event) => {
     }
   });
 
-  // if (!allFieldPass) {
-  //   return store.dispatch(actions
-  //     .setErrorValue('Please fill all required fields to create your account'));
-  // }
   if (signupDetail.password !== signupDetail.confirmPassword) {
     return store.dispatch(actions
       .setErrorValue('password you enter does not match'));
@@ -64,6 +60,9 @@ const handleSignup = async (event) => {
   const responseData = await fetchRequest('/auth/signup', options);
     // singup is successful if token is present
     if (responseData.token) {
+      const userInfo = JSON.stringify(responseData);
+      localStorage.setItem('userData', userInfo);
+
       // redirect user to their dashboard
       store.dispatch(actions.setUserData(responseData));
       store.dispatch(actions.displayPage(Dashboard));
