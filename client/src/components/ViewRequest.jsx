@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
 import actions from '../../redux/actions';
 import Div from './elementComponents/Div.jsx';
 import Button from './elementComponents/Button.jsx';
@@ -19,23 +20,28 @@ export class ViewRequest extends Component {
   componentDidMount = () =>  {
     const { requests } = this.props;
     if (requests.length === 0) {
-      this.props.dispatch(actions.setErrorValue('No request found'));
+      this.props.setErrorValue('No request found');
     } else {
-      this.props.dispatch(actions.clearErrorValue());
+      this.props.clearErrorValue();
       this.setState({
         requests,
       });
     }
   }
 
-
+  componentWillUpdate(nextProps, nextState) {
+    const { requests } = nextProps
+    if (nextProps.requests) {
+      this.state.requests = requests;
+    }
+  }
   componentWillReceiveProps = (nextProps) => {
     const { reducedRequests } = nextProps;
     if (reducedRequests.length > 0) {
       this.setState({
         requests: reducedRequests,
       });
-      this.props.dispatch(actions.emptyReducedRequestArray());
+      this.props.emptyReducedRequestArray();
     }
   }
 
@@ -212,7 +218,7 @@ export class ViewRequest extends Component {
           }
         })
         if (viewAllRequest.length === 0) {
-          this.props.dispatch(actions.setErrorValue('No pending requests'));
+          this.props.setErrorValue('No pending requests');
         }
         return viewAllRequest;
       }
@@ -246,5 +252,13 @@ export const mapStateToProps = (state) => {
     reducedRequests,
   }
 }
-
-export default connect(mapStateToProps)(ViewRequest);
+export const mapDispatchToProps = (dispatch) => {
+  const {     emptyReducedRequestArray, clearErrorValue, setErrorValue } = actions
+  return bindActionCreators({
+    updateRequest,
+    emptyReducedRequestArray,
+    clearErrorValue,
+    setErrorValue,
+  }, dispatch)
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ViewRequest);

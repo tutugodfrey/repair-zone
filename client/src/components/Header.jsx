@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { NavButton } from './elementComponents/Button.jsx';
 import Link from './elementComponents/Link.jsx';
 import Home from './Home.jsx';
@@ -23,8 +24,8 @@ export class Header extends Component {
     prevElementTabClass = prevElementTabClass.replace('text-black', 'text-white');
     previousEle.setAttribute('class', prevElementTabClass)
     event.target.className = elementClass;
-    this.props.dispatch(actions.setIdOfActiveTab(id));
-    return this.props.dispatch(actions.setTabToView(tabContent));
+    this.props.setIdOfActiveTab(id);
+    return this.props.setTabToView(tabContent);
   }
 
   handleHomeLink(event, self) {
@@ -161,4 +162,12 @@ export const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = (dispatch) => {
+  const { setTabToView, setIdOfActiveTab} = actions;
+  return bindActionCreators({
+    setTabToView,
+    setIdOfActiveTab,
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

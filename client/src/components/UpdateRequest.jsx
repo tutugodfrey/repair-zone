@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import actions from '../../redux/actions';
 import Button from './elementComponents/Button.jsx';
 import Modal from './Modal.jsx'
@@ -23,7 +24,7 @@ export class UpdateRequest extends Component {
     request: {},
   }
   componentDidMount = async () => {
-    this.props.dispatch(actions.setFormToFill('update-request-form'));
+    this.props.setFormToFill('update-request-form');
     const options = {
       method: 'get',
     };
@@ -188,4 +189,11 @@ export const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(UpdateRequest);
+const mapDispatchToProps = (dispatch) => {
+  const { setFormToFill} = actions;
+  return bindActionCreators({
+    setFormToFill,
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateRequest);

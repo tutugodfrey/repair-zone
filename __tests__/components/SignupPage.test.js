@@ -18,7 +18,8 @@ describe('<SignupPage /> test', () => {
       const dispatch = jest.fn();
       wrapper = shallow(
         <SignupPage
-          dispatch={dispatch}
+        setFormToFill={jest.fn()}
+        displayPage={jest.fn()}
         />
       );
     });
@@ -34,7 +35,8 @@ describe('<SignupPage /> test', () => {
       wrapper = mount(
         <Provider store={store}>
           <SignupPage
-            dispatch={dispatch}
+            setFormToFill={jest.fn()}
+            displayPage={jest.fn()}
           />
         </Provider>
       );

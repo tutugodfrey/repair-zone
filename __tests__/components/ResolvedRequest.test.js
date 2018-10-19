@@ -41,7 +41,8 @@ describe('<ResolvedRequest />', () => {
         <ResolvedRequests
           requests={requests}
           userData={userData}
-          dispatch={dispatch}
+          clearErrorValue={jest.fn()}
+          setErrorValue={jest.fn()}
         />
       );
     });
@@ -80,7 +81,10 @@ describe('<ResolvedRequest />', () => {
     beforeEach(() => {
       wrapper = mount(
         <Provider store={store}>
-          <ConnectResolvedRequest />
+          <ConnectResolvedRequest
+            clearErrorValue={jest.fn()}
+            setErrorValue={jest.fn()}
+          />
         </Provider>
       );
     });

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Form from './elementComponents/Form.jsx';
 import Modal from './Modal.jsx';
 import { FormInput, CheckBox }from './elementComponents/formControls.jsx';
@@ -20,19 +21,15 @@ export class SignupPage extends Component {
   // render signin page when user
   // click the signin link
   componentDidMount() {
-    this.props.dispatch(actions.setFormToFill('signup'));
+    this.props.setFormToFill('signup');
   }
 
   loadSigninPage() {
-    this.props.dispatch(actions.displayPage(SigninPage));
+    this.props.displayPage(SigninPage);
   }
 
   loadHomePage() {
-    this.props.dispatch(actions.displayPage(HomePage));
-  }
-
-  componentDidMount() {
-    this.props.dispatch(actions.setFormToFill('signup'));
+    this.props.displayPage(HomePage);
   }
   // render the signup page
   formContent() {
@@ -244,4 +241,12 @@ export class SignupPage extends Component {
   }
 }
 
-export default connect()(SignupPage);
+const mapDispatchToProps = (dispatch) => {
+  const { setFormToFill, displayPage} = actions;
+  return bindActionCreators({
+    setFormToFill,
+    displayPage,
+  }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(SignupPage);

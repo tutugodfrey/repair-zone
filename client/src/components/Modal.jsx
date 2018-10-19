@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import actions from '../../redux/actions';
 
 export class Modal extends Component {
   closeConsoleModal(event) {
     event.preventDefault();
-    this.props.dispatch(actions.clearErrorValue())
+    this.props.clearErrorValue();
   }
   render() {
     const { errorStatus, errorMessage } = this.props;
@@ -39,4 +40,11 @@ export const mapStateToProps =(state) => {
   }
 }
 
-export default connect(mapStateToProps)(Modal);
+const mapDispatchToProps = (dispatch) => {
+  const { clearErrorValue} = actions;
+  return bindActionCreators({
+    clearErrorValue
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);

@@ -34,6 +34,7 @@ const updateRequest = (event) => {
     });
     const indexOfRequest = requests.indexOf(requestToUpdate[0]);
     requests[indexOfRequest] = updatedRequest;
+    store.dispatch(actions.saveRequests(requests));
   }
 
   switch(updateType) {
