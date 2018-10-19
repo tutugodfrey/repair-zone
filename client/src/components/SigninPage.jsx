@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import Form from './elementComponents/Form.jsx';
+import { bindActionCreators } from 'redux';
 import Modal from './Modal.jsx';
 import { FormInput } from './elementComponents/formControls.jsx';
 import Button from './elementComponents/Button.jsx';
 import Link from './elementComponents/Link.jsx';
-import Div from './elementComponents/Div.jsx';
 import SignupPage from './SignupPage.jsx';
 import HomePage from './Home.jsx';
 import dataFieldCollector from '../services/dataFieldCollector';
@@ -15,20 +14,19 @@ import {
   onFocusHandler,
 } from '../services/formValidation.js';
 import actions from '../../redux/actions';
-import store from '../../redux/store';
 
 export class SigninPage extends Component {
 
   loadHomePage() {
-    store.dispatch(actions.displayPage(HomePage))
+    this.props.displayPage(HomePage);
   }
 
   loadSignupPage() {
-    store.dispatch(actions.displayPage(SignupPage))
+    this.props.displayPage(SignupPage);
   }
 
   componentDidMount() {
-    store.dispatch(actions.setFormToFill('signin'));
+    this.props.setFormToFill('signin');
   }
 
   render() {
@@ -101,4 +99,12 @@ export class SigninPage extends Component {
   }
 }
 
-export default connect()(SigninPage);
+const mapDispatchToProps = (dispatch) => {
+  const { setFormToFill, displayPage} = actions;
+  return bindActionCreators({
+    setFormToFill,
+    displayPage,
+  }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(SigninPage);

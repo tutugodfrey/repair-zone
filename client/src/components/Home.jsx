@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Modal from './Modal.jsx';
 import Div from './../components/elementComponents/Div.jsx';
 import Link from './../components/elementComponents/Link.jsx';
@@ -17,11 +18,11 @@ export class Home extends Component {
   }
 
   handleSigninLink = () => {
-    this.props.dispatch(actions.displayPage(SigninPage));
+    this.props.displayPage(SigninPage);
   }
 
   handleSignupLink = () => {
-    this.props.dispatch(actions.displayPage(SignupPage));
+    this.props.displayPage(SignupPage);
   }
   
   homeNav() {
@@ -113,4 +114,11 @@ export const mapStateToProps = (state) => {
   return state;
 }
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = (dispatch) => {
+  const { displayPage } = actions;
+  return bindActionCreators({
+    displayPage,
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

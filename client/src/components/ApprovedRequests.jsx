@@ -5,6 +5,7 @@ import Div from './elementComponents/Div.jsx';
 import Button from './elementComponents/Button.jsx';
 import updateRequest from '../services/updateRequestHandler';
 import Modal from './Modal.jsx';
+import { bindActionCreators } from 'redux';
 
 export class ApprovedRequests extends Component {
   constructor() {
@@ -20,12 +21,18 @@ export class ApprovedRequests extends Component {
       requests,
     });
     if (requests.length === 0) {
-      this.props.dispatch(actions.setErrorValue('Not request found'))
+      this.props.setErrorValue('Not request found');
     } else {
-      this.props.dispatch(actions.clearErrorValue())
+      this.props.clearErrorValue();
     }
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    const { requests } = nextProps
+    if (nextProps.requests) {
+      this.state.requests = requests;
+    }
+  }
   handleView(event) {
     event.preventDefault();
     let element = event.target;
@@ -165,4 +172,13 @@ export const mapStateToProps = (state) => {
     requests,
   }
 }
-export default connect(mapStateToProps)(ApprovedRequests);
+const mapDispatchToProps = (dispatch) => {
+  const { clearErrorValue, setErrorValue} = actions;
+  return bindActionCreators({
+    updateRequest,
+    clearErrorValue,
+    setErrorValue,
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ApprovedRequests);

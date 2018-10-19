@@ -17,7 +17,8 @@ describe('<RequestForm />', () => {
       wrapper = shallow(
         <RequestForm
           serviceProviders={serviceProviders}
-          dispatch={dispatch}
+          setFormToFill={jest.fn()}
+          displayPage={jest.fn()}
         />
       );
     });

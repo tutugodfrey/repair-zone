@@ -47,7 +47,10 @@ const dispatch = jest.fn();
             userData={userData}
             reducedRequests={requests}
             requests={requests}
-            dispatch={dispatch}
+            updateRequest={jest.fn()}
+            emptyReducedRequestArray={jest.fn()}
+            clearErrorValue={jest.fn()}
+            setErrorValue={jest.fn()}
           />);
       });
 
@@ -66,7 +69,10 @@ const dispatch = jest.fn();
               userData={userData}
               reducedRequests={[requests]}
               requests={requests}
-              dispatch={dispatch}
+              updateRequest={jest.fn()}
+              emptyReducedRequestArray={jest.fn()}
+              clearErrorValue={jest.fn()}
+              setErrorValue={jest.fn()}
             />
           </Provider>);
       });
@@ -82,7 +88,10 @@ const dispatch = jest.fn();
               userData={userData}
               reducedRequests={[{}, {}, {}]}
               requests={requests}
-              dispatch={dispatch}
+              updateRequest={jest.fn()}
+              emptyReducedRequestArray={jest.fn()}
+              clearErrorValue={jest.fn()}
+              setErrorValue={jest.fn()}
             />
           </Provider>);
         const connectedWrapperInstance = connectedWrapper.instance();

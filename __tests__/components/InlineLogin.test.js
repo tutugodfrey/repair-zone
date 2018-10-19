@@ -7,10 +7,9 @@ describe('<InlineLogin />', () => {
   describe('unconnected component test', () => {
     let wrapper;
     beforeEach(() => {
-      const dispatch = jest.fn();
       wrapper = shallow(
       <InlineLogin
-        dispatch={dispatch}
+        setFormToFill={jest.fn()}
       />
       );
     });

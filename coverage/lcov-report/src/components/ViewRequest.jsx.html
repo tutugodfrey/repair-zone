@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">52.53% </span>
+        <span class="strong">55.24% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>52/99</span>
+        <span class='fraction'>58/105</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">56% </span>
+        <span class="strong">55.77% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>28/50</span>
+        <span class='fraction'>29/52</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">72.73% </span>
+        <span class="strong">76.92% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>8/11</span>
+        <span class='fraction'>10/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">52.53% </span>
+        <span class="strong">55.24% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>52/99</span>
+        <span class='fraction'>58/105</span>
       </div>
     </div>
     <p class="quiet">
@@ -296,7 +296,22 @@
 <a name='L248'></a><a href='#L248'>248</a>
 <a name='L249'></a><a href='#L249'>249</a>
 <a name='L250'></a><a href='#L250'>250</a>
-<a name='L251'></a><a href='#L251'>251</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L251'></a><a href='#L251'>251</a>
+<a name='L252'></a><a href='#L252'>252</a>
+<a name='L253'></a><a href='#L253'>253</a>
+<a name='L254'></a><a href='#L254'>254</a>
+<a name='L255'></a><a href='#L255'>255</a>
+<a name='L256'></a><a href='#L256'>256</a>
+<a name='L257'></a><a href='#L257'>257</a>
+<a name='L258'></a><a href='#L258'>258</a>
+<a name='L259'></a><a href='#L259'>259</a>
+<a name='L260'></a><a href='#L260'>260</a>
+<a name='L261'></a><a href='#L261'>261</a>
+<a name='L262'></a><a href='#L262'>262</a>
+<a name='L263'></a><a href='#L263'>263</a>
+<a name='L264'></a><a href='#L264'>264</a>
+<a name='L265'></a><a href='#L265'>265</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -325,6 +340,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -544,10 +564,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
 import actions from '../../redux/actions';
 import Div from './elementComponents/Div.jsx';
 import Button from './elementComponents/Button.jsx';
@@ -567,23 +596,28 @@ export class ViewRequest extends Component {
   componentDidMount = () =&gt;  {
     const { requests } = this.props;
     if (requests.length === 0) {
-      this.props.dispatch(actions.setErrorValue('No request found'));
+      this.props.setErrorValue('No request found');
     } else {
-      this.props.dispatch(actions.clearErrorValue());
+      this.props.clearErrorValue();
       this.setState({
         requests,
       });
     }
   }
 &nbsp;
-&nbsp;
+  componentWillUpdate(nextProps, nextState) {
+    const { requests } = nextProps
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (nextProps.requests) {
+      this.state.requests = requests;
+    }
+  }
   componentWillReceiveProps = <span class="fstat-no" title="function not covered" >(n</span>extProps) =&gt; {
     const { reducedRequests } = <span class="cstat-no" title="statement not covered" >nextProps;</span>
 <span class="cstat-no" title="statement not covered" >    if (reducedRequests.length &gt; 0) {</span>
 <span class="cstat-no" title="statement not covered" >      this.setState({</span>
         requests: reducedRequests,
       });
-<span class="cstat-no" title="statement not covered" >      this.props.dispatch(actions.emptyReducedRequestArray());</span>
+<span class="cstat-no" title="statement not covered" >      this.props.emptyReducedRequestArray();</span>
     }
   }
 &nbsp;
@@ -760,7 +794,7 @@ export class ViewRequest extends Component {
           }
         })
         if (viewAllRequest.length === 0) {
-          this.props.dispatch(actions.setErrorValue('No pending requests'));
+          this.props.setErrorValue('No pending requests');
         }
         return viewAllRequest;
       }
@@ -794,15 +828,23 @@ export const mapStateToProps = (state) =&gt; {
     reducedRequests,
   }
 }
-&nbsp;
-export default connect(mapStateToProps)(ViewRequest);
+export const mapDispatchToProps = (dispatch) =&gt; {
+  const {     emptyReducedRequestArray, clearErrorValue, setErrorValue } = actions
+  return bindActionCreators({
+    updateRequest,
+    emptyReducedRequestArray,
+    clearErrorValue,
+    setErrorValue,
+  }, dispatch)
+}
+export default connect(mapStateToProps, mapDispatchToProps)(ViewRequest);
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sat Oct 13 2018 16:22:14 GMT+0100 (WAT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Oct 19 2018 11:08:43 GMT+0100 (WAT)
 </div>
 </div>
 <script src="../../prettify.js"></script>

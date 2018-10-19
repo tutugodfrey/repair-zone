@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import actions from '../../redux/actions';
 import Div from './elementComponents/Div.jsx';
 import Button from './elementComponents/Button.jsx';
@@ -19,9 +20,9 @@ export class ResolvedRequests extends Component {
       requests,
     });
     if (requests.length === 0) {
-      this.props.dispatch(actions.setErrorValue('Not request found'))
+      this.props.setErrorValue('Not request found');
     } else {
-      this.props.dispatch(actions.clearErrorValue())
+      this.props.clearErrorValue();
     }
   }
 
@@ -147,4 +148,13 @@ export const mapStateToProps = (state) => {
     requests,
   }
 }
-export default connect(mapStateToProps)(ResolvedRequests);
+
+const mapDispatchToProps = (dispatch) => {
+  const { clearErrorValue, setErrorValue} = actions;
+  return bindActionCreators({
+    clearErrorValue,
+    setErrorValue,
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResolvedRequests);

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Form from './elementComponents/Form.jsx';
 import { FormInputWithoutDiv } from './elementComponents/formControls.jsx';
 import Button from './elementComponents/Button.jsx';
@@ -13,7 +14,7 @@ import {
 
 export class InlineLogin extends Component {
   componentDidMount() {
-    this.props.dispatch(actions.setFormToFill('signin'));
+    this.props.setFormToFill('signin');
   }
 
   formContent() {
@@ -57,4 +58,11 @@ export class InlineLogin extends Component {
   }
 }
 
-export default connect()(InlineLogin);
+const mapDispatchToProps = (dispatch) => {
+  const { setFormToFill } = actions;
+  return bindActionCreators({
+    setFormToFill,
+  }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(InlineLogin);

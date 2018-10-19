@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import actions from '../../redux/actions';
 import Button from './elementComponents/Button.jsx';
 import Modal from './Modal.jsx';
@@ -32,7 +33,7 @@ export class RequestForm extends Component {
   }
 
   componentDidMount = async () => {
-    this.props.dispatch(actions.setFormToFill('request-form'));
+    this.props.setFormToFill('request-form');
     const options = {
       method: 'get',
     };
@@ -160,4 +161,12 @@ export const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps)(RequestForm);
+const mapDispatchToProps = (dispatch) => {
+  const { setFormToFill, displayPage} = actions;
+  return bindActionCreators({
+    setFormToFill,
+    displayPage,
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RequestForm);

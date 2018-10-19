@@ -33,6 +33,7 @@ describe('<UpdateRequest /> test', () => {
         requests={requests}
         requestToUpdate={requestToUpdate}
         serviceProviders={serviceProviders}
+        setFormToFill={jest.fn()}
       />);
     });
     test('should map the snapshot of the component', () => {
@@ -56,12 +57,11 @@ describe('<UpdateRequest /> test', () => {
         }
       ];
       store.getState().requestReducer.requests = requests;
-      const dispatch = jest.fn();
       connectedWrapper = mount(
         <Provider store={store}>
           <ConnectedUpdateRequest
-            dispatch={dispatch}
             serviceProviders={serviceProviders}
+            setFormToFill={jest.fn()}
           />
         </Provider>
       );

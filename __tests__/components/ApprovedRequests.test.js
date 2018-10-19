@@ -48,7 +48,8 @@ describe('<ApprovedRequest />', () => {
         <ApprovedRequests
           requests={requests}
           userData={userData}
-          dispatch={dispatch}
+          clearErrorValue={jest.fn()}
+          setErrorValue={jest.fn()}
         />
       );
     });
@@ -80,7 +81,10 @@ describe('<ApprovedRequest />', () => {
     beforeEach(() => {
       wrapper = mount(
         <Provider store={store}>
-          <ConnectedApprovedRequest />
+          <ConnectedApprovedRequest
+            clearErrorValue={jest.fn()}
+            setErrorValue={jest.fn()}
+          />
         </Provider>
       );
     });
