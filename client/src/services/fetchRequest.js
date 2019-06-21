@@ -1,4 +1,3 @@
-
 // make api request using fetch
 const fetchRequest = async (url, options) => {
   const { NODE_ENV } = process.env;
@@ -9,8 +8,8 @@ const fetchRequest = async (url, options) => {
   localStorage.setItem('apiUrl', BASE_URL);
   const absoluteUrl = `${BASE_URL}${url}`;
   /* eslint-disable no-undef */
-  const responseData  = await fetch(absoluteUrl, options);
+  const responseData = await fetch(absoluteUrl, options);
   return responseData.json();
-}
+};
 
 export default fetchRequest;

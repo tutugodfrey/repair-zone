@@ -31,6 +31,13 @@ export class SignupPage extends Component {
   loadHomePage() {
     this.props.displayPage(HomePage);
   }
+<<<<<<< HEAD
+=======
+
+  componentDidMount() {
+    store.dispatch(actions.setFormToFill('signup'));
+  }
+>>>>>>> feat(signin): implement signin
   // render the signup page
   formContent() {
     return <div>
